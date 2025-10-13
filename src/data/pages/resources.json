@@ -1,0 +1,18 @@
+{
+  "slug": "resources",
+  "seo": {
+    "title": "Resources - CancerDetect",
+    "description": "Find helpful resources, guides, and information about cancer detection and prevention.",
+    "openGraph": {
+      "title": "Resources - CancerDetect",
+      "description": "Find helpful resources, guides, and information about cancer detection and prevention.",
+      "url": "https://cancerdetect.viome.com/resources"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-6xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": []
+}

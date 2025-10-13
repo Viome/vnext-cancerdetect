@@ -1,0 +1,64 @@
+{
+  "slug": "home",
+  "seo": {
+    "title": "Home | Cancer Detection App",
+    "description": "Advanced cancer detection application using cutting-edge technology",
+    "openGraph": {
+      "title": "Home | Cancer Detection App",
+      "description": "Advanced cancer detection application using cutting-edge technology",
+      "image": "/hero-image.png"
+    }
+  },
+  "layout": {
+    "className": "bg-white",
+    "navbar": {
+      "sticky": true
+    }
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": ["Advanced Cancer Detection", "Made Simple"],
+      "subtitle": "Revolutionary technology that helps detect cancer early with 99% accuracy",
+      "cta": {
+        "text": "Get Started",
+        "href": "/products",
+        "variant": "primary"
+      }
+    },
+    {
+      "type": "features",
+      "title": "Why Choose Our Solution",
+      "items": [
+        {
+          "title": "High Accuracy",
+          "description": "99% accuracy rate in cancer detection using advanced AI algorithms"
+        },
+        {
+          "title": "Fast Results",
+          "description": "Get results in minutes, not days or weeks"
+        },
+        {
+          "title": "Easy to Use",
+          "description": "Simple interface that anyone can use without medical training"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "title": "What Our Users Say",
+      "testimonials": [
+        {
+          "name": "Dr. Sarah Johnson",
+          "role": "Oncologist",
+          "content": "This technology has revolutionized how we approach early cancer detection. The accuracy is remarkable."
+        },
+        {
+          "name": "John Smith",
+          "role": "Patient",
+          "content": "Early detection saved my life. This app made it so easy to get tested."
+        }
+      ]
+    }
+  ]
+}

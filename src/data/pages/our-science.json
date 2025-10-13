@@ -1,0 +1,25 @@
+{
+  "slug": "our-science",
+  "seo": {
+    "title": "Our Science - CancerDetect",
+    "description": "Learn about the science behind CancerDetect and our innovative approach to cancer detection.",
+    "openGraph": {
+      "title": "Our Science - CancerDetect",
+      "description": "Learn about the science behind CancerDetect and our innovative approach to cancer detection.",
+      "url": "https://cancerdetect.viome.com/our-science"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-7xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "Hero",
+      "title": "Our Science",
+      "subtitle": "Advancing cancer detection through innovative research and technology"
+    }
+  ]
+}

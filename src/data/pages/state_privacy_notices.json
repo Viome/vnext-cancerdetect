@@ -1,0 +1,25 @@
+{
+  "slug": "state_privacy_notices",
+  "seo": {
+    "title": "State Privacy Notices - CancerDetect",
+    "description": "State-specific privacy notices and information about your privacy rights.",
+    "openGraph": {
+      "title": "State Privacy Notices - CancerDetect",
+      "description": "State-specific privacy notices and information about your privacy rights.",
+      "url": "https://cancerdetect.viome.com/state_privacy_notices"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-4xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "Hero",
+      "title": "State Privacy Notices",
+      "subtitle": "State-specific privacy information and your rights"
+    }
+  ]
+}

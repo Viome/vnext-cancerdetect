@@ -1,0 +1,25 @@
+{
+  "slug": "privacy-policy",
+  "seo": {
+    "title": "Privacy Policy - CancerDetect",
+    "description": "Read our privacy policy to understand how we collect, use, and protect your personal information.",
+    "openGraph": {
+      "title": "Privacy Policy - CancerDetect",
+      "description": "Read our privacy policy to understand how we collect, use, and protect your personal information.",
+      "url": "https://cancerdetect.viome.com/privacy-policy"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-4xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "Hero",
+      "title": "Privacy Policy",
+      "subtitle": "Your privacy is important to us"
+    }
+  ]
+}

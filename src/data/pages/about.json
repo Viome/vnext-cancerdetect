@@ -1,0 +1,42 @@
+{
+  "slug": "about",
+  "seo": {
+    "title": "About Us | Cancer Detection App",
+    "description": "Learn about our mission to revolutionize cancer detection through advanced technology",
+    "openGraph": {
+      "title": "About Us | Cancer Detection App",
+      "description": "Learn about our mission to revolutionize cancer detection through advanced technology"
+    }
+  },
+  "layout": {
+    "className": "bg-gray-50",
+    "navbar": {
+      "sticky": true
+    }
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "title": "About Our Mission",
+      "subtitle": "We're dedicated to making cancer detection accessible, accurate, and affordable for everyone"
+    },
+    {
+      "type": "features",
+      "title": "Our Core Values",
+      "items": [
+        {
+          "title": "Innovation",
+          "description": "We continuously push the boundaries of what's possible in medical technology"
+        },
+        {
+          "title": "Accessibility",
+          "description": "Making advanced healthcare technology available to everyone, everywhere"
+        },
+        {
+          "title": "Accuracy",
+          "description": "Ensuring the highest standards of precision in our detection algorithms"
+        }
+      ]
+    }
+  ]
+}

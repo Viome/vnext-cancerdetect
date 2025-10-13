@@ -1,0 +1,276 @@
+/* CRITICAL FONTS - Load First (Preloaded) */
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-100.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-200.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-300.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-400.woff2') format('woff2'),
+         url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-400.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TiemposHeadlineLight';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineLight.woff2') format('woff2'),
+         url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TiemposHeadlineSemibold';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineSemibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TiemposHeadlineBold';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* NON-CRITICAL FONTS - Lazy Load (Lower Priority) */
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* TWKLausanne Italic Variants - Lower Priority */
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-100Italic.woff2') format('woff2');
+    font-weight: 100;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-200Italic.woff2') format('woff2');
+    font-weight: 200;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-300Italic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-400Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-500Italic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-600Italic.woff2') format('woff2');
+    font-weight: 600;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TWKLausanne';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/TWKLausanne/TWKLausanne-700Italic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Tiempos font family variations - separate font families for each weight */
+@font-face {
+    font-family: 'TiemposLight';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineLight.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TiemposRegular';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineRegular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'TiemposMedium';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Tiemfonts/TiemposHeadlineMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* RARELY USED FONTS - Load only when needed */
+@font-face {
+    font-family: 'CalibreThin';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreThin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'CalibreLight';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreLight.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'CalibreRegular';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: optional; /* Optional loading for rare fonts */
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'CalibreMedium';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreMedium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'CalibreSemibold';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreSemibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'CalibreBold';
+    src: url('https://static.azure.viome.com/viome-cdn/media/assets/vnext/fonts/Calibrefonts/CalibreBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: optional;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Font Variable Definitions */
+:root {
+    /* Primary font with optimized fallbacks */
+    --font-twk-lausanne: 'TWKLausanne', system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+    /* Secondary fonts with fallbacks */
+    --font-tiempos-headline-light: 'TiemposHeadlineLight', 'Times New Roman', Times, serif;
+    --font-tiempos-headline-semibold: 'TiemposHeadlineSemibold', 'Times New Roman', Times, serif;
+    --font-tiempos-headline-bold: 'TiemposHeadlineBold', 'Times New Roman', Times, serif;
+    --font-tiempos: 'TiemposLight', 'TiemposRegular', 'TiemposMedium', 'Times New Roman', Times, serif;
+
+    /* Calibre font family with all weights */
+    --font-calibre-thin: 'CalibreThin', system-ui, -apple-system, sans-serif;
+    --font-calibre-light: 'CalibreLight', system-ui, -apple-system, sans-serif;
+    --font-calibre-regular: 'CalibreRegular', system-ui, -apple-system, sans-serif;
+    --font-calibre-medium: 'CalibreMedium', system-ui, -apple-system, sans-serif;
+    --font-calibre-semibold: 'CalibreSemibold', system-ui, -apple-system, sans-serif;
+    --font-calibre-bold: 'CalibreBold', system-ui, -apple-system, sans-serif;
+    --font-calibre: 'CalibreRegular', system-ui, -apple-system, sans-serif;
+    
+    --font-tiempos-headline-regular: 'TiemposHeadlineRegular', 'Times New Roman', Times, serif;
+    --font-tiempos-headline-medium: 'TiemposHeadlineMedium', 'Times New Roman', Times, serif;
+    --font-circular-air-light: 'TiemposHeadlineLight', 'Times New Roman', Times, serif;
+    --font-circular-air-book: 'CalibreRegular', system-ui, -apple-system, sans-serif;
+}
+
+/* Use this CSS class to delay loading of non-critical fonts */
+.lazy-font-load {
+    font-display: optional;
+}
+
+/* Critical font loading for above-the-fold content */
+.critical-font-load {
+    font-display: swap;
+}

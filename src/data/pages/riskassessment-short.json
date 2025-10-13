@@ -1,0 +1,18 @@
+{
+  "slug": "riskassessment-short",
+  "seo": {
+    "title": "Quick Risk Assessment - CancerDetect",
+    "description": "Take our quick risk assessment to get a preliminary evaluation of your cancer risk.",
+    "openGraph": {
+      "title": "Quick Risk Assessment - CancerDetect",
+      "description": "Take our quick risk assessment to get a preliminary evaluation of your cancer risk.",
+      "url": "https://cancerdetect.viome.com/riskassessment-short"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-4xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": []
+}

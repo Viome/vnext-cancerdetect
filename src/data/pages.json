@@ -1,0 +1,18 @@
+{
+  "availablePages": [
+    "home",
+    "our-science",
+    "privacy-policy",
+    "state_privacy_notices",
+    "terms",
+    "cookie-policy",
+    "accessibility",
+    "resources",
+    "riskassessment",
+    "riskassessment-short"
+  ],
+  "productPages": [],
+  "eligibilityPages": [
+    "register"
+  ]
+}

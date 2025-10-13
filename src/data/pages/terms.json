@@ -1,0 +1,25 @@
+{
+  "slug": "terms",
+  "seo": {
+    "title": "Terms of Service - CancerDetect",
+    "description": "Read our terms of service to understand the conditions for using CancerDetect.",
+    "openGraph": {
+      "title": "Terms of Service - CancerDetect",
+      "description": "Read our terms of service to understand the conditions for using CancerDetect.",
+      "url": "https://cancerdetect.viome.com/terms"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-4xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "type": "Hero",
+      "title": "Terms of Service",
+      "subtitle": "Please read these terms carefully before using our service"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "accessibility",
+  "seo": {
+    "title": "Accessibility Statement - CancerDetect",
+    "description": "Our commitment to accessibility and making our website usable for everyone.",
+    "openGraph": {
+      "title": "Accessibility Statement - CancerDetect",
+      "description": "Our commitment to accessibility and making our website usable for everyone.",
+      "url": "https://cancerdetect.viome.com/accessibility"
+    }
+  },
+  "layout": {
+    "className": "min-h-screen bg-white",
+    "maxWidth": "max-w-4xl mx-auto",
+    "padding": "px-4 py-8"
+  },
+  "sections": []
+}
