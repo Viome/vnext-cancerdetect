@@ -17,20 +17,45 @@
   },
   "sections": [
     {
-      "sectionId": "home-hero",
-      "type": "hero",
-      "title": ["Advanced Cancer Detection", "Made Simple"],
-      "subtitle": "Revolutionary technology that helps detect cancer early with 99% accuracy",
-      "cta": {
-        "text": "Get Started",
-        "href": "/products",
-        "variant": "Standard",
-        "theme": "Light"
-      },
+      "sectionId": "home-hero-product",
+      "type": "hero_product",
+      "tagline": "Test at home for peace of mind",
+      "brand": "Viome Discovery",
+      "title": "CancerDetect Test for Oral & Throat Cancer",
+      "description": "CancerDetect<sup>®</sup> Oral & Throat is the first at-home test of its kind to detect biomarkers associated with early-stage oral and throat cancer. This simple-to-use yet revolutionary test takes only a few minutes to collect and mail a sample and includes healthcare provider guidance when needed. Eligible individuals can now test with the confidence of high accuracy to detect biomarkers associated with oral and/or throat cancer.",
+      "checklist": [
+        {
+          "text": "Detect biomarkers associated with early-stage oral & throat cancers"
+        },
+        {
+          "text": "Substantially higher sensitivity and specificity over conventional oral exam <sup>*</sup>"
+        },
+        {
+          "text": "Easy-to-use at-home test and guided experience"
+        },
+        {
+          "text": "Healthcare provider consultation is available when needed"
+        }
+      ],
+      "disclaimerNote": "*In a recent meta-analysis, across 14 studies, the summary estimate for sensitivity of conventional oral examination was found to be 71% (95% CI: 57%–81%), and the specificity was 85% (95% CI: 68%–94%).",
+      "disclaimer": "Viome's CancerDetect Test is not an FDA-approved or cleared test.",
+      "price": "$599",
+      "priceLabel": "USD",
+      "priceSublabel": "(plus tax, if applicable)",
+      "promoText": "Use code <strong>DETECT</strong> at checkout for $300 off",
+      "ctaText": "Assess My Eligibility",
+      "ctaHref": "/eligibility/register",
+      "images": [
+        "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Graphic_2_aaa099450b.webp",
+        "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_37_Graphic_901933d177.webp",
+        "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_14_Graphic_3_6f9a41682c.webp"
+      ],
+      "shopPayText": "Pay in 4 interest-free payments with <strong>Shop Pay</strong>. As low as $149.75.*",
       "wrapperStyle": {
-        "background": "bg-gradient-to-b from-blue-50 to-white",
-        "padding": "px-4 sm:px-6 lg:px-8 py-20 sm:py-24",
-        "useContainerWidth": true
+        "background": "bg-white",
+        "padding": "px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20",
+        "useContainerWidth": true,
+        "spacing": "mb-8"
       }
     },
     {

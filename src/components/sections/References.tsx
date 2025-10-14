@@ -23,14 +23,9 @@ export default function References({
       return <span dangerouslySetInnerHTML={{ __html: reference.text }} />
     }
 
-    const parts = reference.text.split(reference.link)
-    if (parts.length === 1) {
-      return <span dangerouslySetInnerHTML={{ __html: reference.text }} />
-    }
-
     return (
       <>
-        <span dangerouslySetInnerHTML={{ __html: parts[0] }} />
+        <span dangerouslySetInnerHTML={{ __html: reference.text }} />
         <a
           href={reference.link}
           target="_blank"
@@ -39,7 +34,6 @@ export default function References({
         >
           {reference.link}
         </a>
-        {parts[1] && <span dangerouslySetInnerHTML={{ __html: parts[1] }} />}
       </>
     )
   }

@@ -5,39 +5,88 @@
  */
 
 import { strapiClient } from "../client"
-import type { StrapiMedia } from "../types"
 
 /**
- * Product interface
+ * Strapi Media Format
+ */
+interface MediaFormat {
+  ext: string
+  url: string
+  hash: string
+  mime: string
+  name: string
+  path: string | null
+  size: number
+  width: number
+  height: number
+  sizeInBytes: number
+}
+
+/**
+ * Strapi Media Object
+ */
+interface StrapiMediaObject {
+  id: number
+  documentId: string
+  name: string
+  alternativeText: string | null
+  caption: string | null
+  width: number
+  height: number
+  formats: {
+    large?: MediaFormat
+    small?: MediaFormat
+    medium?: MediaFormat
+    thumbnail?: MediaFormat
+  }
+  hash: string
+  ext: string
+  mime: string
+  size: number
+  url: string
+  previewUrl: string | null
+  provider: string
+  provider_metadata: any
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+/**
+ * Product interface matching actual Strapi response
  */
 export interface StrapiProduct {
   id: number
+  documentId: string
   name: string
   slug: string
   description?: string
-  shortDescription?: string
-  price?: number
-  sku?: string
-  shopifyProductId?: string
-  shopifyVariantId?: string
-  features?: Array<{
-    id: number
-    title: string
-    description?: string
-    icon?: string
-  }>
-  images?: {
-    data: Array<{
-      id: number
-      attributes: StrapiMedia
-    }>
+  longDescription?: string
+  currentPrice?: string
+  comparePrice?: string | null
+  variantId?: string
+  productSku?: string
+  salesMessage?: string
+  mobilePromo?: string | null
+  mobileMeta?: any
+  upsellSlug?: string | null
+  upsellMeta?: any
+  heroDescriptionComponent?: any
+  heroDescription?: string | null
+  productType?: string
+  hasInteractiveElement?: boolean
+  productMetaData?: {
+    shopifyApiId?: string
   }
-  featuredImage?: {
-    data: {
-      id: number
-      attributes: StrapiMedia
-    }
-  }
+  shopifySubscriptionPlan?: any
+  buyingOptions?: any[]
+  productImage?: StrapiMediaObject
+  productHeroImages?: StrapiMediaObject[]
+  heroProductImage?: StrapiMediaObject[]
+  productAltImage?: StrapiMediaObject[]
+  addons?: any[]
+  optionalAddons?: any[]
+  upsellProduct?: any
   publishedAt: string
   createdAt: string
   updatedAt: string
@@ -52,7 +101,7 @@ export async function fetchCancerDetectProduct(): Promise<StrapiProduct | null> 
       "/products",
       { slug: "cancer-detect" },
       {
-        populate: ["featuredImage", "images", "features"],
+        populate: "*",
         publicationState: "live",
       }
     )
@@ -62,10 +111,12 @@ export async function fetchCancerDetectProduct(): Promise<StrapiProduct | null> 
       return null
     }
 
-    return {
-      ...response.data.attributes,
-      id: response.data.id,
-    }
+    // Check if data has attributes (V4 format) or is flat (V5 format)
+    const productData = response.data.attributes 
+      ? { ...response.data.attributes, id: response.data.id }
+      : response.data
+    
+    return productData as StrapiProduct
   } catch (error) {
     console.error("Error fetching Cancer Detect product:", error)
     return null
@@ -78,8 +129,8 @@ export async function fetchCancerDetectProduct(): Promise<StrapiProduct | null> 
  */
 export async function fetchCancerDetectProductCached(): Promise<StrapiProduct | null> {
   try {
-    const response = await strapiClient.get<{ data: { id: number; attributes: StrapiProduct } }>(
-      "/products?filters[slug][$eq]=cancer-detect&populate=featuredImage,images,features&publicationState=live",
+    const response = await strapiClient.get<{ data: { id: number; attributes?: StrapiProduct } | { id: number; attributes?: StrapiProduct }[] }>(
+      "/products?filters[slug][$eq]=cancer-detect&populate=*&publicationState=live",
       undefined,
       {
         next: {
@@ -100,10 +151,12 @@ export async function fetchCancerDetectProductCached(): Promise<StrapiProduct | 
       return null
     }
 
-    return {
-      ...products[0].attributes,
-      id: products[0].id,
-    }
+    // Check if data has attributes (V4 format) or is flat (V5 format)
+    const productData = products[0].attributes 
+      ? { ...products[0].attributes, id: products[0].id }
+      : products[0]
+
+    return productData as StrapiProduct
   } catch (error) {
     console.error("Error fetching Cancer Detect product:", error)
     return null

@@ -14,7 +14,7 @@ import { fetchCancerDetectProduct, type StrapiProduct } from "@/lib/strapi/servi
  */
 export function useCancerDetectProduct() {
   const { data, error, isLoading, mutate } = useSWR<StrapiProduct | null>(
-    "cancer-detect-product",
+    "cancer-detect",
     fetchCancerDetectProduct,
     {
       revalidateOnFocus: false,
