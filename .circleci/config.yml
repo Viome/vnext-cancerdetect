@@ -211,8 +211,8 @@ jobs:
             - run:
                 name: Copy staging configuration
                 command: |
-                    cp .env.staging .env
-                    cp .env.staging .env.production
+                    cp .env.development .env
+                    cp .env.development .env.production
       - unless:
           condition:
             equal: [production, << parameters.env >>]
