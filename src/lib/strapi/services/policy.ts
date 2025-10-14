@@ -5,15 +5,17 @@
  */
 
 import { strapiClient } from "../client"
+import type { BlocksContent } from "@strapi/blocks-react-renderer"
 
 /**
  * Policy page interface
  */
 export interface StrapiPolicyPage {
   id: number
-  title: string
+  title?: string
+  InternalName?: string
   slug: string
-  content: string
+  content: string | BlocksContent
   metaTitle?: string
   metaDescription?: string
   publishedAt: string
@@ -40,8 +42,8 @@ export async function fetchPolicyPages(): Promise<StrapiPolicyPage[] | null> {
     }
 
     return response.data.map((policy) => ({
-      ...policy.attributes,
-      id: policy.id,
+      ...(policy as any),
+      title: (policy as any).InternalName || (policy as any).title,
     }))
   } catch (error) {
     console.error("Error fetching policy pages:", error)
@@ -69,9 +71,10 @@ export async function fetchPolicyPageBySlug(
       return null
     }
 
+    const policyData = response.data as any
     return {
-      ...response.data.attributes,
-      id: response.data.id,
+      ...policyData,
+      title: policyData.InternalName || policyData.title,
     }
   } catch (error) {
     console.error(`Error fetching policy page with slug "${slug}":`, error)

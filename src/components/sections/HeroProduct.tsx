@@ -62,8 +62,8 @@ export default function HeroProduct({
   
   const { product, isLoading, error } = useCancerDetectProduct()
   
-  const productImages = product?.productHeroImages?.map(img => img.url) || []
-  const displayImages = productImages.length > 0 ? productImages : images
+  // Use only Strapi images, do not fall back to prop images
+  const displayImages = product?.productHeroImages?.map(img => img.url) || []
   const displayThumbnails = thumbnails || displayImages
   
   const displayPrice = product?.currentPrice 

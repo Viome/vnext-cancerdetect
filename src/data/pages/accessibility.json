@@ -14,5 +14,11 @@
     "maxWidth": "max-w-4xl mx-auto",
     "padding": "px-4 py-8"
   },
-  "sections": []
+  "sections": [
+    {
+      "id": "accessibility-content",
+      "type": "terms_content",
+      "slug": "accessibility"
+    }
+  ]
 }

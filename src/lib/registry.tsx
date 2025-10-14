@@ -22,6 +22,19 @@ const InfoWithImage = dynamic(() => import("@/components/sections/InfoWithImage"
 const OurScience = dynamic(() => import("@/components/sections/OurScience"))
 const References = dynamic(() => import("@/components/sections/References"))
 const HeroProduct = dynamic(() => import("@/components/sections/HeroProduct"))
+const MissionStatement = dynamic(() => import("@/components/sections/MissionStatement"))
+const SignalInNoise = dynamic(() => import("@/components/sections/SignalInNoise"))
+const InsightToIntervention = dynamic(() => import("@/components/sections/InsightToIntervention"))
+const ProductShowcase = dynamic(() => import("@/components/sections/ProductShowcase"))
+const QuoteSection = dynamic(() => import("@/components/sections/QuoteSection"))
+const MissionWithImage = dynamic(() => import("@/components/sections/MissionWithImage"))
+const FAQSection = dynamic(() => import("@/components/sections/FAQSection"))
+const ApproachToDiagnostics = dynamic(() => import("@/components/sections/ApproachToDiagnostics"))
+const WorkWithUs = dynamic(() => import("@/components/sections/WorkWithUs"))
+const ScienceApproach = dynamic(() => import("@/components/sections/ScienceApproach"))
+const PublicationsPartners = dynamic(() => import("@/components/sections/PublicationsPartners"))
+const ContactSection = dynamic(() => import("@/components/sections/ContactSection"))
+const TermsContent = dynamic(() => import("@/components/sections/TermsContent"))
 
 
 // Component registry mapping
@@ -45,6 +58,19 @@ export const registry: ComponentRegistry = {
   OurScience: OurScience,
   References: References,
   HeroProduct: HeroProduct,
+  MissionStatement: MissionStatement,
+  SignalInNoise: SignalInNoise,
+  InsightToIntervention: InsightToIntervention,
+  ProductShowcase: ProductShowcase,
+  QuoteSection: QuoteSection,
+  MissionWithImage: MissionWithImage,
+  FAQSection: FAQSection,
+  ApproachToDiagnostics: ApproachToDiagnostics,
+  WorkWithUs: WorkWithUs,
+  ScienceApproach: ScienceApproach,
+  PublicationsPartners: PublicationsPartners,
+  ContactSection: ContactSection,
+  TermsContent: TermsContent,
   // Lowercase versions for backward compatibility
   hero: Hero,
   features: Features,
@@ -64,6 +90,19 @@ export const registry: ComponentRegistry = {
   our_science: OurScience,
   references: References,
   hero_product: HeroProduct,
+  mission_statement: MissionStatement,
+  signal_in_noise: SignalInNoise,
+  insight_to_intervention: InsightToIntervention,
+  product_showcase: ProductShowcase,
+  quote_section: QuoteSection,
+  mission_with_image: MissionWithImage,
+  faq_section: FAQSection,
+  approach_to_diagnostics: ApproachToDiagnostics,
+  work_with_us: WorkWithUs,
+  science_approach: ScienceApproach,
+  publications_partners: PublicationsPartners,
+  contact_section: ContactSection,
+  terms_content: TermsContent,
   // Add more components as needed
 }
 

@@ -77,6 +77,20 @@ const NavTopLinksRight = memo(() => {
       }
     }, [item.type, handleDropdownClose])
 
+    // Handle button items
+    if (item.type === 'button') {
+      return (
+        <li key={index} className="relative h-full">
+          <Link
+            href={item.href}
+            className="flex items-center justify-center px-6 py-2 bg-black text-white cursor-pointer hover:bg-gray-800 transition-colors rounded-sm font-medium text-sm"
+          >
+            {item.label}
+          </Link>
+        </li>
+      )
+    }
+
     // Handle regular links (non-dropdown items)
     if (item.type === 'link' && !item.showArrow) {
       return (
