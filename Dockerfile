@@ -79,10 +79,6 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Copy additional configuration files
-COPY --from=builder /app/next.config.ts ./
-COPY --from=builder /app/src/middleware.ts ./src/
-
 # Create necessary directories and set permissions
 RUN mkdir -p /app/.next/cache && \
     chown -R root:root /app && \
