@@ -1,0 +1,310 @@
+version: 2.1
+
+commands:
+  deploy_to_cluster:
+    description: "A command that deploys application to AKS cluster"
+    parameters:
+      aks_cluster_name:
+        type: string
+      k8s_namespace:
+        type: string
+      kubectl_version:
+        type: string
+      istio_version:
+        type: string
+      environment:
+        type: string
+      requestCpu:
+        type: string
+      requestMemory:
+        type: string
+      limitsCpu:
+        type: integer
+      limitsMemory:
+        type: string
+      minReplicas:
+        type: integer
+      maxReplicas:
+        type: integer
+      averageCpuUtilization:
+        type: integer
+      averageMemoryUtilization:
+        type: integer
+    steps:
+      - attach_workspace:
+          at: ~/repo_lsj
+      - run:
+          name: Restore Docker Container Image Tag
+          command: |
+            cat "ENV-$CIRCLE_SHA1.txt" >> $BASH_ENV
+            echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> $BASH_ENV
+
+      - run:
+          name: Install istio
+          command: |
+            curl --insecure -L https://istio.io/downloadIstio | ISTIO_VERSION=<< parameters.istio_version >> sh -
+            cd istio-*
+
+            echo "export PATH=${PWD}/bin:\$PATH" >> $BASH_ENV
+            cd ..
+
+      - run:
+          name: Deploy the current commit on this branch to the AKS cluster
+          command: |
+            sed -i 's@CONTAINER_IMAGE@'"${IMAGE_TAG}"'@' k8s.yml
+            sed -i 's@CHANGE_CAUSE@'"${CIRCLE_SHA1}"'@' k8s.yml
+            sed -i 's/ENVIRONMENT/'"<< parameters.k8s_namespace >>"'/g' k8s.yml
+            ENV_PREFIX="<< parameters.environment >>"
+            export ENV_PREFIX_LOWER="${ENV_PREFIX,,}"
+            CLIENT_ID_VAR="${ENV_PREFIX}_AZURE_CLIENT_ID"
+            CLIENT_SECRET_VAR="${ENV_PREFIX}_AZURE_CLIENT_SECRET"
+            TENANT_ID_VAR="${ENV_PREFIX}_AZURE_TENANT_ID"
+            RESOURCE_GROUP_VAR="${ENV_PREFIX}_AZURE_RESOURCE_GROUP"
+            export NAMESPACE="<< parameters.k8s_namespace >>"
+            export REQUEST_CPU="<< parameters.requestCpu >>"
+            export REQUEST_MEMORY="<< parameters.requestMemory >>"
+            export LIMITS_CPU="<< parameters.limitsCpu >>"
+            export LIMITS_MEMORY="<< parameters.limitsMemory >>"
+            export MIN_REPLICAS="<< parameters.minReplicas >>"
+            export MAX_REPLICAS="<< parameters.maxReplicas >>"
+            export AVERAGE_CPU_UTILIZATION="<< parameters.averageCpuUtilization >>"
+            export AVERAGE_MEMORY_UTILIZATION="<< parameters.averageMemoryUtilization >>"
+
+            cat k8s.yml | envsubst > k8s_azure.yml
+            cat k8s_azure.yml
+
+            # Use indirect expansion to get the value of each environment variable
+            az login --service-principal \
+              -u ${!CLIENT_ID_VAR} \
+              -p ${!CLIENT_SECRET_VAR} \
+              --tenant ${!TENANT_ID_VAR}
+            az aks get-credentials --resource-group ${!RESOURCE_GROUP_VAR} --name << parameters.aks_cluster_name >>
+
+            istioctl kube-inject -f k8s_azure.yml | kubectl apply -f -
+            DEPLOYMENT=`kubectl apply -f <(istioctl kube-inject -f k8s_azure.yml) | grep deployment.apps | awk '{print $1}' | awk -F/ '{print $NF}'`
+            kubectl annotate deployment.v1.apps/${DEPLOYMENT} kubernetes.io/change-cause="$COMMIT_MESSAGE" -n << parameters.k8s_namespace >>
+
+  docker_push_to:
+    description: 'Build a package with configuration'
+    parameters:
+        new_relic_license_key:
+            type: string
+        new_relic_app_name:
+            type: string
+        environment:
+          type: string
+    steps:
+        - run:
+            name: Set shared Azure variables
+            command: |
+              echo "export ENV_PREFIX=<< parameters.environment >>" >> $BASH_ENV
+              echo "export ENV_PREFIX_LOWER=\${ENV_PREFIX,,}" >> $BASH_ENV
+              echo "export CLIENT_ID_VAR=\${ENV_PREFIX}_AZURE_CLIENT_ID" >> $BASH_ENV
+              echo "export CLIENT_SECRET_VAR=\${ENV_PREFIX}_AZURE_CLIENT_SECRET" >> $BASH_ENV
+              echo "export TENANT_ID_VAR=\${ENV_PREFIX}_AZURE_TENANT_ID" >> $BASH_ENV
+              echo "export ACR_VAR=\${ENV_PREFIX}_AZURE_ACR_NAME" >> $BASH_ENV
+              echo "export ACR_REPOSITORY_NAME_VAR=\${ENV_PREFIX}_ACR_REPOSITORY_NAME" >> $BASH_ENV
+        - run:
+            name: Authenticate with ACR
+            command: |
+              az login --service-principal -u ${!CLIENT_ID_VAR} -p ${!CLIENT_SECRET_VAR} --tenant ${!TENANT_ID_VAR} --allow-no-subscriptions
+              az acr login --name ${!ACR_VAR}
+        - run:
+            name: Set Docker Container Image Tag
+            command: |
+              export IMAGE_TAG=${!ACR_VAR}.azurecr.io/${!ACR_REPOSITORY_NAME_VAR}:${CIRCLE_BRANCH//[\/()]/-}${CIRCLE_TAG/+/}.${CIRCLE_SHA1}
+
+              echo "export IMAGE_TAG=${IMAGE_TAG}" > "ENV-$CIRCLE_SHA1.txt"
+              cat "ENV-$CIRCLE_SHA1.txt" >> $BASH_ENV
+        - run:
+            name: Build app image
+            command: |
+                docker build --rm=false \
+                  -t ${IMAGE_TAG} \
+                  -f ./Dockerfile .
+        - run:
+            name: Push app image
+            command: |
+              az login --service-principal -u ${!CLIENT_ID_VAR} -p ${!CLIENT_SECRET_VAR} --tenant ${!TENANT_ID_VAR} --allow-no-subscriptions
+              az acr login --name ${!ACR_VAR}
+              docker push ${IMAGE_TAG}
+
+jobs:
+  docker_push:
+    machine:
+      enabled: true
+      resource_class: << parameters.resource_class >>
+    working_directory: ~/repo_vnext_cd
+    parameters:
+      environment:
+        type: string
+      resource_class:
+        type: string
+    steps:
+      - attach_workspace:
+          at: ~/repo_vnext_cd
+      - docker_push_to:
+          new_relic_license_key: $STAGING_NEW_RELIC_LICENSE_KEY
+          new_relic_app_name: $STAGING_NEW_RELIC_APP_NAME
+          environment: << parameters.environment >>
+      - persist_to_workspace:
+          root: ~/repo_vnext_cd
+          paths:
+            - ./*
+
+  k8sdeploy2stage:
+    machine:
+      enabled: true
+      resource_class: viome/stage-azure-private-runner
+    working_directory: ~/repo_vnext_cd
+    steps:
+      - deploy_to_cluster:
+          aks_cluster_name: 'aks-viome-st-eu-01'
+          k8s_namespace: "public-workload"
+          kubectl_version: "v1.31.1"
+          istio_version: "1.24.0"
+          environment: 'ST'
+          requestCpu: 250m
+          requestMemory: 512Mi
+          limitsCpu: 1
+          limitsMemory: 2Gi
+          minReplicas: 1
+          maxReplicas: 3
+          averageCpuUtilization: 80
+          averageMemoryUtilization: 80
+
+  k8sdeploy2prod:
+    machine:
+      enabled: true
+      resource_class: viome/prod-azure-private-runner
+    working_directory: ~/repo_vnext_cd
+    steps:
+      - deploy_to_cluster:
+          aks_cluster_name: 'aks-viome-pd-eu-01'
+          k8s_namespace: "public-workload"
+          kubectl_version: "v1.31.1"
+          istio_version: "1.24.0"
+          environment: 'PD'
+          requestCpu: 250m
+          requestMemory: 512Mi
+          limitsCpu: 1
+          limitsMemory: 2Gi
+          minReplicas: 2
+          maxReplicas: 20
+          averageCpuUtilization: 80
+          averageMemoryUtilization: 80
+
+  preFileConfiguration:
+    docker:
+      - image: cimg/python:3.8.4
+    working_directory: ~/repo
+    parameters:
+      env:
+        type: string
+        default: staging
+    steps:
+      - checkout
+      - when:
+          condition:
+            equal: [staging, << parameters.env >>]
+          steps:
+            - run:
+                name: Copy staging configuration
+                command: |
+                    cp .env.staging .env
+                    cp .env.staging .env.production
+      - unless:
+          condition:
+            equal: [production, << parameters.env >>]
+          steps:
+            - run:
+                name: Copy production configuration
+                command: |
+                    cp .env.production .env
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Add NPM TOKEN
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - ./*
+
+workflows:
+  version: 2
+
+  stage_pipeline:
+    jobs:
+      - init_pipeline:
+          type: approval
+          filters:
+            tags:
+              ignore:
+                - /.*/
+      - preFileConfiguration:
+          requires:
+            - init_pipeline
+      - docker_push:
+          environment: "ST"
+          resource_class: viome/stage-azure-private-runner
+          requires:
+            - preFileConfiguration
+      - apprv_k8sdeploy2stage:
+          type: approval
+          requires:
+            - docker_push
+      - k8sdeploy2stage:
+          requires:
+            - apprv_k8sdeploy2stage
+
+  prod_pipeline:
+    jobs:
+      - init_pipeline:
+          type: approval
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-RC[0-9]*([+]PROD)?$/
+      - preFileConfiguration:
+          env: production
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-RC[0-9]*([+]PROD)?$/
+          requires:
+            - init_pipeline
+      - docker_push:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-RC[0-9]*([+]PROD)?$/
+          environment: "PD"
+          resource_class: viome/prod-azure-private-runner
+          requires:
+            - preFileConfiguration
+      - apprv_k8sdeploy2prod:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-RC[0-9]*([+]PROD)?$/
+          type: approval
+          requires:
+            - docker_push
+      - k8sdeploy2prod:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only:
+                - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-RC[0-9]*([+]PROD)?$/
+          requires:
+            - apprv_k8sdeploy2prod

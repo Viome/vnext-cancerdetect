@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vnext-cancer-detect
+  namespace: ${NAMESPACE}
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: vnext-cancer-detect
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vnext-cancer-detect
+  namespace: ${NAMESPACE}
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: vnext-cancer-detect
+  template:
+    metadata:
+      labels:
+          app: vnext-cancer-detect
+          azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: ${NAMESPACE}-pod-identity
+      nodeSelector:
+        agentpool: apps
+      containers:
+        - name: vnext-cancer-detect
+          image: CONTAINER_IMAGE
+          resources:
+            requests:
+              cpu: ${REQUEST_CPU}
+              memory: ${REQUEST_MEMORY}
+            limits:
+              cpu: ${LIMITS_CPU}
+              memory: ${LIMITS_MEMORY}
+          securityContext:
+            privileged: false
+            readOnlyRootFilesystem: false
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 3000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: vnext-cancer-detect-hpa
+  namespace: ${NAMESPACE}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: vnext-cancer-detect
+  minReplicas: ${MIN_REPLICAS}
+  maxReplicas: ${MAX_REPLICAS}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: ${AVERAGE_CPU_UTILIZATION}
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: ${AVERAGE_MEMORY_UTILIZATION}
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: cancer-detect-vs
+  namespace: public-workload
+spec:
+  gateways:
+  - aks-istio-ingress/public-gateway
+  hosts:
+  - cancerdetect.stage.azure.viome.com
+  http:
+  - match:
+    - uri:
+        prefix: /assessment
+    route:
+    - destination:
+        host: viome-cd-risk-assessment
+        port:
+          number: 80
+  - match:
+    - uri:
+        prefix: /api/
+    route:
+    - destination:
+        host: cancer-detect-gateway-service
+        port:
+          number: 8080
+  - match:
+    - uri:
+        prefix: /register
+    redirect:
+      authority: test.stage.azure.viome.com
+      uri: /register
+  - route:
+    - destination:
+        host: vnext-cancer-detect
+        port:
+          number: 80
+
