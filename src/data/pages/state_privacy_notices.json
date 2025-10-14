@@ -18,7 +18,7 @@
     {
       "id": "state-privacy-content",
       "type": "terms_content",
-      "slug": "state-privacy-notices"
+      "slug": "state_privacy_notices"
     }
   ]
 }

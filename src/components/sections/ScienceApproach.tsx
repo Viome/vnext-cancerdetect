@@ -141,8 +141,8 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
           <div className="space-y-12">
             {/* Top Content */}
             {tabs[activeTab].content.leftDescription || tabs[activeTab].content.rightDescription ? (
-              <div className={`grid grid-cols-1 ${tabs[activeTab].content.leftDescription ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} gap-12`}>
-                {tabs[activeTab].content.leftDescription && (
+              <div className={`grid grid-cols-1 ${tabs[activeTab].content.leftDescription || activeTab === 2 || activeTab === 3 ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} ${activeTab === 2 || activeTab === 3 ? 'gap-6' : 'gap-12'}`}>
+                {tabs[activeTab].content.leftDescription ? (
                   <div>
                     <h3 className="text-4xl font-bold mb-6">
                       {tabs[activeTab].content.mainTitle}
@@ -151,10 +151,16 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
                       {tabs[activeTab].content.leftDescription}
                     </p>
                   </div>
-                )}
+                ) : (activeTab === 2 || activeTab === 3) ? (
+                  <div>
+                    <h3 className="text-4xl font-bold mb-6">
+                      {tabs[activeTab].content.mainTitle}
+                    </h3>
+                  </div>
+                ) : null}
                 {tabs[activeTab].content.rightDescription && (
                   <div>
-                    {!tabs[activeTab].content.leftDescription && (
+                    {!tabs[activeTab].content.leftDescription && activeTab !== 2 && activeTab !== 3 && (
                       <h3 className="text-4xl font-bold mb-6">
                         {tabs[activeTab].content.mainTitle}
                       </h3>

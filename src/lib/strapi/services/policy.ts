@@ -58,13 +58,31 @@ export async function fetchPolicyPageBySlug(
   slug: string
 ): Promise<StrapiPolicyPage | null> {
   try {
-    const response = await strapiClient.findOne<StrapiPolicyPage>(
+    // Try with the original slug first
+    let response = await strapiClient.findOne<StrapiPolicyPage>(
       "/policies",
       { slug },
       {
         publicationState: "live",
       }
     )
+
+    // If not found, try alternate format (dash <-> underscore)
+    if (!response || !response.data) {
+      const alternateSlug = slug.includes('-') 
+        ? slug.replace(/-/g, '_')
+        : slug.replace(/_/g, '-')
+      
+      console.log(`Trying alternate slug: ${alternateSlug}`)
+      
+      response = await strapiClient.findOne<StrapiPolicyPage>(
+        "/policies",
+        { slug: alternateSlug },
+        {
+          publicationState: "live",
+        }
+      )
+    }
 
     if (!response || !response.data) {
       console.warn(`Policy page with slug "${slug}" not found`)

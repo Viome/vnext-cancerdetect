@@ -17,14 +17,6 @@ const NavTopLinksMobile = () => {
       (item) => !item.isShopDropdown
     )
 
-  const shopConfig = navbarConfig.navigation.mobile.navigation.find(
-    (item) => item.isShopDropdown
-  ) || {
-    label: "Shop",
-    showArrow: true,
-    isShopDropdown: true,
-  }
-
   const toggleItem = (index: number) => {
     if (openItems.includes(index)) {
       setOpenItems(openItems.filter((i) => i !== index))
@@ -40,19 +32,6 @@ const NavTopLinksMobile = () => {
   const renderShopItem = () => {
     return (
       <li className="mb-[1.25rem] border-y border-[#a0a1ad] py-4">
-        <div
-          className="flex items-center justify-between pl-[0.5rem] cursor-pointer"
-          onClick={toggleShop}
-        >
-          <span className="text-2xl font-normal">{shopConfig.label}</span>
-          <img
-            src={navbarConfig.assets.arrowIcon}
-            alt="Arrow"
-            className={`w-3 h-3 transition-transform duration-300 ease-in-out ${
-              isShopOpen ? "rotate-90" : "rotate-[-90deg]"
-            }`}
-          />
-        </div>
         <MobileShopDropdown isOpen={isShopOpen} />
       </li>
     )
@@ -123,7 +102,6 @@ const NavTopLinksMobile = () => {
   return (
     <div className="flex flex-col flex-grow">
       <ul className="flex flex-col p-4 list-none">
-        {renderShopItem()}
         {mobileNavigationConfig.map((item, index) =>
           renderMobileNavItem(item, index)
         )}

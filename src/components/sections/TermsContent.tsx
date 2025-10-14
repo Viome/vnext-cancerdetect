@@ -72,24 +72,6 @@ export default function TermsContent({ slug = "terms" }: TermsContentProps) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <header className="mb-8 border-b border-gray-200 pb-6">
-        <h1
-          className="mb-3 text-4xl font-bold text-gray-900"
-          style={{ fontFamily: "var(--font-twk-lausanne)" }}
-        >
-          {policy.title || policy.InternalName || "Policy"}
-        </h1>
-        {policy.updatedAt && (
-          <p className="text-sm text-gray-600">
-            Last updated: {new Date(policy.updatedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        )}
-      </header>
-
       <article className="prose prose-gray max-w-none">
         {typeof policy.content === "string" ? (
           <div

@@ -18,7 +18,7 @@ export default function SignalInNoise({
 }: SignalInNoiseProps) {
     return (
         <div id={sectionId} className="flex flex-col">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16 lg:mb-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16">
                 <div>
                     <h2 className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-medium leading-tight text-white">
                         {title}
@@ -34,11 +34,10 @@ export default function SignalInNoise({
             <Image
                 src={illustrationImage}
                 alt={illustrationAlt}
-                fill
-                objectFit="contain"
-                objectPosition="center"
-                className="w-full h-full"
-                sizes="(max-width: 768px) 100vw, 768px"
+                width={1200}
+                height={600}
+                className="w-full h-auto"
+                sizes="(max-width: 768px) 100vw, 1200px"
                 priority
             />
         </div>
