@@ -323,6 +323,80 @@
         "useContainerWidth": true,
         "padding": "py-16 sm:py-20 lg:py-24",
         "background": "bg-[#f5f5f5]",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-references",
+      "type": "references",
+      "title": "References",
+      "references": [
+        {
+          "id": 1,
+          "text": "Banavar G, Ogundijo O, et al. Detecting salivary host and microbiome RNA signature for aiding diagnosis of oral and throat cancer. Oral Oncology, Volume 145, October 2023. ",
+          "link": "https://www.sciencedirect.com/science/article/abs/pii/S1368837523001768"
+        },
+        {
+          "id": 2,
+          "text": "Banavar G, Ogundijo O, Toma R, Rajagopal S, Lim YK, Tang K, et al. The salivary metatranscriptome as an accurate diagnostic indicator of oral cancer. NPJ Genomic Medicine. 2021;6(1):105."
+        },
+        {
+          "id": 3,
+          "text": "National Cancer Institute Surveillance, Epidemiology and End Results Program. 2021. (Cancer Stat Facts: Oral Cavity and Pharynx Cancer)."
+        },
+        {
+          "id": 4,
+          "text": "Peacock ZS, Pogrel MA, Schmidt BL. Exploring the Reasons for Delay in Treatment of Oral Cancer. J Am Dent Assoc. 2008;139(10):1346–52."
+        },
+        {
+          "id": 5,
+          "text": "Mager D, Haffajee A, Devlin P, Norris C, Posner M, Goodson J. The salivary microbiota as a diagnostic indicator of oral cancer: a descriptive, non-randomized study of cancer-free and oral squamous cell carcinoma subjects. J Transl Med. 2005 Jul 7;3:27."
+        },
+        {
+          "id": 6,
+          "text": "Su SC, Chang LC, Huang HD, Peng CY, Chuang CY, Chen YT, et al. Oral microbial dysbiosis and its performance in predicting oral cancer. Carcinogenesis. 2020;42(1):127–35."
+        },
+        {
+          "id": 7,
+          "text": "Wang L, Yin G, Guo Y, Zhao Y, Zhao M, Lai Y, et al. Variations in Oral Microbiota Composition Are Associated With a Risk of Throat Cancer. Front Cell Infect Mi. 2019;9:205."
+        },
+        {
+          "id": 8,
+          "text": "Irfan M, Delgado RZR, Frias-Lopez J. The Oral Microbiome and Cancer. Front Immunol. 2020;11:591088."
+        },
+        {
+          "id": 9,
+          "text": "Hatch A, Horne J, Toma R, Twibell BL, Somerville KM, Pelle B, et al. A Robust Metatranscriptomic Technology for Population-Scale Studies of Diet, Gut Microbiome, and Human Health. Int J Genomics. 2019 Jan 1;2019:1718741."
+        },
+        {
+          "id": 10,
+          "text": "Shield KD, Ferlay J, Jemal A, Sankaranarayanan R, Chaturvedi AK, Bray F, et al. The global incidence of lip, oral cavity, and pharyngeal cancers by subsite in 2012. Ca Cancer J Clin. 2017;67(1):51–64."
+        },
+        {
+          "id": 11,
+          "text": "Kujan O, Glenny A, Oliver R, Thakker N, Sloan P. Screening programmes for the early detection and prevention of oral cancer. Cochrane Db Syst Rev. 2006;(3)."
+        },
+        {
+          "id": 12,
+          "text": "Blot WJ, McLaughlin J, Winn DM, Austin DF, Greenberg RS, Preston-Martin S, et al. Smoking and drinking in relation to oral and pharyngeal cancer. Cancer Res. 1988;11(48):3282–7."
+        },
+        {
+          "id": 13,
+          "text": "Moyer VA. Screening for Oral Cancer: U.S. Preventive Services Task Force Recommendation Statement. Ann Intern Med. 2014;160(1):55–60."
+        },
+        {
+          "id": 14,
+          "text": "National Program of Cancer Registries SEER. Stat Database: U.S. Cancer Statistics Incidence Analytic file 1998–2017. United States Department of Health and Human Services, Centers for Disease Control and Prevention; 2020."
+        },
+        {
+          "id": 15,
+          "text": "Essat M, Cooper K, et al. Diagnostic accuracy of conventional oral examination for detecting oral cavity cancer and potentially malignant disorders in patients with clinically evident oral lesions: Systematic review and meta-analysis. Head & Neck. 2022;1-16."
+        }
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-[#f5f5f5]",
         "spacing": "mb-0"
       }
     }

@@ -5,6 +5,7 @@ import { NavbarProvider } from "@/contexts/NavbarContext"
 import NavbarWrapper from "@/components/Navbar/NavbarWrapper"
 import { createMetadata } from "@/components/Metadata"
 import MetadataHead from "@/components/Metadata"
+import StrapiProviderWrapper from "@/components/StrapiProviderWrapper"
 
 export const metadata = createMetadata({
   title: "CancerDetect® Oral Cancer Test Kit & Throat Cancer Test at Home",
@@ -34,10 +35,12 @@ export default function RootLayout({
         <MetadataHead themeMode="light" />
       </head>
       <body className="antialiased">
-        <NavbarProvider>
-          <NavbarWrapper />
-          {children}
-        </NavbarProvider>
+        <StrapiProviderWrapper>
+          <NavbarProvider>
+            <NavbarWrapper />
+            {children}
+          </NavbarProvider>
+        </StrapiProviderWrapper>
       </body>
     </html>
   )

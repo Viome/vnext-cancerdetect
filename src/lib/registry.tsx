@@ -20,6 +20,7 @@ const ImageShowcase = dynamic(() => import("@/components/sections/ImageShowcase"
 const InsideYourKit = dynamic(() => import("@/components/sections/InsideYourKit"))
 const InfoWithImage = dynamic(() => import("@/components/sections/InfoWithImage"))
 const OurScience = dynamic(() => import("@/components/sections/OurScience"))
+const References = dynamic(() => import("@/components/sections/References"))
 
 
 // Component registry mapping
@@ -41,6 +42,7 @@ export const registry: ComponentRegistry = {
   InsideYourKit: InsideYourKit,
   InfoWithImage: InfoWithImage,
   OurScience: OurScience,
+  References: References,
   // Lowercase versions for backward compatibility
   hero: Hero,
   features: Features,
@@ -58,6 +60,7 @@ export const registry: ComponentRegistry = {
   inside_your_kit: InsideYourKit,
   info_with_image: InfoWithImage,
   our_science: OurScience,
+  references: References,
   // Add more components as needed
 }
 
