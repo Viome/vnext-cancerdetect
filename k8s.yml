@@ -76,43 +76,4 @@ spec:
       target:
         type: Utilization
         averageUtilization: ${AVERAGE_MEMORY_UTILIZATION}
----
-apiVersion: networking.istio.io/v1
-kind: VirtualService
-metadata:
-  name: cancer-detect-vs
-  namespace: public-workload
-spec:
-  gateways:
-  - aks-istio-ingress/public-gateway
-  hosts:
-  - cancerdetect.stage.azure.viome.com
-  http:
-  - match:
-    - uri:
-        prefix: /assessment
-    route:
-    - destination:
-        host: viome-cd-risk-assessment
-        port:
-          number: 80
-  - match:
-    - uri:
-        prefix: /api/
-    route:
-    - destination:
-        host: cancer-detect-gateway-service
-        port:
-          number: 8080
-  - match:
-    - uri:
-        prefix: /register
-    redirect:
-      authority: test.stage.azure.viome.com
-      uri: /register
-  - route:
-    - destination:
-        host: vnext-cancer-detect
-        port:
-          number: 80
 
