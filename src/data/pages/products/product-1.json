@@ -16,16 +16,19 @@
   },
   "sections": [
     {
+      "sectionId": "product-1-hero",
       "type": "hero",
       "title": "Basic Cancer Scan",
       "subtitle": "Essential cancer detection for common types with 95% accuracy",
       "cta": {
         "text": "Order Now",
         "href": "/order/basic-scan",
-        "variant": "primary"
+        "variant": "ForwardArrow-Standard",
+        "theme": "Light"
       }
     },
     {
+      "sectionId": "product-1-features",
       "type": "features",
       "title": "What's Included",
       "items": [

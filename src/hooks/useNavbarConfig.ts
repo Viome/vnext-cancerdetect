@@ -18,7 +18,8 @@ export function useNavbarConfig(config: NavbarConfig) {
     return () => {
       setConfig({ showNavbar: true, isSticky: true })
     }
-  }, [config, setConfig])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config.showNavbar, config.isSticky, setConfig])
 }
 
 // Helper function for pages that want to hide the navbar

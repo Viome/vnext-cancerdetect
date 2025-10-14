@@ -16,7 +16,7 @@
   },
   "sections": [
     {
-      "id": "hero",
+      "sectionId": "our-science-hero",
       "type": "Hero",
       "title": "Our Science",
       "subtitle": "Advancing cancer detection through innovative research and technology"

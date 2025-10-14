@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getPageBySlug } from "@/lib/content"
-import { getComponent } from "@/lib/registry"
+import { renderSection } from "@/lib/registry"
 import { createRouteHandler } from "@/lib/route-handler-factory"
 
 interface PageProps {
@@ -51,8 +51,16 @@ export default async function StepsToTestPage({ params }: PageProps) {
           }}
         >
           {page.sections.map((section, index) => {
-            const Component = getComponent(section.type)
-            return <Component key={section.id || index} {...section} />
+            try {
+              return renderSection(section, index)
+            } catch (error) {
+              console.error(`Error rendering section ${index} (${section.type}):`, error)
+              return (
+                <div key={section.sectionId || index} className="p-4 bg-red-100 text-red-800">
+                  Error rendering {section.type} section
+                </div>
+              )
+            }
           })}
         </main>
         {/* Add your footer component */}

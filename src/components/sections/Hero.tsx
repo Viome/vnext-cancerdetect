@@ -1,10 +1,13 @@
+import CDButton, { ButtonVariant, ButtonTheme } from '@/components/CDButton'
+
 interface HeroProps {
   title: string | string[]
   subtitle?: string
   cta?: {
     text: string
     href: string
-    variant?: string
+    variant?: ButtonVariant
+    theme?: ButtonTheme
   }
   backgroundImage?: string
 }
@@ -20,16 +23,14 @@ export default function Hero({ title, subtitle, cta, backgroundImage }: HeroProp
         </h1>
         {subtitle && <p className="hero-subtitle text-xl md:text-2xl font-twk-lausanne font-light mb-8 max-w-3xl mx-auto">{subtitle}</p>}
         {cta && (
-          <a 
-            href={cta.href} 
-            className={`inline-block px-8 py-4 rounded-lg font-twk-lausanne font-medium text-lg transition-colors ${
-              cta.variant === 'secondary' 
-                ? 'bg-white text-brand-dark hover:bg-gray-100' 
-                : 'bg-brand-green-1 text-white hover:bg-brand-green-2'
-            }`}
+          <CDButton
+            href={cta.href}
+            variant={cta.variant || 'Standard'}
+            theme={cta.theme || 'Light'}
+            width="auto"
           >
             {cta.text}
-          </a>
+          </CDButton>
         )}
       </div>
     </section>

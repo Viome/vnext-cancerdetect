@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, ReactNode } from "react"
+import React, { createContext, useContext, ReactNode, useCallback, useMemo } from "react"
 
 interface NavbarConfig {
   showNavbar: boolean
@@ -25,8 +25,17 @@ export function NavbarProvider({
 }: NavbarProviderProps) {
   const [config, setConfig] = React.useState<NavbarConfig>(initialConfig)
 
+  const stableSetConfig = useCallback((newConfig: NavbarConfig) => {
+    setConfig(newConfig)
+  }, [])
+
+  const value = useMemo(() => ({
+    config,
+    setConfig: stableSetConfig
+  }), [config, stableSetConfig])
+
   return (
-    <NavbarContext.Provider value={{ config, setConfig }}>
+    <NavbarContext.Provider value={value}>
       {children}
     </NavbarContext.Provider>
   )

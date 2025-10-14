@@ -16,11 +16,13 @@
   },
   "sections": [
     {
+      "sectionId": "products-hero",
       "type": "hero",
       "title": "Our Products",
       "subtitle": "Comprehensive cancer detection solutions for every need"
     },
     {
+      "sectionId": "products-grid",
       "type": "product_grid",
       "title": "Detection Solutions",
       "products": [

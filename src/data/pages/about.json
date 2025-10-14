@@ -16,11 +16,13 @@
   },
   "sections": [
     {
+      "sectionId": "about-hero",
       "type": "hero",
       "title": "About Our Mission",
       "subtitle": "We're dedicated to making cancer detection accessible, accurate, and affordable for everyone"
     },
     {
+      "sectionId": "about-values",
       "type": "features",
       "title": "Our Core Values",
       "items": [

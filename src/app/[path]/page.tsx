@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
 import { getPageBySlug, getAllPageSlugs } from "@/lib/content"
-import { getComponent } from "@/lib/registry"
+import { renderSection } from "@/lib/registry"
 
 interface PageProps {
   params: Promise<{ path: string }>
@@ -82,12 +82,11 @@ export default async function DynamicPage({ params }: PageProps) {
           {/* Render each section using the component registry */}
           {page.sections.map((section, index) => {
             try {
-              const Component = getComponent(section.type)
-              return <Component key={section.id || index} {...section} />
+              return renderSection(section, index)
             } catch (error) {
               console.error(`Error rendering section ${index} (${section.type}):`, error)
               return (
-                <div key={index} className="p-4 bg-red-100 text-red-800">
+                <div key={section.sectionId || index} className="p-4 bg-red-100 text-red-800">
                   Error rendering {section.type} section
                 </div>
               )

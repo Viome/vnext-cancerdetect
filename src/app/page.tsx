@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getPageBySlug } from "@/lib/content"
-import { getComponent } from "@/lib/registry"
+import { renderSection } from "@/lib/registry"
 import NavbarConfigClient from "@/components/Navbar/NavbarConfigClient"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -45,12 +45,11 @@ export default async function Home() {
         <main className="flex flex-col">
           {page.sections.map((section, index) => {
             try {
-              const Component = getComponent(section.type)
-              return <Component key={index} {...section} />
+              return renderSection(section, index)
             } catch (error) {
               console.error(`Error rendering section ${index} (${section.type}):`, error)
               return (
-                <div key={index} className="p-4 bg-red-100 text-red-800">
+                <div key={section.sectionId || index} className="p-4 bg-red-100 text-red-800">
                   Error rendering {section.type} section
                 </div>
               )

@@ -16,6 +16,7 @@ export interface Page {
     maxWidth?: string
     padding?: string
     navbar?: {
+      show?: boolean
       sticky?: boolean
     }
   }
@@ -23,8 +24,20 @@ export interface Page {
 }
 
 export interface PageSection {
-  id?: string
+  sectionId: string
   type: string
+  wrapperStyle?: {
+    container?: string
+    padding?: string
+    background?: string
+    spacing?: string
+    backgroundImage?: string | {
+      mobile?: string
+      tablet?: string
+      desktop: string
+    }
+    useContainerWidth?: boolean
+  }
   [key: string]: any
 }
 

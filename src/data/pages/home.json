@@ -17,48 +17,314 @@
   },
   "sections": [
     {
+      "sectionId": "home-hero",
       "type": "hero",
       "title": ["Advanced Cancer Detection", "Made Simple"],
       "subtitle": "Revolutionary technology that helps detect cancer early with 99% accuracy",
       "cta": {
         "text": "Get Started",
         "href": "/products",
-        "variant": "primary"
+        "variant": "Standard",
+        "theme": "Light"
+      },
+      "wrapperStyle": {
+        "background": "bg-gradient-to-b from-blue-50 to-white",
+        "padding": "px-4 sm:px-6 lg:px-8 py-20 sm:py-24",
+        "useContainerWidth": true
       }
     },
     {
-      "type": "features",
-      "title": "Why Choose Our Solution",
-      "items": [
-        {
-          "title": "High Accuracy",
-          "description": "99% accuracy rate in cancer detection using advanced AI algorithms"
-        },
-        {
-          "title": "Fast Results",
-          "description": "Get results in minutes, not days or weeks"
-        },
-        {
-          "title": "Easy to Use",
-          "description": "Simple interface that anyone can use without medical training"
-        }
-      ]
+      "sectionId": "home-announcement",
+      "type": "announcement_banner",
+      "title": "Oral and Throat Cancer Detection Test built on <br class='hidden sm:block'>Viome platform, designated Breakthrough Device for accelerated Review by FDA",
+      "buttonText": "Learn More",
+      "buttonHref": "/our-science",
+      "wrapperStyle": {
+        "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/learn_more_bg_35ba4674bd.webp",
+        "spacing": "mb-8",
+        "useContainerWidth": true
+      }
     },
     {
-      "type": "testimonials",
-      "title": "What Our Users Say",
-      "testimonials": [
+      "sectionId": "home-test-details",
+      "type": "test_details",
+      "leftSection": {
+        "title": "Test Details",
+        "items": [
+          {
+            "heading": "Sample collection",
+            "content": "Saliva collection at home"
+          },
+          {
+            "heading": "Measures",
+            "content": "This test detects molecular features associated with Oral Cancer (Oral Squamous Cell Carcinoma or OSCC), and/or Throat Cancer (Oropharyngeal Squamous Cell Carcinoma or OPSCC) in saliva samples."
+          },
+          {
+            "heading": "Detection rates",
+            "list": [
+              "Cancer-free specificity is 95% *",
+              "OSCC sensitivity is 90% *",
+              "OPSCC sensitivity is 90% *"
+            ],
+            "note": "Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed. Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms.¹"
+          }
+        ]
+      },
+      "rightSection": {
+        "title": "Who this test is for",
+        "description": "If you can answer yes to any of the following questions, this test may be appropriate for you.",
+        "eligibility": [
+          {
+            "question": "Are you 50 years of age or older?"
+          },
+          {
+            "question": "Are you 18* years of age or older AND:",
+            "subItems": [
+              {
+                "text": "Do you currently consume any tobacco products? Example: cigarettes, vaping, chewing tobacco."
+              },
+              {
+                "text": "Do you have any history of consuming any tobacco products? Example: cigarettes, vaping, chewing tobacco."
+              }
+            ],
+            "note": "*You need to be at or over the age of majority in your state (most states it's 18)"
+          }
+        ]
+      },
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-whats-included",
+      "type": "whats_included",
+      "mainTitle": "What's included with CancerDetect® - Oral & Throat",
+      "items": [
         {
-          "name": "Dr. Sarah Johnson",
-          "role": "Oncologist",
-          "content": "This technology has revolutionized how we approach early cancer detection. The accuracy is remarkable."
+          "title": "Instructions to guide your testing experience.",
+          "description": "Download instructions",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_13_Graphic_e18f0d6228.webp",
+          "downloadLink": "#"
         },
         {
-          "name": "John Smith",
-          "role": "Patient",
-          "content": "Early detection saved my life. This app made it so easy to get tested."
+          "title": "Everything you need to collect your saliva sample at home",
+          "description": "",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_37_Graphic_901933d177.webp"
+        },
+        {
+          "title": "A digital report that you can print and review your results",
+          "description": "",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_14_Graphic_3_6f9a41682c.webp"
+        },
+        {
+          "title": "Prepaid First Class USPS label and mailing envelope",
+          "description": "",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_15_Graphic_4_659d2116e6.webp"
+        },
+        {
+          "title": "Consultation with a healthcare provider to help you better understand",
+          "description": "",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_16_Graphic_3_472ecde52a.webp"
         }
-      ]
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-inside-your-kit",
+      "type": "inside_your_kit",
+      "title": "Inside your test collection kit",
+      "desktopImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Graphic_2_aaa099450b.webp",
+      "mobileImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Frame_181_071bf4a154.webp",
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-early-detection",
+      "type": "statistics_section",
+      "title": "Early detection saves lives",
+      "description": "Detecting cancer early is important. The earlier it is detected, the higher the chance of survival.",
+      "statistics": [
+        {
+          "percentage": "40%",
+          "label": "survival rate",
+          "sublabel": "with late detection",
+          "description": "The overall 5-year survival rate for people with late stage oral cancer is 40%³"
+        },
+        {
+          "percentage": "84%",
+          "label": "survival rate",
+          "sublabel": "with early detection",
+          "description": "If diagnosed at an early stage, the overall 5-year survival rate is 84%⁴"
+        },
+        {
+          "percentage": "28%",
+          "label": "of patients get",
+          "sublabel": "diagnosed early",
+          "description": "Unfortunately, with today's practices, only 28% of patients are diagnosed at an early stage⁵"
+        }
+      ],
+      "wrapperStyle": {
+        "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/early_detection_bgimage_8b5c901953.webp",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-risk-and-solution",
+      "type": "risk_and_solution",
+      "leftColumn": {
+        "title": "At-risk individuals",
+        "description": "Major risk factors for the development of oral and throat cancer include tobacco use and alcohol consumption.",
+        "bulletPoints": [
+          "75% of oral cancers in the United States are attributable to tobacco use and alcohol consumption.¹²",
+          "Tobacco use can include consuming tobacco products by smoking, chewing, vaping, etc.",
+          "Older age, HPV (human papillomavirus) infection, and excess body weight are additional risk factors for oral and throat cancer, and the risk increases more rapidly after 50 years of age.¹³",
+          "Even though throat cancers (OPSCC) are the most common HPV-related cancers in the United States, no early detection strategy for OPSCC is in place for HPV-positive individuals.¹⁴"
+        ]
+      },
+      "rightColumn": {
+        "title": "A solution for earlier detection",
+        "description": "Oral cancer is a major subtype of head and neck cancers.",
+        "bulletPoints": [
+          "40,000 new cases of oral cancers every year in the US",
+          "This is expected to increase by nearly two-thirds by 2035¹⁰",
+          "Currently, oral cancer is hard to detect in the early stages because of the lack of effective early diagnostic tools, resulting in late diagnosis, leading to poor prognosis and low survival rates.",
+          "The performance characteristics of visual screening are operator-dependent, with sensitivity ranging from 25% to 100%, with the study most generalizable to the United States demonstrating a sensitivity of 74%.¹¹"
+        ]
+      },
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-reliable-results",
+      "type": "reliable_results",
+      "title": "Reliable results that you can trust",
+      "description": "Our CancerDetect® - Oral & Throat test detects molecular features of oral & throat cancers even in early stages when it is more treatable. The test delivers substantially higher sensitivity and specificity over conventional oral exam ¹⁵",
+      "metrics": [
+        {
+          "title": "90% Sensitivity",
+          "description": "Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed."
+        },
+        {
+          "title": "95% Specificity",
+          "description": "Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms."
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-[#01013d]",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-news-article",
+      "type": "news_article",
+      "label": "NEWS ARTICLE",
+      "title": "Oral and Throat Cancer Detection Test built on Viome platform, designated Breakthrough Device for accelerated Review by FDA",
+      "buttonText": "Read More",
+      "buttonHref": "/our-science",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Image_470bbe9c63.webp",
+      "wrapperStyle": {
+        "background": "bg-[#1f4855]",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-our-science",
+      "type": "our_science",
+      "title": "Our science sets us apart and is revolutionizing the future of early diagnostics",
+      "paragraphs": [
+        "We employed our unique RNA analysis technology and breakthrough machine learning techniques to accurately discover the interactions between microbial activities and human gene expression in the progression of cancer.",
+        "This allows us to completely reimagine early detection with our groundbreaking early cancer-detection test and empower patients everywhere with a convenient and accessible early testing solution."
+      ],
+      "linkText": "Learn more about our science",
+      "linkHref": "/our-science",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_viome_feb2018_hi_res_v1_13_1_35c924d2c4.webp",
+      "wrapperStyle": {
+        "background": "bg-black",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-testing-process",
+      "type": "testing_process",
+      "mainTitle": "Early Testing Process",
+      "steps": [
+        {
+          "stepNumber": "1",
+          "description": "Complete the eligibility form and follow simple steps to order your test. A healthcare provider will review your test request in 48 hours."
+        },
+        {
+          "stepNumber": "2",
+          "description": "Register your testing kit with your unique kit ID <a href='#' class='underline'>here</a>"
+        },
+        {
+          "stepNumber": "3",
+          "description": "Collect your saliva sample and use a prepaid shipping label to mail to our CLIA-certified laboratory"
+        },
+        {
+          "stepNumber": "4",
+          "description": "Complete your CancerDetect - Oral & Throat health questionnaires on <a href='https://my.viome.com' class='underline' target='_blank' rel='noopener noreferrer'>my.viome.com</a>"
+        },
+        {
+          "stepNumber": "5",
+          "description": "Expect your result within 4 weeks: after a healthcare provider from our partner, PWNHealth, reviews your analysis, a printable report (PDF) will be available on <a href='https://my.viome.com' class='underline' target='_blank' rel='noopener noreferrer'>my.viome.com</a>. If molecular features are detected, the same provider will call you to guide you through your report."
+        }
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-clia-privacy",
+      "type": "info_with_image",
+      "infoBlocks": [
+        {
+          "title": "CLIA certified",
+          "description": "Your sample analysis is performed in a US laboratory that is certified to meet CLIA standards. A CLIA-certified lab must meet certain quality standards and ensure the accuracy and reliability of your results.",
+          "linkText": "Viome Science",
+          "linkHref": "/our-science"
+        },
+        {
+          "title": "Privacy & data",
+          "description": "To ensure the confidentiality of your data, we separate users' personally identifiable information (PII) from protected health information (PHI) and use multiple layers of encryption and access protection. We do not provide your information or results to employers or health insurance. Viome will never sell your data.",
+          "linkText": "Privacy Policy",
+          "linkHref": "/privacy-policy"
+        }
+      ],
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Stocksy_txp0ed431ebfp_Y200_Small_564527_2_6b1c114984.webp",
+      "imageAlt": "Laboratory researcher using microscope",
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "background": "bg-[#f5f5f5]",
+        "spacing": "mb-0"
+      }
     }
   ]
 }
