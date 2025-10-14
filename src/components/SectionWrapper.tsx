@@ -1,64 +1,62 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
 
 interface BackgroundImages {
-  mobile?: string
-  tablet?: string
-  desktop: string
+  mobile?: string;
+  tablet?: string;
+  desktop: string;
 }
 
 interface SectionWrapperProps {
-  children: React.ReactNode
+  children: React.ReactNode;
   wrapperStyle?: {
-    container?: string
-    padding?: string
-    background?: string
-    spacing?: string
-    backgroundImage?: string | BackgroundImages
-    useContainerWidth?: boolean
-  }
-  className?: string
+    container?: string;
+    padding?: string;
+    background?: string;
+    spacing?: string;
+    backgroundImage?: string | BackgroundImages;
+    useContainerWidth?: boolean;
+  };
+  className?: string;
 }
 
-export default function SectionWrapper({ 
-  children, 
+export default function SectionWrapper({
+  children,
   wrapperStyle,
-  className = '' 
+  className = "",
 }: SectionWrapperProps) {
-  const useContainerWidth = wrapperStyle?.useContainerWidth || false
-  const containerClass = useContainerWidth 
-    ? 'w-container mx-auto' 
-    : (wrapperStyle?.container || 'max-w-7xl mx-auto')
-  const paddingClass = wrapperStyle?.padding || ''
-  const backgroundClass = wrapperStyle?.background || ''
-  const spacingClass = wrapperStyle?.spacing || ''
-  const backgroundImage = wrapperStyle?.backgroundImage
+  const useContainerWidth = wrapperStyle?.useContainerWidth || false;
+  const containerClass = useContainerWidth
+    ? "w-container mx-auto"
+    : wrapperStyle?.container || "max-w-7xl mx-auto ";
+  const paddingClass = wrapperStyle?.padding || "";
+  const backgroundClass = wrapperStyle?.background || "";
+  const spacingClass = wrapperStyle?.spacing || "";
+  const backgroundImage = wrapperStyle?.backgroundImage;
 
-  const combinedClasses = [
-    backgroundClass,
-    spacingClass,
-    className
-  ].filter(Boolean).join(' ')
+  const combinedClasses = [backgroundClass, spacingClass, className]
+    .filter(Boolean)
+    .join(" ");
 
   const getBackgroundImages = (): BackgroundImages | null => {
-    if (!backgroundImage) return null
-    
-    if (typeof backgroundImage === 'string') {
+    if (!backgroundImage) return null;
+
+    if (typeof backgroundImage === "string") {
       return {
         desktop: backgroundImage,
         tablet: backgroundImage,
-        mobile: backgroundImage
-      }
+        mobile: backgroundImage,
+      };
     }
-    
+
     return {
       mobile: backgroundImage.mobile || backgroundImage.desktop,
       tablet: backgroundImage.tablet || backgroundImage.desktop,
-      desktop: backgroundImage.desktop
-    }
-  }
+      desktop: backgroundImage.desktop,
+    };
+  };
 
-  const bgImages = getBackgroundImages()
+  const bgImages = getBackgroundImages();
 
   return (
     <section className={`relative ${combinedClasses}`}>
@@ -102,10 +100,9 @@ export default function SectionWrapper({
           )}
         </>
       )}
-      <div className={`relative z-10 ${containerClass} ${paddingClass}`}>
+      <div className={`relative z-10 ${containerClass} ${paddingClass} kff`}>
         {children}
       </div>
     </section>
-  )
+  );
 }
-
