@@ -1,165 +1,173 @@
-"use client"
+"use client";
 
-import React from "react"
-import { BlocksRenderer } from "@strapi/blocks-react-renderer"
-import type { BlocksContent } from "@strapi/blocks-react-renderer"
+import React from "react";
+import Image from "next/image";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
-interface BodyBlocksProps {
-  content: BlocksContent
-}
-
-function convertSuperscript(text: string): (string | React.ReactElement)[] {
-  const regex = /\[([^\]]+)\]/g
-  const parts: (string | React.ReactElement)[] = []
-  let lastIndex = 0
-  let match
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index))
-    }
-    parts.push(
-      <sup key={match.index} style={{ fontSize: "0.7em", verticalAlign: "super" }}>
-        {match[1]}
-      </sup>
-    )
-    lastIndex = regex.lastIndex
-  }
-
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex))
-  }
-
-  return parts
-}
-
-export default function BodyBlocks({ content }: BodyBlocksProps) {
-  if (!content) {
-    return null
-  }
+export default function BodyBlocks({ content }: { content: any }) {
+  if (!Array.isArray(content) || content.length === 0) return null;
 
   return (
-    <BlocksRenderer
-      content={content}
-      blocks={{
-        heading: ({ children, level }: any) => {
-          const sizes: { [key: number]: string } = {
-            1: "2.5rem",
-            2: "2rem",
-            3: "1.75rem",
-            4: "1.5rem",
-            5: "1.25rem",
-          }
-
-          const Tag = `h${level}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
-
-          return React.createElement(
-            Tag,
-            {
-              style: {
-                fontSize: sizes[level] || "1rem",
-                fontWeight: "700",
-                marginTop: level === 1 ? "2rem" : "1.5rem",
-                marginBottom: "1rem",
-                lineHeight: "1.2",
-                color: "#1a1a1a",
-                fontFamily: "var(--font-twk-lausanne)",
-              },
-            },
-            children
-          )
-        },
-        paragraph: ({ children }: any) => {
-          return (
-            <p
-              style={{
-                marginBottom: "1rem",
-                lineHeight: "1.75",
-                color: "#374151",
-                fontSize: "1rem",
-                fontFamily: "var(--font-twk-lausanne)",
-              }}
-            >
-              {children}
-            </p>
-          )
-        },
-        list: ({ children, format }: any) => {
-          const ListTag = format === "ordered" ? "ol" : "ul"
-          return (
-            <ListTag
-              style={{
-                marginBottom: "1rem",
-                marginLeft: "1.5rem",
-                lineHeight: "1.75",
-                color: "#374151",
-                fontSize: "1rem",
-                fontFamily: "var(--font-twk-lausanne)",
-                listStyleType: format === "ordered" ? "decimal" : "disc",
-              }}
-            >
-              {children}
-            </ListTag>
-          )
-        },
-        "list-item": ({ children }: any) => {
-          return (
-            <li
-              style={{
-                marginBottom: "0.5rem",
-                fontFamily: "var(--font-twk-lausanne)",
-              }}
-            >
-              {children}
-            </li>
-          )
-        },
-        link: ({ children, url }: any) => {
-          return (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-600 hover:text-green-700 underline"
-            >
-              {children}
-            </a>
-          )
-        },
-        image: ({ image }: any) => {
-          return (
-            <img
-              src={image.url}
-              alt={image.alternativeText || ""}
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-                marginBottom: "1rem",
-              }}
-            />
-          )
-        },
+    <div
+      style={{
+        fontFamily:
+          "var(--font-twk-lausanne), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        fontSize: "1rem",
+        fontWeight: 300,
+        lineHeight: 1.5,
       }}
-      modifiers={{
-        bold: ({ children }: any) => <strong>{children}</strong>,
-        italic: ({ children }: any) => <em>{children}</em>,
-        underline: ({ children }: any) => <u>{children}</u>,
-        strikethrough: ({ children }: any) => <s>{children}</s>,
-        code: ({ children }: any) => (
-          <code
-            style={{
-              backgroundColor: "#f3f4f6",
-              padding: "0.125rem 0.25rem",
-              borderRadius: "0.25rem",
-              fontFamily: "monospace",
-              fontSize: "0.875em",
-            }}
-          >
-            {children}
-          </code>
-        ),
-      }}
-    />
-  )
+    >
+      <BlocksRenderer
+        content={content as any}
+        blocks={{
+          heading: ({ children, level }: any) => {
+            const tag = `h${level}` as keyof React.JSX.IntrinsicElements;
+            let fontSize = "1rem";
+            if (level === 1) fontSize = "2.625rem";
+            else if (level === 2) fontSize = "2.25rem";
+            else if (level === 3) fontSize = "1.875rem";
+            else if (level === 4) fontSize = "1.5rem";
+            else if (level === 5) fontSize = "1.25rem";
+
+            const style = {
+              fontSize,
+              marginTop: "1rem",
+              marginBottom: "1rem",
+            };
+            return React.createElement(tag, { style }, children);
+          },
+          paragraph: ({ children }: any) => {
+            // Check if children contains embedded images
+            const hasEmbeddedImage = children?.some(
+              (child: any) =>
+                child?.props?.node?.__embeddedImage || child?.__embeddedImage
+            );
+
+            if (hasEmbeddedImage) {
+              const imageChild = children.find(
+                (child: any) =>
+                  child?.props?.node?.__embeddedImage || child?.__embeddedImage
+              );
+              const imageData =
+                imageChild?.props?.node?.__embeddedImage ||
+                imageChild?.__embeddedImage;
+
+              if (imageData) {
+                const cms =
+                  process.env.NEXT_PUBLIC_CMS_URL || "http://localhost:1337";
+                const fullUrl = imageData.url?.startsWith("http")
+                  ? imageData.url
+                  : `https:${imageData.url}`;
+
+                return (
+                  <figure style={{ margin: "2rem 0" }}>
+                    <Image
+                      src={fullUrl}
+                      alt={imageData.alt || ""}
+                      width={800}
+                      height={500}
+                      className="w-full h-auto rounded"
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    {imageData.caption && (
+                      <figcaption
+                        style={{
+                          fontSize: "0.875rem",
+                          color: "#6b7280",
+                          marginTop: "0.5rem",
+                          textAlign: "center",
+                        }}
+                      >
+                        {imageData.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              }
+            }
+
+            return <p style={{ marginTop: "1rem" }}>{children}</p>;
+          },
+          list: ({ children, format }: any) => {
+            return format === "ordered" ? (
+              <ol
+                style={{
+                  marginTop: "0.75rem",
+                  marginBottom: "0.75rem",
+                  paddingLeft: "1.5rem",
+                  fontFamily:
+                    "var(--font-twk-lausanne), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                }}
+              >
+                {children}
+              </ol>
+            ) : (
+              <ul
+                style={{
+                  marginTop: "0.75rem",
+                  marginBottom: "0.75rem",
+                  paddingLeft: "1.5rem",
+                  listStyleType: "disc",
+                  fontFamily:
+                    "var(--font-twk-lausanne), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                }}
+              >
+                {children}
+              </ul>
+            );
+          },
+          "list-item": ({ children }: any) => {
+            return (
+              <li
+                style={{
+                  fontFamily:
+                    "var(--font-twk-lausanne), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  lineHeight: 1.5,
+                }}
+              >
+                {children}
+              </li>
+            );
+          },
+          // Add more block types that might be causing the issue
+          text: ({ children }: any) => {
+            return <span>{children}</span>;
+          },
+          link: ({ children, url }: any) => {
+            return (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-600 hover:text-green-700"
+              >
+                {children}
+              </a>
+            );
+          },
+          bold: ({ children }: any) => {
+            return <strong>{children}</strong>;
+          },
+          italic: ({ children }: any) => {
+            return <em>{children}</em>;
+          },
+          code: ({ children }: any) => {
+            return (
+              <code className="bg-gray-100 px-1 py-0.5 rounded text-sm">
+                {children}
+              </code>
+            );
+          },
+        }}
+      />
+    </div>
+  );
 }
-

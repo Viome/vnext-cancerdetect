@@ -1,58 +1,54 @@
 /**
  * Blogs Service
- * 
+ *
  * Service for fetching blog articles from Strapi CMS.
  */
 
-import { strapiClient } from "../client"
-import type { StrapiMedia } from "../types"
+import { strapiClient } from "../client";
+import type { StrapiMedia } from "../types";
 
 /**
- * Blog article interface
+ * Blog article interface (Strapi v5 format)
  */
 export interface StrapiBlogArticle {
-  id: number
-  title: string
-  slug: string
-  description?: string
-  content?: string
-  publishedAt: string
-  createdAt: string
-  updatedAt: string
+  id: number;
+  documentId?: string;
+  title: string;
+  slug: string;
+  subtitle?: string;
+  description?: string;
+  content?: string;
+  body?: any[];
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  displayDate?: string;
+  duration?: number;
   featuredImage?: {
-    data: {
-      id: number
-      attributes: StrapiMedia
-    }
-  }
+    url?: string;
+    alt?: string;
+    formats?: any;
+  } | null;
   author?: {
-    data: {
-      id: number
-      attributes: {
-        name: string
-        email?: string
-        avatar?: StrapiMedia
-      }
-    }
-  }
-  categories?: {
-    data: Array<{
-      id: number
-      attributes: {
-        name: string
-        slug: string
-      }
-    }>
-  }
-  tags?: {
-    data: Array<{
-      id: number
-      attributes: {
-        name: string
-        slug: string
-      }
-    }>
-  }
+    name: string;
+    slug?: string;
+  };
+  authors?: Array<{
+    name: string;
+    slug?: string;
+  }>;
+  primaryCategory?: {
+    name: string;
+    slug: string;
+  } | null;
+  categories?: Array<{
+    name: string;
+    slug: string;
+  }>;
+  tags?: Array<{
+    name: string;
+    slug: string;
+  }>;
 }
 
 /**
@@ -63,28 +59,70 @@ export async function fetchBlogArticles(
   pageSize: number = 10
 ): Promise<StrapiBlogArticle[] | null> {
   try {
+    console.log(page, pageSize, "page, pageSize");
     const response = await strapiClient.getCollection<StrapiBlogArticle>(
       "/blogs",
       {
         pagination: { page, pageSize },
-        populate: ["featuredImage", "author", "author.avatar", "categories", "tags"],
+        populate: "*", // Populate all fields
         sort: ["publishedAt:desc"],
         publicationState: "live",
       }
-    )
+    );
 
     if (!response.data || response.data.length === 0) {
-      console.warn("No blog articles found")
-      return null
+      return null;
     }
 
-    return response.data.map((article) => ({
-      ...article.attributes,
-      id: article.id,
-    }))
+    const articles = response.data.map((article: any) => {
+      // Strapi v5 returns data directly, not nested in attributes
+      const data = article.attributes || article;
+
+      return {
+        id: article.id || data.id,
+        documentId: article.documentId || data.documentId,
+        title: data.title,
+        slug: data.slug,
+        subtitle: data.subtitle,
+        description: data.description,
+        content: data.content,
+        body: data.body,
+        publishedAt: data.publishedAt,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        displayDate: data.displayDate,
+        duration: data.duration,
+        // Featured image - extract the URL
+        featuredImage: data.featuredImage
+          ? {
+              url:
+                data.featuredImage.url ||
+                data.featuredImage.formats?.medium?.url ||
+                data.featuredImage.formats?.large?.url,
+              alt: data.featuredImage.alternativeText || data.featuredImage.alt,
+              formats: data.featuredImage.formats,
+            }
+          : null,
+        // Authors array
+        authors: data.authors || [],
+        author: data.authors?.[0] || data.author,
+        // Primary category
+        primaryCategory: data.primaryCategory
+          ? {
+              name: data.primaryCategory.name,
+              slug: data.primaryCategory.slug,
+            }
+          : null,
+        // Categories (for compatibility)
+        categories: data.secondaryCategories || data.categories || [],
+        tags: data.tags || [],
+      };
+    });
+
+    return articles;
   } catch (error) {
-    console.error("Error fetching blog articles:", error)
-    return null
+    console.error("Error fetching blog articles:", error);
+    return null;
   }
 }
 
@@ -95,27 +133,170 @@ export async function fetchBlogArticleBySlug(
   slug: string
 ): Promise<StrapiBlogArticle | null> {
   try {
+    console.log("🔍 Fetching blog article by slug:", slug);
+
     const response = await strapiClient.findOne<StrapiBlogArticle>(
       "/blogs",
       { slug },
       {
-        populate: ["featuredImage", "author", "author.avatar", "categories", "tags"],
-        publicationState: "live",
+        populate: "*",
       }
-    )
+    );
 
     if (!response || !response.data) {
-      console.warn(`Blog article with slug "${slug}" not found`)
-      return null
+      return null;
     }
 
-    return {
-      ...response.data.attributes,
-      id: response.data.id,
-    }
+    // Strapi v5 returns data directly, not nested in attributes
+    const responseData: any = response.data;
+    const data = responseData.attributes || responseData;
+
+    const article = {
+      id: responseData.id || data.id,
+      documentId: responseData.documentId || data.documentId,
+      title: data.title,
+      slug: data.slug,
+      subtitle: data.subtitle,
+      description: data.description,
+      content: data.content,
+      body: data.body,
+      publishedAt: data.publishedAt,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      displayDate: data.displayDate,
+      duration: data.duration,
+      // Featured image - extract the URL
+      featuredImage: data.featuredImage
+        ? {
+            url:
+              data.featuredImage.url ||
+              data.featuredImage.formats?.medium?.url ||
+              data.featuredImage.formats?.large?.url,
+            alt: data.featuredImage.alternativeText || data.featuredImage.alt,
+            formats: data.featuredImage.formats,
+          }
+        : null,
+      // Authors array
+      authors: data.authors || [],
+      author: data.authors?.[0] || data.author,
+      // Primary category
+      primaryCategory: data.primaryCategory
+        ? {
+            name: data.primaryCategory.name,
+            slug: data.primaryCategory.slug,
+          }
+        : null,
+      // Categories (for compatibility)
+      categories: data.secondaryCategories || data.categories || [],
+      tags: data.tags || [],
+    };
+
+    return article;
   } catch (error) {
-    console.error(`Error fetching blog article with slug "${slug}":`, error)
-    return null
+    if (error && typeof error === "object" && "response" in error) {
+      console.error("Response details:", (error as any).response?.data);
+    }
+    return null;
+  }
+}
+
+/**
+ * Fetch blog articles by an array of slugs
+ * Returns articles in the same order as the slugs array
+ */
+export async function fetchBlogArticlesBySlugs(
+  slugs: string[]
+): Promise<StrapiBlogArticle[] | null> {
+  try {
+    if (!slugs || slugs.length === 0) {
+      console.log("⚠️ No slugs provided");
+      return null;
+    }
+
+    console.log(`🔍 Fetching articles for slugs:`, slugs);
+
+    const response = await strapiClient.find<StrapiBlogArticle>(
+      "/blogs",
+      {
+        slug: {
+          $in: slugs,
+        },
+      },
+      {
+        populate: "*",
+      }
+    );
+
+    if (!response.data || response.data.length === 0) {
+      console.log(`⚠️ No articles found for slugs:`, slugs);
+      return null;
+    }
+
+    const articles = response.data.map((article: any) => {
+      // Strapi v5 returns data directly, not nested in attributes
+      const data = article.attributes || article;
+      return {
+        id: article.id || data.id,
+        documentId: article.documentId || data.documentId,
+        title: data.title,
+        slug: data.slug,
+        subtitle: data.subtitle,
+        description: data.description,
+        content: data.content,
+        body: data.body,
+        publishedAt: data.publishedAt,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        displayDate: data.displayDate,
+        duration: data.duration,
+        // Featured image - extract the URL
+        featuredImage: data.featuredImage
+          ? {
+              url:
+                data.featuredImage.url ||
+                data.featuredImage.formats?.medium?.url ||
+                data.featuredImage.formats?.large?.url,
+              alt: data.featuredImage.alternativeText || data.featuredImage.alt,
+              formats: data.featuredImage.formats,
+            }
+          : null,
+        // Authors array
+        authors: data.authors || [],
+        author: data.authors?.[0] || data.author,
+        // Primary category
+        primaryCategory: data.primaryCategory
+          ? {
+              name: data.primaryCategory.name,
+              slug: data.primaryCategory.slug,
+            }
+          : null,
+        // Categories (for compatibility)
+        categories: data.secondaryCategories || data.categories || [],
+        tags: data.tags || [],
+      };
+    });
+
+    // Create a map for quick lookup by slug
+    const articlesMap = new Map<string, StrapiBlogArticle>();
+    articles.forEach((article) => {
+      articlesMap.set(article.slug, article);
+    });
+
+    // Sort articles according to the order of slugs array
+    const sortedArticles = slugs
+      .map((slug) => articlesMap.get(slug))
+      .filter((article): article is StrapiBlogArticle => article !== undefined);
+
+    console.log(
+      `✅ Returning ${sortedArticles.length} articles in the order of provided slugs`
+    );
+    return sortedArticles;
+  } catch (error) {
+    console.error(`❌ Error fetching articles by slugs:`, error);
+    if (error && typeof error === "object" && "response" in error) {
+      console.error("Response details:", (error as any).response?.data);
+    }
+    return null;
   }
 }
 
@@ -128,32 +309,82 @@ export async function fetchBlogArticlesByCategory(
   pageSize: number = 10
 ): Promise<StrapiBlogArticle[] | null> {
   try {
+    console.log(`🔍 Fetching category: "${categorySlug}"`);
+
     const response = await strapiClient.find<StrapiBlogArticle>(
       "/blogs",
       {
-        categories: {
-          slug: categorySlug,
+        primaryCategory: {
+          slug: {
+            $eq: categorySlug,
+          },
         },
       },
       {
         pagination: { page, pageSize },
-        populate: ["featuredImage", "author", "categories", "tags"],
+        populate: "*",
         sort: ["publishedAt:desc"],
-        publicationState: "live",
       }
-    )
+    );
 
     if (!response.data || response.data.length === 0) {
-      return null
+      console.log(`⚠️ No articles found for category: "${categorySlug}"`);
+      return null;
     }
 
-    return response.data.map((article) => ({
-      ...article.attributes,
-      id: article.id,
-    }))
+    const articles = response.data.map((article: any) => {
+      // Strapi v5 returns data directly, not nested in attributes
+      const data = article.attributes || article;
+      return {
+        id: article.id || data.id,
+        documentId: article.documentId || data.documentId,
+        title: data.title,
+        slug: data.slug,
+        subtitle: data.subtitle,
+        description: data.description,
+        content: data.content,
+        body: data.body,
+        publishedAt: data.publishedAt,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+        displayDate: data.displayDate,
+        duration: data.duration,
+        // Featured image - extract the URL
+        featuredImage: data.featuredImage
+          ? {
+              url:
+                data.featuredImage.url ||
+                data.featuredImage.formats?.medium?.url ||
+                data.featuredImage.formats?.large?.url,
+              alt: data.featuredImage.alternativeText || data.featuredImage.alt,
+              formats: data.featuredImage.formats,
+            }
+          : null,
+        // Authors array
+        authors: data.authors || [],
+        author: data.authors?.[0] || data.author,
+        // Primary category
+        primaryCategory: data.primaryCategory
+          ? {
+              name: data.primaryCategory.name,
+              slug: data.primaryCategory.slug,
+            }
+          : null,
+        // Categories (for compatibility)
+        categories: data.secondaryCategories || data.categories || [],
+        tags: data.tags || [],
+      };
+    });
+    console.log(
+      `✅ Returning ${articles.length} articles for "${categorySlug}"`
+    );
+    return articles;
   } catch (error) {
-    console.error(`Error fetching blog articles by category "${categorySlug}":`, error)
-    return null
+    console.error(`❌ Error fetching category "${categorySlug}":`, error);
+    if (error && typeof error === "object" && "response" in error) {
+      console.error("Response details:", (error as any).response?.data);
+    }
+    return null;
   }
 }
 
@@ -175,19 +406,19 @@ export async function fetchFeaturedBlogArticles(
         sort: ["publishedAt:desc"],
         publicationState: "live",
       }
-    )
+    );
 
     if (!response.data || response.data.length === 0) {
-      return null
+      return null;
     }
 
     return response.data.map((article) => ({
       ...article.attributes,
       id: article.id,
-    }))
+    }));
   } catch (error) {
-    console.error("Error fetching featured blog articles:", error)
-    return null
+    console.error("Error fetching featured blog articles:", error);
+    return null;
   }
 }
 
@@ -215,19 +446,21 @@ export async function searchBlogArticles(
         sort: ["publishedAt:desc"],
         publicationState: "live",
       }
-    )
+    );
 
     if (!response.data || response.data.length === 0) {
-      return null
+      return null;
     }
 
     return response.data.map((article) => ({
       ...article.attributes,
       id: article.id,
-    }))
+    }));
   } catch (error) {
-    console.error(`Error searching blog articles with term "${searchTerm}":`, error)
-    return null
+    console.error(
+      `Error searching blog articles with term "${searchTerm}":`,
+      error
+    );
+    return null;
   }
 }
-

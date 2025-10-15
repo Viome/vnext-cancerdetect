@@ -67,7 +67,8 @@
       "wrapperStyle": {
         "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/learn_more_bg_35ba4674bd.webp",
         "spacing": "mb-8",
-        "useContainerWidth": true
+        "useContainerWidth": false,
+        "container": true
       }
     },
     {
@@ -124,6 +125,92 @@
       }
     },
     {
+      "sectionId": "home-early-detection",
+      "type": "statistics_section",
+      "title": "Early detection saves lives",
+      "description": "Detecting cancer early is important. The earlier it is detected, the higher the chance of survival.",
+      "statistics": [
+        {
+          "percentage": "40%",
+          "label": "survival rate",
+          "sublabel": "with late detection",
+          "description": "The overall 5-year survival rate for people with late stage oral cancer is 40%³"
+        },
+        {
+          "percentage": "84%",
+          "label": "survival rate",
+          "sublabel": "with early detection",
+          "description": "If diagnosed at an early stage, the overall 5-year survival rate is 84%⁴"
+        },
+        {
+          "percentage": "28%",
+          "label": "of patients get",
+          "sublabel": "diagnosed early",
+          "description": "Unfortunately, with today's practices, only 28% of patients are diagnosed at an early stage⁵"
+        }
+      ],
+      "wrapperStyle": {
+        "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/early_detection_bgimage_8b5c901953.webp",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": ""
+      }
+    },
+    {
+      "sectionId": "home-reliable-results",
+      "type": "reliable_results",
+      "title": "Reliable results that you can trust",
+      "description": "Our CancerDetect® - Oral & Throat test detects molecular features of oral & throat cancers even in early stages when it is more treatable. The test delivers substantially higher sensitivity and specificity over conventional oral exam ¹⁵",
+      "metrics": [
+        {
+          "title": "90% Sensitivity",
+          "description": "Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed."
+        },
+        {
+          "title": "95% Specificity",
+          "description": "Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms."
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-[#01013d]",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-risk-and-solution",
+      "type": "risk_and_solution",
+      "leftColumn": {
+        "title": "At-risk individuals",
+        "description": "Major risk factors for the development of oral and throat cancer include tobacco use and alcohol consumption.",
+        "bulletPoints": [
+          "75% of oral cancers in the United States are attributable to tobacco use and alcohol consumption.¹²",
+          "Tobacco use can include consuming tobacco products by smoking, chewing, vaping, etc.",
+          "Older age, HPV (human papillomavirus) infection, and excess body weight are additional risk factors for oral and throat cancer, and the risk increases more rapidly after 50 years of age.¹³",
+          "Even though throat cancers (OPSCC) are the most common HPV-related cancers in the United States, no early detection strategy for OPSCC is in place for HPV-positive individuals.¹⁴"
+        ]
+      },
+      "rightColumn": {
+        "title": "A solution for earlier detection",
+        "description": "Oral cancer is a major subtype of head and neck cancers.",
+        "bulletPoints": [
+          "40,000 new cases of oral cancers every year in the US",
+          "This is expected to increase by nearly two-thirds by 2035¹⁰"
+        ],
+        "content": [
+          "Currently, oral cancer is hard to detect in the early stages because of the lack of effective early diagnostic tools, resulting in late diagnosis, leading to poor prognosis and low survival rates.",
+          "The performance characteristics of visual screening are operator-dependent, with sensitivity ranging from 25% to 100%, with the study most generalizable to the United States demonstrating a sensitivity of 74%.¹¹"
+        ]
+      },
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
       "sectionId": "home-whats-included",
       "type": "whats_included",
       "mainTitle": "What's included with CancerDetect® - Oral & Throat",
@@ -162,103 +249,7 @@
         "spacing": "mb-8"
       }
     },
-    {
-      "sectionId": "home-inside-your-kit",
-      "type": "inside_your_kit",
-      "title": "Inside your test collection kit",
-      "desktopImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Graphic_2_aaa099450b.webp",
-      "mobileImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Frame_181_071bf4a154.webp",
-      "wrapperStyle": {
-        "useContainerWidth": true,
-        "padding": "py-16 sm:py-20",
-        "background": "bg-white",
-        "spacing": "mb-8"
-      }
-    },
-    {
-      "sectionId": "home-early-detection",
-      "type": "statistics_section",
-      "title": "Early detection saves lives",
-      "description": "Detecting cancer early is important. The earlier it is detected, the higher the chance of survival.",
-      "statistics": [
-        {
-          "percentage": "40%",
-          "label": "survival rate",
-          "sublabel": "with late detection",
-          "description": "The overall 5-year survival rate for people with late stage oral cancer is 40%³"
-        },
-        {
-          "percentage": "84%",
-          "label": "survival rate",
-          "sublabel": "with early detection",
-          "description": "If diagnosed at an early stage, the overall 5-year survival rate is 84%⁴"
-        },
-        {
-          "percentage": "28%",
-          "label": "of patients get",
-          "sublabel": "diagnosed early",
-          "description": "Unfortunately, with today's practices, only 28% of patients are diagnosed at an early stage⁵"
-        }
-      ],
-      "wrapperStyle": {
-        "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/early_detection_bgimage_8b5c901953.webp",
-        "useContainerWidth": true,
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-8"
-      }
-    },
-    {
-      "sectionId": "home-risk-and-solution",
-      "type": "risk_and_solution",
-      "leftColumn": {
-        "title": "At-risk individuals",
-        "description": "Major risk factors for the development of oral and throat cancer include tobacco use and alcohol consumption.",
-        "bulletPoints": [
-          "75% of oral cancers in the United States are attributable to tobacco use and alcohol consumption.¹²",
-          "Tobacco use can include consuming tobacco products by smoking, chewing, vaping, etc.",
-          "Older age, HPV (human papillomavirus) infection, and excess body weight are additional risk factors for oral and throat cancer, and the risk increases more rapidly after 50 years of age.¹³",
-          "Even though throat cancers (OPSCC) are the most common HPV-related cancers in the United States, no early detection strategy for OPSCC is in place for HPV-positive individuals.¹⁴"
-        ]
-      },
-      "rightColumn": {
-        "title": "A solution for earlier detection",
-        "description": "Oral cancer is a major subtype of head and neck cancers.",
-        "bulletPoints": [
-          "40,000 new cases of oral cancers every year in the US",
-          "This is expected to increase by nearly two-thirds by 2035¹⁰",
-          "Currently, oral cancer is hard to detect in the early stages because of the lack of effective early diagnostic tools, resulting in late diagnosis, leading to poor prognosis and low survival rates.",
-          "The performance characteristics of visual screening are operator-dependent, with sensitivity ranging from 25% to 100%, with the study most generalizable to the United States demonstrating a sensitivity of 74%.¹¹"
-        ]
-      },
-      "wrapperStyle": {
-        "useContainerWidth": true,
-        "padding": "py-16 sm:py-20",
-        "background": "bg-white",
-        "spacing": "mb-8"
-      }
-    },
-    {
-      "sectionId": "home-reliable-results",
-      "type": "reliable_results",
-      "title": "Reliable results that you can trust",
-      "description": "Our CancerDetect® - Oral & Throat test detects molecular features of oral & throat cancers even in early stages when it is more treatable. The test delivers substantially higher sensitivity and specificity over conventional oral exam ¹⁵",
-      "metrics": [
-        {
-          "title": "90% Sensitivity",
-          "description": "Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed."
-        },
-        {
-          "title": "95% Specificity",
-          "description": "Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms."
-        }
-      ],
-      "wrapperStyle": {
-        "background": "bg-[#01013d]",
-        "useContainerWidth": true,
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-8"
-      }
-    },
+
     {
       "sectionId": "home-news-article",
       "type": "news_article",
@@ -269,24 +260,6 @@
       "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Image_470bbe9c63.webp",
       "wrapperStyle": {
         "background": "bg-[#1f4855]",
-        "useContainerWidth": true,
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-8"
-      }
-    },
-    {
-      "sectionId": "home-our-science",
-      "type": "our_science",
-      "title": "Our science sets us apart and is revolutionizing the future of early diagnostics",
-      "paragraphs": [
-        "We employed our unique RNA analysis technology and breakthrough machine learning techniques to accurately discover the interactions between microbial activities and human gene expression in the progression of cancer.",
-        "This allows us to completely reimagine early detection with our groundbreaking early cancer-detection test and empower patients everywhere with a convenient and accessible early testing solution."
-      ],
-      "linkText": "Learn more about our science",
-      "linkHref": "/our-science",
-      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_viome_feb2018_hi_res_v1_13_1_35c924d2c4.webp",
-      "wrapperStyle": {
-        "background": "bg-black",
         "useContainerWidth": true,
         "padding": "py-16 sm:py-20 lg:py-24",
         "spacing": "mb-8"
@@ -318,6 +291,13 @@
           "description": "Expect your result within 4 weeks: after a healthcare provider from our partner, PWNHealth, reviews your analysis, a printable report (PDF) will be available on <a href='https://my.viome.com' class='underline' target='_blank' rel='noopener noreferrer'>my.viome.com</a>. If molecular features are detected, the same provider will call you to guide you through your report."
         }
       ],
+      "note": [
+        "Your test includes everything required to collect and mail your saliva sample",
+        "Your test includes detailed instructions to guide your testing experience",
+        "No changes to your diet or medication is necessary",
+        "Your test is delivered right to your home",
+        "Minimum preparation required"
+      ],
       "wrapperStyle": {
         "useContainerWidth": true,
         "padding": "py-16 sm:py-20",
@@ -325,6 +305,39 @@
         "spacing": "mb-8"
       }
     },
+    {
+      "sectionId": "home-inside-your-kit",
+      "type": "inside_your_kit",
+      "title": "Inside your test collection kit",
+      "desktopImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Graphic_2_aaa099450b.webp",
+      "mobileImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Frame_181_071bf4a154.webp",
+      "wrapperStyle": {
+        "useContainerWidth": false,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8",
+        "container": "!max-w-full"
+      }
+    },
+    {
+      "sectionId": "home-our-science",
+      "type": "our_science",
+      "title": "Our science sets us apart and is revolutionizing the future of early diagnostics",
+      "paragraphs": [
+        "We employed our unique RNA analysis technology and breakthrough machine learning techniques to accurately discover the interactions between microbial activities and human gene expression in the progression of cancer.",
+        "This allows us to completely reimagine early detection with our groundbreaking early cancer-detection test and empower patients everywhere with a convenient and accessible early testing solution."
+      ],
+      "linkText": "Learn more about our science",
+      "linkHref": "/our-science",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_viome_feb2018_hi_res_v1_13_1_35c924d2c4.webp",
+      "wrapperStyle": {
+        "background": "bg-black",
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-8"
+      }
+    },
+
     {
       "sectionId": "home-clia-privacy",
       "type": "info_with_image",
@@ -347,7 +360,7 @@
       "wrapperStyle": {
         "useContainerWidth": true,
         "padding": "py-16 sm:py-20 lg:py-24",
-        "background": "bg-[#f5f5f5]",
+        "background": "bg-white",
         "spacing": "mb-8"
       }
     },
@@ -355,6 +368,7 @@
       "sectionId": "home-faq",
       "type": "faq_section",
       "title": "Frequently Asked Questions",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_27_CD_4_4_8fc9cbd423.webp",
       "theme": "dark",
       "faqs": [
         {

@@ -1,12 +1,12 @@
 interface Feature {
-  title: string
-  description: string
-  icon?: string
+  title: string;
+  description: string;
+  icon?: string;
 }
 
 interface FeaturesProps {
-  title: string
-  items: Feature[]
+  title: string;
+  items: Feature[];
 }
 
 export default function Features({ title, items }: FeaturesProps) {
@@ -18,13 +18,18 @@ export default function Features({ title, items }: FeaturesProps) {
         </h2>
         <div className="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item, index) => (
-            <div key={index} className="feature-item bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">{item.title}</h3>
+            <div
+              key={index}
+              className="feature-item bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            >
+              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                {item.title}
+              </h3>
               <p className="text-gray-600">{item.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 /**
  * Strapi Services - Main Export
- * 
+ *
  * Central export point for all Strapi service functions.
  */
 
@@ -8,11 +8,12 @@
 export {
   fetchBlogArticles,
   fetchBlogArticleBySlug,
+  fetchBlogArticlesBySlugs,
   fetchBlogArticlesByCategory,
   fetchFeaturedBlogArticles,
   searchBlogArticles,
   type StrapiBlogArticle,
-} from "./blogs"
+} from "./blogs";
 
 // Policy services
 export {
@@ -22,12 +23,11 @@ export {
   fetchTermsOfService,
   fetchCookiePolicy,
   type StrapiPolicyPage,
-} from "./policy"
+} from "./policy";
 
 // Product services
 export {
   fetchCancerDetectProduct,
   fetchCancerDetectProductCached,
   type StrapiProduct,
-} from "./products"
-
+} from "./products";
