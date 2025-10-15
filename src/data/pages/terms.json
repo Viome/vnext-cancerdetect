@@ -16,10 +16,9 @@
   },
   "sections": [
     {
-      "id": "hero",
-      "type": "Hero",
-      "title": "Terms of Service",
-      "subtitle": "Please read these terms carefully before using our service"
+      "id": "terms-content",
+      "type": "terms_content",
+      "slug": "terms"
     }
   ]
 }

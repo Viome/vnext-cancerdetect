@@ -14,178 +14,30 @@
   "navigation": {
     "left": [
       {
-        "id": "shop",
-        "label": "Shop",
-        "showArrow": true,
-        "type": "dropdown",
-        "isShopDropdown": true,
-        "dropdown": {
-          "type": "shop",
-          "sections": [
-            {
-              "title": "Tests",
-              "subtitle": "Need help choosing?",
-              "type": "product-grid",
-              "items": [
-                {
-                  "title": "Full Body Intelligence Test",
-                  "image": "https://strapi.azure.viome.com/viome-strapi/uploads/fbi_nav_bb95d4501e.png",
-                  "href": "/products/full-body-intelligence"
-                },
-                {
-                  "title": "Gut Intelligence Test",
-                  "image": "https://strapi.azure.viome.com/viome-strapi/uploads/gi_nav_f58521172a.png",
-                  "href": "/products/gut-intelligence"
-                },
-                {
-                  "title": "Oral Health Intelligence Test",
-                  "image": "https://strapi.azure.viome.com/viome-strapi/uploads/img3_copy_2_1d8aea9320.png",
-                  "href": "/products/oral-health-intelligence"
-                },
-                {
-                  "title": "Bundles",
-                  "image": "https://strapi.azure.viome.com/viome-strapi/uploads/health_bundles_nav_9f7a487a68.png",
-                  "href": "/bundles"
-                }
-              ],
-              "actions": [
-                {
-                  "label": "Shop All Products",
-                  "type": "primary",
-                  "href": "/products"
-                },
-                {
-                  "label": "HSA/FSA Approved",
-                  "type": "secondary",
-                  "href": "/true-med"
-                }
-              ]
-            }
-          ],
-          "sidebar": [
-            {
-              "title": "Personalized Health Plans",
-              "type": "text-links",
-              "items": [
-                {
-                  "label": "Full Body Health Plan",
-                  "href": "/products/full-body-health-solutions"
-                },
-                {
-                  "label": "Gut Health Plan",
-                  "href": "/products/gut-health-solutions"
-                },
-                {
-                  "label": "Oral Health Plan",
-                  "href": "/products/oral-health-solutions"
-                }
-              ]
-            },
-            {
-              "title": "Personalized Products",
-              "type": "text-links",
-              "items": [
-                {
-                  "label": "Supplements",
-                  "href": "/products/precision-supplements"
-                },
-                {
-                  "label": "Biotics Blends",
-                  "href": "/products/precision-probiotics-prebiotics"
-                },
-                {
-                  "label": "Toothpaste with Gel",
-                  "href": "/products/vrx-toothpaste-gel"
-                },
-                {
-                  "label": "Lozenges",
-                  "href": "/products/vrx-oral-lozenges"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "id": "learn",
-        "label": "Learn",
-        "showArrow": true,
-        "type": "dropdown",
-        "dropdown": {
-          "type": "image-grid",
-          "title": "Learn",
-          "items": [
-            {
-              "label": "About",
-              "href": "/company",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/health_ui_updated_2_33129bfe4e.png"
-            },
-            {
-              "label": "How it Works",
-              "href": "/how-it-works",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/how_it_works_nav_040ce0a8c4.png"
-            },
-            {
-              "label": "Our Science",
-              "href": "/our-science",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/03_bc5b390a12.png"
-            },
-            {
-              "label": "Our Approach",
-              "href": "/learn/scores-and-recommendations",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/our_approach_nav_ffb3f76f74.png"
-            },
-            {
-              "label": "Viome Life Sciences",
-              "href": "https://www.viomelifesciences.com/",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/life_science_nav_eef8f31ebb.png"
-            }
-          ]
-        }
-      },
-      {
-        "id": "explore",
-        "label": "Explore",
-        "showArrow": true,
-        "type": "dropdown",
-        "dropdown": {
-          "type": "image-grid",
-          "title": "Explore",
-          "items": [
-            {
-              "label": "Blog",
-              "href": "/blog",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/blog_nav_00c5ee0e6a.png"
-            },
-            {
-              "label": "Community",
-              "href": "https://viome.mn.co/",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/community_nav_80c7648dc9.png"
-            },
-            {
-              "label": "Publications",
-              "href": "/publications",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/news_nav_347486a96f.webp"
-            },
-            {
-              "label": "Women's Health",
-              "href": "/womens-health",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/womens_health_nav_7ef721ae82.png"
-            },
-            {
-              "label": "MindValley Nutrition Coaches",
-              "href": "https://coaching.mindvalley.com/?certification_ids[]=7",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/mindvalley_nav_cf1775d6f5.png"
-            }
-          ]
-        }
-      },
-      {
-        "id": "refer",
-        "label": "Refer, Get $50",
+        "id": "cancerDetect",
+        "label": "CancerDetect",
         "showArrow": false,
         "type": "link",
-        "href": "https://buy.viome.com/pages/referral"
+        "href": "https://cancerdetect.viome.com",
+        "isShopDropdown": false,
+        "dropdown": null
+      },
+
+      {
+        "id": "stepsToTest",
+        "label": "Steps to Test",
+        "showArrow": false,
+        "type": "link",
+        "href": "https://www.viome.com/stepstotest/cancerdetect",
+        "dropdown": null
+      },
+      {
+        "id": "ourScience",
+        "label": "Our Science",
+        "showArrow": false,
+        "type": "link",
+        "href": "/our-science",
+        "dropdown": null
       }
     ],
     "right": [
@@ -195,6 +47,13 @@
         "showArrow": false,
         "type": "link",
         "href": "https://support.viome.com/"
+      },
+      {
+        "id": "cart",
+        "label": "Cart",
+        "showArrow": false,
+        "type": "link",
+        "href": "https://buy.viome.com/cart"
       },
       {
         "id": "my-account",
@@ -216,11 +75,11 @@
         }
       },
       {
-        "id": "cart",
-        "label": "Cart",
+        "id": "order-now",
+        "label": "Order Now",
         "showArrow": false,
-        "type": "link",
-        "href": "https://buy.viome.com/cart"
+        "type": "button",
+        "href": "/eligibility/register"
       }
     ],
     "mobile": {
@@ -238,84 +97,25 @@
       ],
       "navigation": [
         {
-          "id": "shop-mobile",
-          "label": "Shop",
-          "showArrow": true,
-          "type": "dropdown",
-          "isShopDropdown": true
-        },
-        {
-          "id": "learn-mobile",
-          "label": "Learn",
-          "showArrow": true,
-          "type": "dropdown",
-          "items": [
-            {
-              "label": "About",
-              "href": "/company",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/health_ui_updated_2_33129bfe4e.png"
-            },
-            {
-              "label": "How it Works",
-              "href": "/how-it-works",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/how_it_works_nav_040ce0a8c4.png"
-            },
-            {
-              "label": "Our Science",
-              "href": "/our-science",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/03_bc5b390a12.png"
-            },
-            {
-              "label": "Our Approach",
-              "href": "/learn/scores-and-recommendations",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/our_approach_nav_ffb3f76f74.png"
-            },
-            {
-              "label": "Viome Life Sciences",
-              "href": "https://www.viomelifesciences.com/",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/life_science_nav_eef8f31ebb.png"
-            }
-          ]
-        },
-        {
-          "id": "explore-mobile",
-          "label": "Explore",
-          "showArrow": true,
-          "type": "dropdown",
-          "items": [
-            {
-              "label": "Blog",
-              "href": "/blog",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/blog_nav_00c5ee0e6a.png"
-            },
-            {
-              "label": "Community",
-              "href": "https://viome.mn.co/",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/community_nav_80c7648dc9.png"
-            },
-            {
-              "label": "Publications",
-              "href": "/publications",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/news_nav_347486a96f.webp"
-            },
-            {
-              "label": "Women's Health",
-              "href": "/womens-health",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/womens_health_nav_7ef721ae82.png"
-            },
-            {
-              "label": "MindValley Nutrition Coaches",
-              "href": "https://coaching.mindvalley.com/?certification_ids[]=7",
-              "image": "https://strapi.azure.viome.com/viome-strapi/uploads/mindvalley_nav_cf1775d6f5.png"
-            }
-          ]
-        },
-        {
-          "id": "refer-mobile",
-          "label": "Refer, Get $50",
+          "id": "cancerDetect-mobile",
+          "label": "CancerDetect",
           "showArrow": false,
           "type": "link",
-          "href": "https://buy.viome.com/pages/referral"
+          "href": "https://cancerdetect.viome.com"
+        },
+        {
+          "id": "stepsToTest-mobile",
+          "label": "Steps to Test",
+          "showArrow": false,
+          "type": "link",
+          "href": "https://www.viome.com/stepstotest/cancerdetect"
+        },
+        {
+          "id": "ourScience-mobile",
+          "label": "Our Science",
+          "showArrow": false,
+          "type": "link",
+          "href": "/our-science"
         },
         {
           "id": "support-mobile",
@@ -323,6 +123,13 @@
           "showArrow": false,
           "type": "link",
           "href": "https://support.viome.com/"
+        },
+        {
+          "id": "cart-mobile",
+          "label": "Cart",
+          "showArrow": false,
+          "type": "link",
+          "href": "https://buy.viome.com/cart"
         }
       ]
     }

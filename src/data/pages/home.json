@@ -355,6 +355,40 @@
       }
     },
     {
+      "sectionId": "home-faq",
+      "type": "faq_section",
+      "title": "Frequently Asked Questions",
+      "theme": "dark",
+      "faqs": [
+        {
+          "id": "faq-1",
+          "question": "What kind of cancer does this test detect?",
+          "answer": "<p>CancerDetect<sup>®</sup> Oral & Throat detects the molecular features associated with oral cavity cancer (Oral Squamous Cell Carcinoma or OSCC) and/or throat cancer (oropharyngeal squamous cell carcinoma or OPSCC).</p>"
+        },
+        {
+          "id": "faq-2",
+          "question": "How accurate are these results?",
+          "answer": "<ul class='space-y-4'><li><strong>Sensitivity: 90% for both oral & throat cancer</strong><ul class='mt-2 ml-6 space-y-1'><li class='list-disc'>Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed.</li></ul></li><li><strong>Specificity: 95% for both oral & throat cancer</strong><ul class='mt-2 ml-6 space-y-1'><li class='list-disc'>Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms.</li></ul></li></ul>"
+        },
+        {
+          "id": "faq-3",
+          "question": "What should I expect if I take the test and my result is detected?",
+          "answer": "<p>A healthcare provider licensed in your state will review your result, and provide a consultation over the phone to discuss the test result, provide educational information, and talk about your next steps. However, no medical advice, treatment, or prescriptions will be provided.</p>"
+        },
+        {
+          "id": "faq-4",
+          "question": "If the test is not detected, could I have another type of cancer?",
+          "answer": "<p>CancerDetect does not detect molecular features associated with other types of cancer other than oral & throat cancers. Please discuss with your doctor about your symptoms and concerns.</p>"
+        }
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
       "sectionId": "home-references",
       "type": "references",
       "title": "References",

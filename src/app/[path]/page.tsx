@@ -74,9 +74,7 @@ export default async function DynamicPage({ params }: PageProps) {
         <main
           className={`min-h-screen ${page.layout?.className || ""}`}
           style={{
-            backgroundColor: page.layout?.backgroundColor,
-            maxWidth: page.layout?.maxWidth,
-            padding: page.layout?.padding,
+            backgroundColor: page.layout?.backgroundColor
           }}
         >
           {/* Render each section using the component registry */}

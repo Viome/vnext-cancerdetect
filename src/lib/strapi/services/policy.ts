@@ -5,15 +5,17 @@
  */
 
 import { strapiClient } from "../client"
+import type { BlocksContent } from "@strapi/blocks-react-renderer"
 
 /**
  * Policy page interface
  */
 export interface StrapiPolicyPage {
   id: number
-  title: string
+  title?: string
+  InternalName?: string
   slug: string
-  content: string
+  content: string | BlocksContent
   metaTitle?: string
   metaDescription?: string
   publishedAt: string
@@ -40,8 +42,8 @@ export async function fetchPolicyPages(): Promise<StrapiPolicyPage[] | null> {
     }
 
     return response.data.map((policy) => ({
-      ...policy.attributes,
-      id: policy.id,
+      ...(policy as any),
+      title: (policy as any).InternalName || (policy as any).title,
     }))
   } catch (error) {
     console.error("Error fetching policy pages:", error)
@@ -56,7 +58,8 @@ export async function fetchPolicyPageBySlug(
   slug: string
 ): Promise<StrapiPolicyPage | null> {
   try {
-    const response = await strapiClient.findOne<StrapiPolicyPage>(
+    // Try with the original slug first
+    let response = await strapiClient.findOne<StrapiPolicyPage>(
       "/policies",
       { slug },
       {
@@ -64,14 +67,32 @@ export async function fetchPolicyPageBySlug(
       }
     )
 
+    // If not found, try alternate format (dash <-> underscore)
+    if (!response || !response.data) {
+      const alternateSlug = slug.includes('-') 
+        ? slug.replace(/-/g, '_')
+        : slug.replace(/_/g, '-')
+      
+      console.log(`Trying alternate slug: ${alternateSlug}`)
+      
+      response = await strapiClient.findOne<StrapiPolicyPage>(
+        "/policies",
+        { slug: alternateSlug },
+        {
+          publicationState: "live",
+        }
+      )
+    }
+
     if (!response || !response.data) {
       console.warn(`Policy page with slug "${slug}" not found`)
       return null
     }
 
+    const policyData = response.data as any
     return {
-      ...response.data.attributes,
-      id: response.data.id,
+      ...policyData,
+      title: policyData.InternalName || policyData.title,
     }
   } catch (error) {
     console.error(`Error fetching policy page with slug "${slug}":`, error)

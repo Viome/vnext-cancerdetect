@@ -10,16 +10,207 @@
     }
   },
   "layout": {
-    "className": "min-h-screen bg-white",
-    "maxWidth": "max-w-7xl mx-auto",
-    "padding": "px-4 py-8"
+    "className": "min-h-screen bg-white"
   },
   "sections": [
     {
-      "sectionId": "our-science-hero",
-      "type": "Hero",
-      "title": "Our Science",
-      "subtitle": "Advancing cancer detection through innovative research and technology"
+      "sectionId": "our-science-mission",
+      "type": "mission_statement",
+      "text": "Our mission is to digitize, decode, and decipher human biology for the prevention, early diagnosis, and treatment of <em>chronic diseases and cancer.</em>",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_6_54_93a5d8420d.webp",
+      "imageAlt": "Hand holding medical sample",
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-0",
+        "spacing": "mb-0",
+        "useContainerWidth": false
+      }
+    },
+    {
+      "sectionId": "our-science-signal",
+      "type": "signal_in_noise",
+      "title": "A Signal in the Noise",
+      "description": "The proprietary combination of Viome's metatranscriptomic sequencing technology, our systems biology approach, and our AI machine learning platform is revolutionizing the health and wellness industry and transforming the potential for early diagnostics and targeted therapeutics.",
+      "illustrationImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Frame_112_e89e77567f.webp",
+      "illustrationAlt": "Signal in noise illustration showing metatranscriptomics approach",
+      "wrapperStyle": {
+        "background": "bg-black",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-cancer-diagnostics",
+      "type": "approach_to_diagnostics",
+      "title": "Our Approach to Cancer Diagnostics",
+      "description": "Viome is committed to identifying the molecular determinants of cancer by systematically evaluating the host and/or microbial activities involved in disease onset and progression.",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "content": "Carefully define the disease and non-disease cohorts based on all available clinical meta-data.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp",
+          "imageAlt": "Cancer cells under microscope"
+        },
+        {
+          "stepNumber": 2,
+          "content": "Analyze RNA samples from disease and non-disease cohorts using Viome's proprietary metatranscriptomic sequencing technology.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science_ab4ea103ff.webp",
+          "imageAlt": "RNA sequencing analysis"
+        },
+        {
+          "stepNumber": 3,
+          "content": "Apply machine learning algorithms to identify molecular signatures that distinguish disease from non-disease states.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_4728ede90d1f38e6f71eb19e541d908b_ac0d64b47e.webp",
+          "imageAlt": "Machine learning analysis visualization"
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-insight",
+      "type": "insight_to_intervention",
+      "mainTitle": "Insight to Intervention",
+      "subtitle": "Our RNA platform for Wellness, Diagnostics, and Therapeutics allows us to translate information into valuable insights and meaningful interventions.",
+      "columns": [
+        {
+          "title": "WELLNESS",
+          "description": "Our direct-to-consumer service analyzes gene expressions (RNA) in order to provide individuals with health insights and precision nutrition to live a healthier life.",
+          "additionalParagraphs": [
+            "This platform of over 400,000 samples enables us to enhance our understanding of human biology as a system in order to develop predictive biomarkers, precision diagnostics, and precision therapeutics to prevent and intercept chronic diseases."
+          ],
+          "checkItems": [
+            {
+              "text": "Clinical improvements in IBS, Diabetes, Depression & Anxiety"
+            }
+          ]
+        },
+        {
+          "title": "DIAGNOSTICS",
+          "description": "Our predictive biomarkers provide us with the hypothesis to do clinical research and identify the signatures of chronic disease, cancers and aging.",
+          "checkItems": [
+            {
+              "text": "Successfully developed over 30 predictive models for glycemic response, obesity, diabetes, depression, IBS, and oral & throat cancer, which represent over 50% of chronic diseases."
+            },
+            {
+              "text": "Breakthrough Device Designation for accelerated review by FDA to detect all stage oral cancer and throat cancer with 95% specificity and 90% plus sensitivity (CancerDetect test)"
+            }
+          ],
+          "note": "® Oral and Throat test is not an FDA-approved or cleared test)"
+        },
+        {
+          "title": "THERAPEUTICS",
+          "description": "The signatures found through diagnostics allow us to determine the mechanism of actions to develop precision therapeutics in the form of drugs, vaccines and treatments.",
+          "additionalParagraphs": [
+            "Viome can determine drug effectivess, including immunotherapy, which is dependent upon the human microbiome."
+          ],
+          "checkItems": [
+            {
+              "text": "Ongoing partnerships with large pharmaceutical companies to develop vaccines for colorectal cancer and autoimmune diseases."
+            }
+          ]
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-approach",
+      "type": "science_approach",
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-product",
+      "type": "product_showcase",
+      "topImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_CD_4_1_7ad9814a27.webp",
+      "topImageAlt": "CancerDetect Oral & Throat test kit",
+      "title": "CancerDetect®<br/>Oral & Throat",
+      "paragraphs": [
+        "Our CancerDetect®- Oral & Throat test was developed over multiple years by Viome Life Sciences, Inc, based on clinical studies for diagnostic development and validation. This test is a non-invasive, at-home test that detects a molecular signature associated with Oral and/or Throat cancers with high accuracy.",
+        "Viome's commercially available CancerDetect Oral and Throat cancer test is a laboratory-developed test (LDT). This test was clinically validated with an independent cohort, with a specificity of 95% and a sensitivity of 90% for both Oral Squamous Cell Carcinoma (OSCC) and Oropharyngeal Squamous Cell Carcinoma (OPSCC). The test delivers substantially higher sensitivity and specificity over conventional oral exam"
+      ],
+      "linkText": "More about this test",
+      "linkHref": "/",
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-quote",
+      "type": "quote_section",
+      "quote": "Early detection of Oral and Throat cancer saves lives. With Viome's simple non-invasive at-home test, you can have peace of mind. And we will continuously improve this test so you can get the best technology available in the market!",
+      "authorName": "Guru Banavar",
+      "authorTitle": "Founding CTO & Head of Discovery AI",
+      "authorCompany": "Viome Life Sciences",
+      "wrapperStyle": {
+        "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_51_pawel_czerwinski_f_rcfq_P7ze4_unsplash_1_23339d914f.webp",
+        "padding": "py-0",
+        "spacing": "mb-0",
+        "useContainerWidth": false
+      }
+    },
+    {
+      "sectionId": "our-science-mission-image",
+      "type": "mission_with_image",
+      "title": "Our Mission",
+      "description": "We founded Viome Life Sciences with one goal in mind: to tackle the epidemic of chronic diseases, cancer, and aging and empower people with the information they need to live a disease-free life.",
+      "buttonText": "Learn more about our work at Viome Life Science",
+      "buttonHref": "https://www.viome.com",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Image_dbf2c6af9d.webp",
+      "imageAlt": "Person looking into the distance",
+      "wrapperStyle": {
+        "background": "bg-black",
+        "padding": "py-0",
+        "spacing": "mb-0",
+        "useContainerWidth": false
+      }
+    },
+    {
+      "sectionId": "our-science-work-with-us",
+      "type": "work_with_us",
+      "wrapperStyle": {
+        "background": "bg-gray-50",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-publications-partners",
+      "type": "publications_partners",
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-contact",
+      "type": "contact_section",
+      "wrapperStyle": {
+        "background": "bg-gray-50",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
     }
   ]
 }

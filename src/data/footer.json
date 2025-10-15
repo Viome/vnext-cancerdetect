@@ -1,0 +1,194 @@
+{
+    "logo": {
+      "url": "https://strapi.azure.viome.com/viome-strapi/uploads/viome_white_b45ebc4028.svg",
+      "title": "Viome - White",
+      "contentType": "image/svg+xml"
+    },
+    "topLinks": {
+      "items": [
+        {
+          "title": "CancerDetect",
+          "url": "https://cancerdetect.viome.com",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null,
+          "dropdownLinks": {
+            "items": []
+          }
+        },
+        {
+          "title": "Our Science",
+          "url": "/our-science",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null,
+          "dropdownLinks": {
+            "items": []
+          }
+        },
+        {
+          "title": "Steps to Test",
+          "url": "https://www.viome.com/stepstotest/cancerdetect",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null,
+          "dropdownLinks": {
+            "items": []
+          }
+        },
+        {
+          "title": "Resources",
+          "url": "/resources",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null,
+          "dropdownLinks": {
+            "items": []
+          }
+        }
+      ]
+    },
+    "bottomLinks": {
+      "items": [
+        {
+          "title": "Terms of Service",
+          "url": "/terms",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null
+        },
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null
+        },
+        {
+          "title": "State Privacy Notices",
+          "url": "/state_privacy_notices",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null
+        },
+        {
+          "title": "Cookie Policy",
+          "url": "/cookie-policy",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null
+        },
+        {
+          "title": "Accessibility Statement",
+          "url": "/accessibility",
+          "linkText": null,
+          "isExternal": null,
+          "isProductDropdown": null
+        }
+      ]
+    },
+    "facebook": "https://www.facebook.com/MyViome/",
+    "twitter": "https://x.com/myviome",
+    "instagram": "https://www.instagram.com/Viome/",
+    "youtube": "https://www.youtube.com/viome",
+    "vimeo": "https://vimeo.com/viome",
+    "pinterest": "https://www.pinterest.com/myviome",
+    "tikTok": null,
+    "footerText": {
+      "json": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "The information Viome provides is for educational and informational use only. The information is not intended to be used by the customer for any diagnostic purpose and is not a substitute for professional medical advice. You should always seek the advice of your physician or other healthcare providers with any questions you may have regarding diagnosis, cure, treatment, mitigation, or prevention of any disease or other medical condition or impairment or the status of your health.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "\n",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "* ",
+                "marks": [
+                  {
+                    "type": "superscript"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Viome Precision Supplements are available through separate subscription after test results are released. Not included with Full Body Intelligence, Health Intelligence, or Gut Intelligence Test purchases.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          },
+          {
+            "nodeType": "paragraph",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "\n",
+                "marks": [],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "§ ",
+                "marks": [
+                  {
+                    "type": "superscript"
+                  }
+                ],
+                "data": {}
+              },
+              {
+                "nodeType": "text",
+                "value": "Sunrise Cleanse & Restore Toothgel powered by Viome’s precision AI was formulated based on Livfresh patented technology which demonstrated in studies to perform up to 250% better when used twice daily.",
+                "marks": [],
+                "data": {}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "fdaCompliance": {
+      "json": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              {
+                "data": {},
+                "marks": [],
+                "value": "*This statement has not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+                "nodeType": "text"
+              }
+            ],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      }
+    }
+  }
+  

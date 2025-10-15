@@ -16,10 +16,9 @@
   },
   "sections": [
     {
-      "id": "hero",
-      "type": "Hero",
-      "title": "State Privacy Notices",
-      "subtitle": "State-specific privacy information and your rights"
+      "id": "state-privacy-content",
+      "type": "terms_content",
+      "slug": "state_privacy_notices"
     }
   ]
 }

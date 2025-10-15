@@ -16,10 +16,9 @@
   },
   "sections": [
     {
-      "id": "hero",
-      "type": "Hero",
-      "title": "Privacy Policy",
-      "subtitle": "Your privacy is important to us"
+      "id": "privacy-content",
+      "type": "terms_content",
+      "slug": "privacy-policy"
     }
   ]
 }

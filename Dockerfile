@@ -79,19 +79,6 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Copy additional configuration files
-COPY --from=builder /app/next.config.ts ./
-COPY --from=builder /app/src/middleware.ts ./src/
-
-# Create necessary directories and set permissions
-RUN mkdir -p /app/.next/cache && \
-    chown -R root:root /app && \
-    chmod -R 755 /app
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD curl -f http://localhost:3000/api/health || exit 1
-
 # Expose port
 EXPOSE 3000
 
