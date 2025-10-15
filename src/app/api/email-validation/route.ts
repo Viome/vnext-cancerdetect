@@ -6,8 +6,7 @@ export async function POST(request: NextRequest) {
     try {
         const { email } = await request.json();
         const { searchParams } = new URL(request.url);
-        const orderType = searchParams.get('order_type');
-
+        const orderType = searchParams.get('order_type');  
         const url = `${API_DOMAIN_V1}/user/generateToken/${email}?order_type=${orderType}`;
         const options = {
             method: 'GET',

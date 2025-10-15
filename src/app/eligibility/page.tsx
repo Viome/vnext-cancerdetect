@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function EligibilityPage() {
     return (
-        <div className="flex min-h-[80vh] items-center justify-center bg-[#F5F5F5]">
+        <div className="flex min-h-[80vh] items-center justify-center bg-[#F5F5F5] py-8">
             <div className="w-full max-w-2xl">
                 <EligibilityWrapper />
             </div>

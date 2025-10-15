@@ -14,7 +14,13 @@ export default function Step2Day() {
                 </div>
             </div>
             <div className="sm:max-w-cd-form">
-                <Field name="tobaccoDay" type="textarea" />
+                <Field 
+                    name="tobaccoDay" 
+                    type="textarea"
+                    validate={{
+                        required: 'This field is required',
+                    }}
+                />
                 <span className="text-sm text-gray-500">e.g. one cigarette per day.</span>
             </div>
         </section>

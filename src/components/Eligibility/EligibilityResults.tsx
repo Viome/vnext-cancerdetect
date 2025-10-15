@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import CDButton from '@/components/CDButton';
 import { SUPPORT_PAGE_URL, ELIGIBILITTY_GA_EVENTS, ELEGIBILITY_STEPS } from '@/lib/utils/constants';
 
 interface EligibilityResultsProps {
@@ -94,22 +95,26 @@ export default function EligibilityResults({
                     </div>
 
                     <div className="space-y-4">
-                        <a
+                        <CDButton
+                            variant="Standard"
+                            theme="Dark"
+                            width="full"
                             href={SUPPORT_PAGE_URL.notEligiblePage}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium"
+                            className="cursor-pointer"
                         >
                             Learn More About CancerDetect
-                        </a>
+                        </CDButton>
                         
-                        <button
+                        <CDButton
                             type="button"
+                            variant="Transparent"
+                            theme="Light"
+                            width="full"
                             onClick={handleGoHome}
-                            className="block w-full bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 font-medium"
+                            className="cursor-pointer"
                         >
                             Return to Home
-                        </button>
+                        </CDButton>
 
                         <button
                             type="button"
@@ -192,13 +197,16 @@ export default function EligibilityResults({
                 </div>
 
                 <div className="space-y-4">
-                    <button
+                    <CDButton
                         type="button"
+                        variant="Standard"
+                        theme="Dark"
+                        width="full"
                         onClick={handleProceed}
-                        className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium text-lg"
+                        className="cursor-pointer"
                     >
                         {isDentistOrder ? 'Complete Registration' : 'Proceed to Checkout'}
-                    </button>
+                    </CDButton>
 
                     <div className="mt-8 p-4 bg-blue-50 border-l-4 border-blue-600 rounded">
                         <p className="text-sm text-blue-800">

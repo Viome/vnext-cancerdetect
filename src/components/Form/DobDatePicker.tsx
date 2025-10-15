@@ -36,7 +36,7 @@ export default function DobDatePicker() {
                     },
                 })}
                 className={classNames(
-                    'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                    'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                     hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                 )}
             />

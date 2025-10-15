@@ -16,7 +16,14 @@ export default function Step2Types() {
                 </div>
             </div>
             <div className="sm:max-w-cd-form">
-                <Field name="tobaccoTypes" type="checkboxGroup" values={tobaccoTypes} />
+                <Field 
+                    name="tobaccoTypes" 
+                    type="checkboxGroup" 
+                    values={tobaccoTypes}
+                    validate={{
+                        required: 'Please select at least one option',
+                    }}
+                />
             </div>
         </section>
     );

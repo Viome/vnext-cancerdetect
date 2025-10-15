@@ -100,7 +100,7 @@ export default function EmailValidationWrapper() {
 
             try {
                 await fetch(
-                    `/api/${NEXT_API_FOLDER}/email-validation?order_type=regular`,
+                    `/${NEXT_API_FOLDER}/email-validation?order_type=regular`,
                     {
                         method: 'POST',
                         headers: {
@@ -232,8 +232,6 @@ export default function EmailValidationWrapper() {
                                 <Field
                                     name="email"
                                     label="Email Address"
-                                    register={register}
-                                    errors={errors}
                                     type="text"
                                     className="!mb-2"
                                     placeholder="your@email.com"

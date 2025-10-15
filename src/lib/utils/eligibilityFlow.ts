@@ -188,7 +188,7 @@ export const getStates = async (country: string): Promise<UserDataResponse> => {
 };
 
 export const ageMajorityPerState = (country: string, state: string): number => {
-    if (country === 'US') {
+    if (country === 'US' || country === 'United States') {
         if (state === 'NE' || state === 'AL') {
             return 19;
         }
@@ -330,10 +330,10 @@ export const checkEligibility = (data: Partial<EligibilityValues>): EligibilityC
         };
     }
 
-    if (country === 'US' && state === 'NY') {
+    if ((country === 'US' || country === 'United States') && state === 'NY') {
         return {
             eligible: false,
-            message: `User matches conditions : country === 'US' && state === 'NY'`,
+            message: `User matches conditions : country === 'US' or 'United States' && state === 'NY'`,
             data: {
                 state,
                 dob,

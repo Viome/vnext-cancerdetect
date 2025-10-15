@@ -23,6 +23,7 @@ import {
 } from '@/lib/utils/eligibilityFlow';
 import { scrollToTopDiv } from '@/lib/utils/helpers';
 import Spinner from './Spinner';
+import CDButton from './CDButton';
 import Step0 from './Eligibility/Steps/Step0';
 import Step1 from './Eligibility/Steps/Step1';
 import Step2 from './Eligibility/Steps/Step2';
@@ -425,85 +426,92 @@ export default function EligibilityWrapper() {
             <div className="p-10 lg:p-0">
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        {formStep !== undefined &&
-                            formStep !== PERSONAL_INFO_STEP &&
-                            formStep !== FAMILY_MEMBERS_STEP && (
-                                <BackButton
-                                    formStep={formStep}
-                                    handleBackStep={() => backFormStep()}
-                                />
-                            )}
-
-                        {/* Dentist Step */}
-                        {formStep === DENTIST_INFO_STEP && <StepDentists />}
-
-                        {/* Personal Info */}
-                        {formStep === PERSONAL_INFO_STEP && <Step0 />}
-
-                        {/* Contact Details */}
-                        {formStep === CONTACT_DETAILS_STEP && <Step1 />}
-
-                        {/* Tobacco Use Flow */}
-                        {formStep === TOBACCO_USE_STEP && <Step2 />}
-                        {formStep === TOBACCO_USE_PREVIOUS_STEP_PREVIOUS && <Step2Previous />}
-                        {formStep === TOBACCO_USE_TYPES && <Step2Types />}
-                        {formStep === TOBACCO_USE_YEARS && <Step2Years />}
-                        {formStep === TOBACCO_USE_DAY_CONSUME && <Step2Day />}
-
-                        {/* HPV */}
-                        {formStep === HPV_STEP && <Step10 />}
-
-                        {/* Reason and Ethnicity */}
-                        {formStep === PRIMARY_REASON_STEP && <Step3 />}
-                        {formStep === ETHNICITY_STEP && <Step4 />}
-
-                        {/* Cancer History Flow */}
-                        {formStep === YOU_OR_FAMILY_CANCER && <Step5 />}
-                        {formStep === YOU_CANCER && <Step6 />}
-                        {formStep === YOU_CANCER_AGE && <Step7 />}
-                        {formStep === YOUR_FAMILY_CANCER && <Step8 />}
-                        {formStep === FAMILY_MEMBERS_STEP && (
-                            <Step9
-                                handleBackStep={() => backFormStep()}
-                                formStep={formStep}
-                                completeFormStep={() => completeFormStepForced()}
-                            />
-                        )}
-
-                        {/* Confirmation */}
-                        {formStep === CONFIRMATION_DETAILS_STEP && <StepConfirmDetails />}
-
                         {/* Results */}
-                        {submitted && (
+                        {submitted ? (
                             <EligibilityResults
                                 userIsElegible={userIsElegible}
                                 redirectUrl={redirectUrl}
                                 setFormStep={setFormStep}
                             />
+                        ) : (
+                            <>
+                                {formStep !== undefined &&
+                                    formStep !== PERSONAL_INFO_STEP &&
+                                    formStep !== FAMILY_MEMBERS_STEP && (
+                                        <BackButton
+                                            formStep={formStep}
+                                            handleBackStep={() => backFormStep()}
+                                        />
+                                    )}
+
+                                {/* Dentist Step */}
+                                {formStep === DENTIST_INFO_STEP && <StepDentists />}
+
+                                {/* Personal Info */}
+                                {formStep === PERSONAL_INFO_STEP && <Step0 />}
+
+                                {/* Contact Details */}
+                                {formStep === CONTACT_DETAILS_STEP && <Step1 />}
+
+                                {/* Tobacco Use Flow */}
+                                {formStep === TOBACCO_USE_STEP && <Step2 />}
+                                {formStep === TOBACCO_USE_PREVIOUS_STEP_PREVIOUS && <Step2Previous />}
+                                {formStep === TOBACCO_USE_TYPES && <Step2Types />}
+                                {formStep === TOBACCO_USE_YEARS && <Step2Years />}
+                                {formStep === TOBACCO_USE_DAY_CONSUME && <Step2Day />}
+
+                                {/* HPV */}
+                                {formStep === HPV_STEP && <Step10 />}
+
+                                {/* Reason and Ethnicity */}
+                                {formStep === PRIMARY_REASON_STEP && <Step3 />}
+                                {formStep === ETHNICITY_STEP && <Step4 />}
+
+                                {/* Cancer History Flow */}
+                                {formStep === YOU_OR_FAMILY_CANCER && <Step5 />}
+                                {formStep === YOU_CANCER && <Step6 />}
+                                {formStep === YOU_CANCER_AGE && <Step7 />}
+                                {formStep === YOUR_FAMILY_CANCER && <Step8 />}
+                                {formStep === FAMILY_MEMBERS_STEP && (
+                                    <Step9
+                                        handleBackStep={() => backFormStep()}
+                                        formStep={formStep}
+                                        completeFormStep={() => completeFormStepForced()}
+                                    />
+                                )}
+
+                                {/* Confirmation */}
+                                {formStep === CONFIRMATION_DETAILS_STEP && <StepConfirmDetails />}
+                            </>
                         )}
 
                         {/* Buttons (except for Family Members which has its own) */}
-                        {formStep !== FAMILY_MEMBERS_STEP && (
+                        {!submitted && formStep !== FAMILY_MEMBERS_STEP && (
                             <div className="sm:max-w-cd-form">
                                 <div className="mt-20 pb-20">
                                     <div className="flex flex-col gap-3">
                                         {formStep !== undefined && formStep < MAX_STEPS &&
                                             formStep !== CONFIRMATION_DETAILS_STEP && (
-                                                <button
+                                                <CDButton
                                                     type="button"
-                                                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+                                                    variant="Standard"
+                                                    theme="Dark"
+                                                    width="full"
                                                     onClick={() => completeFormStep()}
                                                     disabled={!isValid}
+                                                    className="cursor-pointer"
                                                 >
                                                     Next
-                                                </button>
+                                                </CDButton>
                                             )}
 
                                         {formStep === CONFIRMATION_DETAILS_STEP && (
                                             <>
-                                                <button
+                                                <CDButton
                                                     type="button"
-                                                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+                                                    variant="Standard"
+                                                    theme="Dark"
+                                                    width="full"
                                                     disabled={
                                                         loading ||
                                                         !checkAllValuesComplete({
@@ -511,12 +519,15 @@ export default function EligibilityWrapper() {
                                                         })
                                                     }
                                                     onClick={() => handleFormSubmit()}
+                                                    className="cursor-pointer"
                                                 >
                                                     My Information is Correct
-                                                </button>
-                                                <button
+                                                </CDButton>
+                                                <CDButton
                                                     type="button"
-                                                    className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50"
+                                                    variant="Transparent"
+                                                    theme="Light"
+                                                    width="full"
                                                     onClick={() =>
                                                         setFormStep(
                                                             orderType === 'dentist_resell'
@@ -524,9 +535,10 @@ export default function EligibilityWrapper() {
                                                                 : PERSONAL_INFO_STEP,
                                                         )
                                                     }
+                                                    className="cursor-pointer"
                                                 >
                                                     Edit Information
-                                                </button>
+                                                </CDButton>
                                                 <span className="mt-8 text-sm text-gray-600">
                                                     You can edit all the information except your
                                                     email address.
@@ -543,28 +555,6 @@ export default function EligibilityWrapper() {
                 </FormProvider>
 
                 {error && <p className="text-red-600 mt-4">{errorMessage}</p>}
-
-                {process.env.NODE_ENV === 'development' && (
-                    <div className="mt-8 p-4 bg-gray-100 rounded">
-                        <button
-                            className="bg-purple-600 text-white px-4 py-2 rounded mb-4"
-                            type="button"
-                            onClick={() => {
-                                console.log({
-                                    areAllPersonalDataCompleted:
-                                        checkAllValuesComplete({
-                                            values: watch() as any,
-                                        }),
-                                });
-                            }}
-                        >
-                            Fields Validation Check
-                        </button>
-                        <pre className="text-xs overflow-auto max-h-96">
-                            {JSON.stringify(watch(), null, 2)}
-                        </pre>
-                    </div>
-                )}
             </div>
         </div>
     );

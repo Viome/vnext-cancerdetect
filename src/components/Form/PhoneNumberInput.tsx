@@ -32,7 +32,7 @@ export default function PhoneNumberInput({
                         required: 'Country code is required',
                     })}
                     className={classNames(
-                        'block w-32 rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                        'block w-32 rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                         countryCodeError
                             ? 'border-red-500 bg-red-50'
                             : 'border-gray-300 bg-white',
@@ -40,7 +40,7 @@ export default function PhoneNumberInput({
                 >
                     {countries.map((country) => (
                         <option key={country.phoneCode} value={country.phoneCode}>
-                            {country.phoneCode}
+                            +{country.phoneCode}
                         </option>
                     ))}
                 </select>
@@ -55,7 +55,7 @@ export default function PhoneNumberInput({
                         },
                     })}
                     className={classNames(
-                        'block flex-1 rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                        'block flex-1 rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                         phoneError
                             ? 'border-red-500 bg-red-50'
                             : 'border-gray-300 bg-white',

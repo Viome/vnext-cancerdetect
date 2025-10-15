@@ -7,7 +7,7 @@ export const KLAVIYO = {
   SIGN_UP_FORM_ID: "UdMJRv",
 };
 
-export const NEXT_API_FOLDER = "cd-api";
+export const NEXT_API_FOLDER = "api";
 export const API_DOMAIN_V1 =
   process.env.NEXT_PUBLIC_API_DOMAIN_V1 || "https://api.example.com/v1";
 
@@ -196,6 +196,8 @@ export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "orderType",
   "kitId",
   "dentistId",
+  "ethnicity",
+  "email",
 ];
 
 export const ELIGIBILITY_DEFAULT_VALUES = {
@@ -210,9 +212,9 @@ export const ELIGIBILITY_DEFAULT_VALUES = {
   streetAddress: "",
   apartmentSuitNo: "",
   city: "",
-  phoneNumberCountryCode: "",
+  phoneNumberCountryCode: "1",
   phoneNumber: "",
-  country: "",
+  country: "United States",
   state: "",
   zipCode: "",
   tobaccoCurrent: "",

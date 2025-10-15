@@ -12,6 +12,7 @@ interface FieldProps {
     validate?: any;
     tooltip?: { position: string; title: string; content: React.ReactNode };
     disabled?: boolean;
+    readOnly?: boolean;
     className?: string;
     autoComplete?: string;
     fieldAttribute?: string;
@@ -27,6 +28,7 @@ export default function Field({
     validate,
     tooltip,
     disabled = false,
+    readOnly = false,
     className = '',
     autoComplete,
     fieldAttribute,
@@ -54,11 +56,13 @@ export default function Field({
                     type={type === 'input' ? 'text' : type}
                     placeholder={placeholder}
                     disabled={disabled}
+                    readOnly={readOnly}
                     autoComplete={autoComplete}
                     {...register(name, validate)}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
+                        readOnly && 'bg-gray-100 cursor-not-allowed',
                     )}
                 />
                 {hasError && (
@@ -84,7 +88,7 @@ export default function Field({
                     {...register(name, validate)}
                     rows={4}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 />
@@ -111,7 +115,7 @@ export default function Field({
                                 value={option.value}
                                 disabled={disabled}
                                 {...register(name, validate)}
-                                className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                             <label
                                 htmlFor={`${name}-${option.value}`}
@@ -150,7 +154,7 @@ export default function Field({
                                     value={option.value}
                                     disabled={disabled}
                                     {...register(fieldName, validate)}
-                                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
                                 />
                                 <label
                                     htmlFor={`${name}-${option.value}`}
@@ -190,7 +194,7 @@ export default function Field({
                     disabled={disabled}
                     {...register(name, validate)}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 >
@@ -232,7 +236,7 @@ export default function Field({
                         },
                     })}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm font-mono focus:border-blue-500 focus:ring-blue-500',
+                        'block w-full rounded-lg border p-3 text-sm font-mono focus:border-blue-500 focus:ring-blue-500 outline-none',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 />

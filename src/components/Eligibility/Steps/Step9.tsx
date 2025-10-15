@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Field from '@/components/Form/Field';
 import BackButton from '@/components/Form/BackButton';
+import CDButton from '@/components/CDButton';
 import { relationshipAnswers } from '@/app/api/data/eligibilityQuestions';
 
 interface Step9Props {
@@ -85,7 +86,7 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
                                             id={`member-${member.value}`}
                                             type="checkbox"
                                             {...register(`familyMembers.${member.value}.selected`)}
-                                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
                                         />
                                         <label
                                             htmlFor={`member-${member.value}`}
@@ -137,7 +138,7 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
                                         min: { value: 1, message: 'Age must be at least 1' },
                                         max: { value: 120, message: 'Age must be less than 120' },
                                     })}
-                                    className="block w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
+                                    className="block w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none"
                                 />
                                 {errors?.familyMembers?.[member.value]?.age && (
                                     <p className="mt-2 text-sm text-red-600">
@@ -152,14 +153,17 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
 
             <div className="sm:max-w-cd-form">
                 <div className="mt-8">
-                    <button
+                    <CDButton
                         type="button"
+                        variant="Standard"
+                        theme="Dark"
+                        width="full"
                         onClick={handleNext}
                         disabled={!canProceed}
-                        className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="cursor-pointer"
                     >
                         {internalStep === 0 ? 'Next' : 'Continue'}
-                    </button>
+                    </CDButton>
                 </div>
             </div>
         </section>

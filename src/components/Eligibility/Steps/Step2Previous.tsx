@@ -28,6 +28,9 @@ export default function Step2Previous() {
                         { value: 'yes', text: 'Yes' },
                         { value: 'no', text: 'No' },
                     ]}
+                    validate={{
+                        required: 'Please select an option',
+                    }}
                 />
             </div>
         </section>
