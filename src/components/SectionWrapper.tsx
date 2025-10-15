@@ -100,7 +100,7 @@ export default function SectionWrapper({
           )}
         </>
       )}
-      <div className={`relative z-10 ${containerClass} ${paddingClass} kff`}>
+      <div className={`relative z-10 ${containerClass} ${paddingClass}`}>
         {children}
       </div>
     </section>

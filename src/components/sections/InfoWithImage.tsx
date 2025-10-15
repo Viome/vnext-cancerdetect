@@ -40,19 +40,17 @@ export default function InfoWithImage({
         {infoBlocks.map((block, index) => (
           <div key={index} className="space-y-6">
             <div className="pb-6 border-b-[3px] border-[var(--black)]">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-twk-lausanne font-medium leading-tight">
-                {block.title}
-              </h2>
+              <h2 className="typography-headline1">{block.title}</h2>
             </div>
 
-            <p className="text-base md:text-lg font-twk-lausanne leading-relaxed text-gray-800">
+            <p className="typography-paragraph2 text-black">
               {block.description}
             </p>
 
             {block.linkText && block.linkHref && (
               <Link
                 href={block.linkHref}
-                className="inline-flex items-center gap-2 text-base font-twk-lausanne font-medium hover:text-[var(--brand-green-3)] transition-colors"
+                className="inline-flex items-center gap-2 typography-paragraph2  hover:text-[var(--brand-green-3)] transition-colors"
               >
                 {block.linkText}
                 <svg
