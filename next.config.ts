@@ -44,8 +44,6 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "swiper"],
   },
   
-  // Enable static generation
-  output: "standalone",
   // Enable compression
   compress: true,
   // Remove powered by header

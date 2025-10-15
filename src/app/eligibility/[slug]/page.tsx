@@ -9,9 +9,9 @@ interface PageProps {
 
 // Generate static paths for eligibility pages
 export async function generateStaticParams() {
-  return [
-    { slug: "register" }
-  ]
+  // Note: "register" is handled by a dedicated /eligibility/register/page.tsx file
+  // Only return slugs for CMS-based pages here
+  return []
 }
 
 // Generate metadata for eligibility pages
