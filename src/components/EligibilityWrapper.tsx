@@ -38,7 +38,6 @@ import Step7 from './Eligibility/Steps/Step7';
 import Step8 from './Eligibility/Steps/Step8';
 import Step9 from './Eligibility/Steps/Step9';
 import Step10 from './Eligibility/Steps/Step10';
-import StepDentists from './Eligibility/Steps/StepDentists';
 import StepConfirmDetails from './Eligibility/Steps/StepConfirmDetails';
 import EligibilityResults from './Eligibility/EligibilityResults';
 import BackButton from './Form/BackButton';
@@ -65,7 +64,6 @@ export default function EligibilityWrapper() {
 
     const methods = useForm(formOptions);
     const { handleSubmit, formState, watch, setValue, reset } = methods;
-    const orderType = watch('orderType');
     const { isValid } = formState;
 
     const {
@@ -86,7 +84,6 @@ export default function EligibilityWrapper() {
         YOU_CANCER_AGE,
         YOUR_FAMILY_CANCER,
         FAMILY_MEMBERS_STEP,
-        DENTIST_INFO_STEP,
     } = ELEGIBILITY_STEPS;
 
     const onSubmit = async () => {
@@ -143,12 +140,6 @@ export default function EligibilityWrapper() {
 
     const completeFormStep = () => {
         setStepStack((cur) => [...cur, formStep!]);
-
-        const kitId = watch('kitId');
-        if (formStep === DENTIST_INFO_STEP && kitId !== '') {
-            setFormStep(PERSONAL_INFO_STEP);
-            return;
-        }
 
         const tobaccoCurrent = watch('tobaccoCurrent');
         if (formStep === TOBACCO_USE_STEP && tobaccoCurrent === 'yes') {
@@ -235,24 +226,29 @@ export default function EligibilityWrapper() {
         }
     }, [formStep]);
 
-    if (typeof window !== 'undefined') {
-        useFormPersist(LOCAL_STORAGE_CD_ELEGIBILITY, {
-            watch,
-            setValue,
-            storage: window.sessionStorage,
-        });
-    }
+    useFormPersist(LOCAL_STORAGE_CD_ELEGIBILITY, {
+        watch,
+        setValue,
+        storage: typeof window !== 'undefined' ? window.sessionStorage : undefined,
+    });
 
     useEffect(() => {
         const initializeForm = async () => {
-            reset();
+            // Check if there's persisted data in sessionStorage
+            const persistedData = typeof window !== 'undefined' 
+                ? window.sessionStorage.getItem(LOCAL_STORAGE_CD_ELEGIBILITY)
+                : null;
+            
+            // Only reset if there's no persisted data
+            if (!persistedData) {
+                reset();
+            }
 
             const handleUserData = async () => {
                 const userData = await getUserDataFlow();
                 if (userData.error) return null;
                 setValue('firstName', userData.firstName);
                 setValue('lastName', userData.lastName);
-                setValue('email', userData.email);
                 setValue('phoneNumberCountryCode', userData.countryPhoneCode || 'US');
                 setValue('phoneNumber', userData.phone?.replace(/\D/g, ''));
                 const dob = moment(userData.birthDate).format('YYYY-MM-DD');
@@ -298,33 +294,37 @@ export default function EligibilityWrapper() {
                 return null;
             };
 
-            const existingUserSessionValidation = async (isFromDentistsProcess: boolean) => {
+            const existingUserSessionValidation = async () => {
                 setVerifyingTokenLoading(true);
-                const userData = handleUserData();
-                const userAddress = handleUserAddresses();
-                const userGender = handleUserGender();
+                
+                // Only load user data if there's no persisted form data
+                if (!persistedData) {
+                    const userData = handleUserData();
+                    const userAddress = handleUserAddresses();
+                    const userGender = handleUserGender();
 
-                Promise.all([userData, userAddress, userGender]).then((values) => {
-                    if (!values[0]) {
-                        setError(true);
-                        setErrorMessage(
-                            'There was a problem fetching user data. You are being redirected to the login page',
-                        );
-                        setTimeout(() => {
-                            router.push('/eligibility/register');
-                        }, 3000);
-                    }
-                    if (isFromDentistsProcess) {
-                        setFormStep(DENTIST_INFO_STEP);
-                    } else {
+                    Promise.all([userData, userAddress, userGender]).then((values) => {
+                        if (!values[0]) {
+                            setError(true);
+                            setErrorMessage(
+                                'There was a problem fetching user data. You are being redirected to the login page',
+                            );
+                            setTimeout(() => {
+                                router.push('/eligibility/register');
+                            }, 3000);
+                        }
                         setFormStep(PERSONAL_INFO_STEP);
-                    }
+                        setVerifyingTokenLoading(false);
+                    });
+                } else {
+                    // If there's persisted data, just set the appropriate step
+                    setFormStep(PERSONAL_INFO_STEP);
                     setVerifyingTokenLoading(false);
-                });
+                }
                 setTokenVerified(true);
             };
 
-            const tokenValidation = async (token: string, isFromDentistsProcess: boolean) => {
+            const tokenValidation = async (token: string) => {
                 setVerifyingTokenLoading(true);
                 
                 const response = await fetch('/api/token-validation', {
@@ -336,7 +336,7 @@ export default function EligibilityWrapper() {
                 });
 
                 const res = await response.json();
-                const { validToken, userEmail } = res;
+                const { validToken } = res;
 
                 if (!validToken) {
                     setError(true);
@@ -346,15 +346,13 @@ export default function EligibilityWrapper() {
                     return false;
                 }
 
-                setValue('email', userEmail);
-                setValue('country', 'US');
-                setValue('phoneNumberCountryCode', 'US');
-
-                if (isFromDentistsProcess) {
-                    setFormStep(DENTIST_INFO_STEP);
-                } else {
-                    setFormStep(PERSONAL_INFO_STEP);
+                // Only set these values if there's no persisted data
+                if (!persistedData) {
+                    setValue('country', 'US');
+                    setValue('phoneNumberCountryCode', 'US');
                 }
+
+                setFormStep(PERSONAL_INFO_STEP);
 
                 sessionStorage.setItem('token', token);
                 setTokenVerified(true);
@@ -369,16 +367,14 @@ export default function EligibilityWrapper() {
                         : null;
                     
                     const queryToken = searchParams?.get('token');
-                    const orderTypeParam = searchParams?.get('order_type');
                     const redirectedStatus = searchParams?.get('redirected');
 
                     if (queryToken) token = queryToken;
-                    if (orderTypeParam) setValue('orderType', orderTypeParam);
 
                     if (redirectedStatus === 'true') {
-                        existingUserSessionValidation(orderTypeParam === 'dentist_resell');
+                        existingUserSessionValidation();
                     } else if (token && token !== 'null') {
-                        tokenValidation(token, orderTypeParam === 'dentist_resell');
+                        tokenValidation(token);
                     } else {
                         setError(true);
                         setErrorMessage('No token provided');
@@ -425,65 +421,64 @@ export default function EligibilityWrapper() {
             <div className="p-10 lg:p-0">
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        {formStep !== undefined &&
-                            formStep !== PERSONAL_INFO_STEP &&
-                            formStep !== FAMILY_MEMBERS_STEP && (
-                                <BackButton
-                                    formStep={formStep}
-                                    handleBackStep={() => backFormStep()}
-                                />
-                            )}
-
-                        {/* Dentist Step */}
-                        {formStep === DENTIST_INFO_STEP && <StepDentists />}
-
-                        {/* Personal Info */}
-                        {formStep === PERSONAL_INFO_STEP && <Step0 />}
-
-                        {/* Contact Details */}
-                        {formStep === CONTACT_DETAILS_STEP && <Step1 />}
-
-                        {/* Tobacco Use Flow */}
-                        {formStep === TOBACCO_USE_STEP && <Step2 />}
-                        {formStep === TOBACCO_USE_PREVIOUS_STEP_PREVIOUS && <Step2Previous />}
-                        {formStep === TOBACCO_USE_TYPES && <Step2Types />}
-                        {formStep === TOBACCO_USE_YEARS && <Step2Years />}
-                        {formStep === TOBACCO_USE_DAY_CONSUME && <Step2Day />}
-
-                        {/* HPV */}
-                        {formStep === HPV_STEP && <Step10 />}
-
-                        {/* Reason and Ethnicity */}
-                        {formStep === PRIMARY_REASON_STEP && <Step3 />}
-                        {formStep === ETHNICITY_STEP && <Step4 />}
-
-                        {/* Cancer History Flow */}
-                        {formStep === YOU_OR_FAMILY_CANCER && <Step5 />}
-                        {formStep === YOU_CANCER && <Step6 />}
-                        {formStep === YOU_CANCER_AGE && <Step7 />}
-                        {formStep === YOUR_FAMILY_CANCER && <Step8 />}
-                        {formStep === FAMILY_MEMBERS_STEP && (
-                            <Step9
-                                handleBackStep={() => backFormStep()}
-                                formStep={formStep}
-                                completeFormStep={() => completeFormStepForced()}
-                            />
-                        )}
-
-                        {/* Confirmation */}
-                        {formStep === CONFIRMATION_DETAILS_STEP && <StepConfirmDetails />}
-
                         {/* Results */}
-                        {submitted && (
+                        {submitted ? (
                             <EligibilityResults
                                 userIsElegible={userIsElegible}
                                 redirectUrl={redirectUrl}
                                 setFormStep={setFormStep}
                             />
+                        ) : (
+                            <>
+                                {formStep !== undefined &&
+                                    formStep !== PERSONAL_INFO_STEP &&
+                                    formStep !== FAMILY_MEMBERS_STEP && (
+                                        <BackButton
+                                            formStep={formStep}
+                                            handleBackStep={() => backFormStep()}
+                                        />
+                                    )}
+
+                                {/* Personal Info */}
+                                {formStep === PERSONAL_INFO_STEP && <Step0 />}
+
+                                {/* Contact Details */}
+                                {formStep === CONTACT_DETAILS_STEP && <Step1 />}
+
+                                {/* Tobacco Use Flow */}
+                                {formStep === TOBACCO_USE_STEP && <Step2 />}
+                                {formStep === TOBACCO_USE_PREVIOUS_STEP_PREVIOUS && <Step2Previous />}
+                                {formStep === TOBACCO_USE_TYPES && <Step2Types />}
+                                {formStep === TOBACCO_USE_YEARS && <Step2Years />}
+                                {formStep === TOBACCO_USE_DAY_CONSUME && <Step2Day />}
+
+                                {/* HPV */}
+                                {formStep === HPV_STEP && <Step10 />}
+
+                                {/* Reason and Ethnicity */}
+                                {formStep === PRIMARY_REASON_STEP && <Step3 />}
+                                {formStep === ETHNICITY_STEP && <Step4 />}
+
+                                {/* Cancer History Flow */}
+                                {formStep === YOU_OR_FAMILY_CANCER && <Step5 />}
+                                {formStep === YOU_CANCER && <Step6 />}
+                                {formStep === YOU_CANCER_AGE && <Step7 />}
+                                {formStep === YOUR_FAMILY_CANCER && <Step8 />}
+                                {formStep === FAMILY_MEMBERS_STEP && (
+                                    <Step9
+                                        handleBackStep={() => backFormStep()}
+                                        formStep={formStep}
+                                        completeFormStep={() => completeFormStepForced()}
+                                    />
+                                )}
+
+                                {/* Confirmation */}
+                                {formStep === CONFIRMATION_DETAILS_STEP && <StepConfirmDetails />}
+                            </>
                         )}
 
                         {/* Buttons (except for Family Members which has its own) */}
-                        {formStep !== FAMILY_MEMBERS_STEP && (
+                        {!submitted && formStep !== FAMILY_MEMBERS_STEP && (
                             <div className="sm:max-w-cd-form">
                                 <div className="mt-20 pb-20">
                                     <div className="flex flex-col gap-3">
@@ -517,19 +512,12 @@ export default function EligibilityWrapper() {
                                                 <button
                                                     type="button"
                                                     className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50"
-                                                    onClick={() =>
-                                                        setFormStep(
-                                                            orderType === 'dentist_resell'
-                                                                ? DENTIST_INFO_STEP
-                                                                : PERSONAL_INFO_STEP,
-                                                        )
-                                                    }
+                                                    onClick={() => setFormStep(PERSONAL_INFO_STEP)}
                                                 >
                                                     Edit Information
                                                 </button>
                                                 <span className="mt-8 text-sm text-gray-600">
-                                                    You can edit all the information except your
-                                                    email address.
+                                                    You can edit all the information before submitting.
                                                 </span>
                                             </>
                                         )}
@@ -543,28 +531,6 @@ export default function EligibilityWrapper() {
                 </FormProvider>
 
                 {error && <p className="text-red-600 mt-4">{errorMessage}</p>}
-
-                {process.env.NODE_ENV === 'development' && (
-                    <div className="mt-8 p-4 bg-gray-100 rounded">
-                        <button
-                            className="bg-purple-600 text-white px-4 py-2 rounded mb-4"
-                            type="button"
-                            onClick={() => {
-                                console.log({
-                                    areAllPersonalDataCompleted:
-                                        checkAllValuesComplete({
-                                            values: watch() as any,
-                                        }),
-                                });
-                            }}
-                        >
-                            Fields Validation Check
-                        </button>
-                        <pre className="text-xs overflow-auto max-h-96">
-                            {JSON.stringify(watch(), null, 2)}
-                        </pre>
-                    </div>
-                )}
             </div>
         </div>
     );

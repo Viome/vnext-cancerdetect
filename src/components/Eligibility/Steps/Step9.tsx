@@ -16,13 +16,12 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
     const { watch, register, formState: { errors } } = useFormContext();
     const [internalStep, setInternalStep] = useState(0); // 0 = select members, 1 = enter ages
 
-    const familyMembers = watch('familyMembers') || [];
+    const familyMembers = watch('familyMembers') || {};
 
     // Get selected family members (those that have been checked)
     const getSelectedMembers = () => {
         return relationshipAnswers.filter((member) => {
-            const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-            return memberData?.selected === true;
+            return familyMembers[member.value]?.selected === true;
         });
     };
 
@@ -33,8 +32,8 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
         } else if (internalStep === 1) {
             // Validate all ages are filled
             const allAgesValid = selectedMembers.every((member) => {
-                const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-                return memberData?.age && parseInt(memberData.age) > 0;
+                const age = familyMembers[member.value]?.age;
+                return age && parseInt(age) > 0;
             });
             
             if (allAgesValid) {
@@ -55,8 +54,8 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
     const canProceed = internalStep === 0
         ? selectedMembers.length > 0
         : selectedMembers.every((member) => {
-            const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-            return memberData?.age && parseInt(memberData.age) > 0;
+            const age = familyMembers[member.value]?.age;
+            return age && parseInt(age) > 0;
         });
 
     return (

@@ -1,63 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Field from '@/components/Form/Field';
 import PhoneNumberInput from '@/components/Form/PhoneNumberInput';
 import { SUPPORT_PAGE_URL } from '@/lib/utils/constants';
-import { ageMajorityPerState, getCountries, getStates } from '@/lib/utils/eligibilityFlow';
+import { ageMajorityPerState } from '@/lib/utils/eligibilityFlow';
 import { calculateAge } from '@/lib/utils/helpers';
+import allStates from '@/data/states';
 
 export default function Step1() {
     const methods = useFormContext();
-    const { watch, setValue, trigger, setError, clearErrors, formState: { errors } } = methods;
+    const { watch, setValue, setError, clearErrors } = methods;
     
-    const [countries, setCountries] = useState<any[]>([]);
-    const [states, setStates] = useState<any[]>([]);
-    const [loadingCountries, setLoadingCountries] = useState(true);
-    const [loadingStates, setLoadingStates] = useState(false);
-    
-    const watchCountry = watch('country');
     const watchState = watch('state');
-    const watchZipCode = watch('zipCode');
     const watchDob = watch('dob');
 
-    // Fetch countries on mount
-    useEffect(() => {
-        const fetchCountries = async () => {
-            const result = await getCountries();
-            if (!result.error && result.countries) {
-                setCountries(result.countries);
-            }
-            setLoadingCountries(false);
-        };
-        fetchCountries();
+    // Filter out NY state and use local states data
+    const states = useMemo(() => {
+        return allStates.filter((state) => state.abbreviation !== 'NY');
     }, []);
 
-    // Fetch states when country changes
+    // Set country to United States on mount
     useEffect(() => {
-        const fetchStates = async () => {
-            if (watchCountry) {
-                setLoadingStates(true);
-                const result = await getStates(watchCountry);
-                if (!result.error && result.states) {
-                    // Filter out NY state for US
-                    const filteredStates = watchCountry === 'US'
-                        ? result.states.filter((state: any) => state.abbreviation !== 'NY')
-                        : result.states;
-                    setStates(filteredStates);
-                }
-                setLoadingStates(false);
-            }
-        };
-        fetchStates();
-    }, [watchCountry]);
+        setValue('country', 'United States');
+    }, [setValue]);
 
     // Validate age when state changes
     useEffect(() => {
-        if (watchState && watchDob && watchCountry) {
+        if (watchState && watchDob) {
             const age = calculateAge(watchDob);
-            const requiredAge = ageMajorityPerState(watchCountry, watchState);
+            const requiredAge = ageMajorityPerState('US', watchState);
             
             if (age < requiredAge) {
                 setError('dob', {
@@ -68,15 +41,15 @@ export default function Step1() {
                 clearErrors('dob');
             }
         }
-    }, [watchState, watchDob, watchCountry, setError, clearErrors]);
+    }, [watchState, watchDob, setError, clearErrors]);
 
     // Validate ZIP code
     const validateZipCode = async (zipCode: string) => {
-        if (!zipCode || !watchState || !watchCountry) return true;
+        if (!zipCode || !watchState) return true;
 
         // Check if NY ZIP code
         const zipNum = parseInt(zipCode);
-        if (watchCountry === 'US' && zipNum >= 10000 && zipNum <= 14925) {
+        if (zipNum >= 10000 && zipNum <= 14925) {
             return 'ZIP codes from New York (10000-14925) are not eligible';
         }
 
@@ -124,16 +97,8 @@ export default function Step1() {
                 <Field
                     name="country"
                     label="Country"
-                    type="select"
-                    disabled={loadingCountries}
-                    data={{
-                        values: countries,
-                        name: 'name',
-                        option: 'abbreviation',
-                    }}
-                    validate={{
-                        required: 'Country is required',
-                    }}
+                    type="text"
+                    readOnly={true}
                 />
 
                 <Field
@@ -157,7 +122,6 @@ export default function Step1() {
                     name="state"
                     label="State"
                     type="select"
-                    disabled={!watchCountry || loadingStates}
                     data={{
                         values: states,
                         name: 'name',
@@ -203,16 +167,13 @@ export default function Step1() {
                             value: /^\d{5}(-\d{4})?$/,
                             message: 'Invalid ZIP code format',
                         },
-                        validate: validateZipCode,
+                        validateZip: validateZipCode,
                     }}
                 />
 
                 <PhoneNumberInput
-                    disabledCountryCode={false}
-                    countries={countries.map((c: any) => ({
-                        phoneCode: c.phoneCode,
-                        name: c.name,
-                    }))}
+                    disabledCountryCode={true}
+                    countries={[{ phoneCode: '1', name: 'United States' }]}
                 />
             </div>
         </section>

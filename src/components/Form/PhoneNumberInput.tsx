@@ -40,7 +40,7 @@ export default function PhoneNumberInput({
                 >
                     {countries.map((country) => (
                         <option key={country.phoneCode} value={country.phoneCode}>
-                            {country.phoneCode}
+                            +{country.phoneCode}
                         </option>
                     ))}
                 </select>

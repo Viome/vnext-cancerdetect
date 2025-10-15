@@ -2,6 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useSearchParams } from "next/navigation";
 import {
     Input,
     Radio,
@@ -13,7 +14,12 @@ import {
     PopoverTrigger,
     PopoverContent,
 } from "@nextui-org/react";
-
+import type { Selection } from "@nextui-org/react";
+import { PositiveIcon, NegativeIcon } from "./RiskAssessmentIcons";
+import { cn as classNames } from "@/lib/utils";
+import RiskAssessmentFaqs from "./RiskAssessmentFaqs";
+import useDentist from "@/hooks/useDentist";
+import { VDP_URL } from "@/lib/utils/constants";
 interface Question {
     name: string;
     label: string;
@@ -300,12 +306,18 @@ export default function RiskAssessmentWrapper({
 }: {
     children: ReactNode;
 }) {
+    const searchParams = useSearchParams();
+    const isLead = searchParams.get('isLead') === 'true';
+    const dentistQuery = useDentist();
+    const dentist = dentistQuery.data;
+    
     const [riskPosTest, setRiskPosTest] = useState<string>('');
     const [riskNegTest, setRiskNegTest] = useState<string>('');
     const [formResults, setFormResults] = useState<React.ReactElement | null>(null);
     const [resultStatus, setResultStatus] = useState<string>('');
     const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
     const [dentistForm, setDentistForm] = useState<any>(null);
+    const [faqSelectedKeys, setFaqSelectedKeys] = useState<Selection>(new Set([]));
 
     const {
         handleSubmit,
@@ -326,7 +338,50 @@ export default function RiskAssessmentWrapper({
     });
 
     const navigateToFaq = (id: string) => {
-        console.log('Navigate to FAQ:', id);
+        // Open the specific FAQ item
+        setFaqSelectedKeys(new Set([id]));
+        
+        // Scroll to the FAQ section
+        setTimeout(() => {
+            const faqElement = document.getElementById(`faq-${id}`);
+            if (faqElement) {
+                faqElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    };
+
+    const handleSendToDentist = () => {
+        const dentistId = dentist?.id;
+
+        if (!dentistId) {
+            return;
+        }
+
+        const query = new URLSearchParams();
+
+        query.append('dentistId', dentistId);
+        query.append('isLead', isLead.toString());
+        query.append('data', JSON.stringify(dentistForm));
+
+        window.open(`${VDP_URL}/qr/patient?${query.toString()}`, '_blank');
+    };
+
+    const savePage = () => {
+        /**
+         * Download page to pdf.
+         * workaround to make it work in iOS Safari, Firefox and Chrome
+         */
+        try {
+            const isiOSFirefox = /FxiOS/i.test(navigator.userAgent);
+            const isiOSChrome = /CriOS/i.test(navigator.userAgent);
+            const isSupported = document.execCommand('print', false);
+
+            if (isiOSFirefox || isiOSChrome || !isSupported) {
+                window.print();
+            }
+        } catch {
+            window.print();
+        }
     };
 
     const ppvOneMinusNPVRisks = (prev: number) => {
@@ -462,7 +517,7 @@ export default function RiskAssessmentWrapper({
         if (oneInPpos < 150) {
             status = 'High';
             riskCateText = (
-                <div>
+                <div className="typography-headline3">
                     Your overall quantitative risk for Oral and/or Throat
                     Cancer is 1 out of {oneInPpos} people. With this{' '}
                     <span className="text-red-600">HIGH</span> risk level,
@@ -474,7 +529,7 @@ export default function RiskAssessmentWrapper({
         } else if (oneInPpos >= 150 && oneInPpos <= 500) {
             status = 'Moderate';
             riskCateText = (
-                <div>
+                <div className="typography-headline3">
                     Your overall quantitative risk for Oral and/or Throat
                     Cancer is 1 out of {oneInPpos} people. With this{' '}
                     <span className="text-orange-600">moderate</span> risk
@@ -486,7 +541,7 @@ export default function RiskAssessmentWrapper({
         } else {
             status = 'Low';
             riskCateText = (
-                <div>
+                <div className="typography-headline3">
                     Your overall quantitative risk for Oral and/or Throat
                     Cancer is 1 out of {oneInPpos} people. You have a
                     relatively <span className="text-green-600">low</span>{' '}
@@ -539,7 +594,7 @@ export default function RiskAssessmentWrapper({
     };
 
     return (
-        <div className="m-auto max-w-[46rem] !font-light light">
+        <div className="m-auto max-w-[46rem] !font-light light py-4">
             {children}
 
             <form
@@ -764,30 +819,346 @@ export default function RiskAssessmentWrapper({
             </form>
 
             {isFormSubmitted && formResults && (
-                <div id="results-content" className="px-10 pb-16">
-                    <div className="mb-10">
-                        <h2 className="font-TWKLausanne text-[2rem] font-bold mb-4">
-                            Your Risk Assessment Results
+                <div id="results-content">
+                    <div
+                        className={classNames(
+                            "bg-gradient-to-br from-10% via-30% to-white to-90% px-10 py-16",
+                            {
+                                'from-red-100 via-red-50': resultStatus === 'High',
+                                'from-yellow-100 via-yellow-50': resultStatus === 'Moderate',
+                                'from-green-100 via-green-50': resultStatus === 'Low',
+                            }
+                        )}
+                    >
+                        <p className="typography-paragraph1 mb-4">
+                            Your overall quantitative risk level for Oral and/or Throat Cancer is
+                        </p>
+                        <h2
+                            className={classNames(
+                                'typography-display2 mb-4',
+                                {
+                                    'text-red-600': resultStatus === 'High',
+                                    'text-yellow-600': resultStatus === 'Moderate',
+                                    'text-green-600': resultStatus === 'Low',
+                                }
+                            )}
+                        >
+                            {resultStatus}
                         </h2>
                         <div className="text-lg mb-6">
                             {formResults}
+                            <p className="typography-headline3 mt-3">Once you obtain the CancerDetect saliva test, we can provide you with a more accurate personal risk assessment.</p>
                         </div>
-                        <div className="text-base text-gray-600 space-y-4">
-                            <p>
-                                <strong>What these results mean:</strong>
-                            </p>
-                            <p>
-                                If you take the CancerDetect test and receive a <strong>positive</strong> result, 
-                                your risk is approximately 1 in {riskPosTest} people.
-                            </p>
-                            <p>
-                                If you take the CancerDetect test and receive a <strong>negative</strong> result, 
-                                your risk is approximately 1 in {riskNegTest} people.
-                            </p>
+
+                        <div className="mb-4 text-lg">
+                            <span>
+                                Please see the{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('2')}
+                                    type="button"
+                                >
+                                    FAQ about the risk levels
+                                </button>{' '}
+                                for more information. If you are a
+                                generally healthy person 50 years or
+                                older,{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('3')}
+                                    type="button"
+                                >
+                                    please see the following FAQ
+                                </button>
+                                . Please also see the FAQs for other
+                                risk factors such as{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('5')}
+                                    type="button"
+                                >
+                                    tobacco use
+                                </button>
+                                ,{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('6')}
+                                    type="button"
+                                >
+                                    {' '}
+                                    alcohol consumption
+                                </button>
+                                ,{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('7')}
+                                    type="button"
+                                >
+                                    {' '}
+                                    pre-malignant lesions
+                                </button>
+                                , and{' '}
+                                <button
+                                    className="font-inherit cursor-pointer border-none bg-none p-0 text-blue-500 underline outline-none"
+                                    onClick={() => navigateToFaq('8')}
+                                    type="button"
+                                >
+                                    {' '}
+                                    HPV infection
+                                </button>
+                                .
+                            </span>
+                        </div>
+
+                        <div className="mt-6 flex w-full flex-col gap-4 md:flex-row">
+                            {dentist?.id && (
+                                <Button
+                                    type="button"
+                                    onPress={handleSendToDentist}
+                                    color="warning"
+                                    className="border border-[hsl(0deg_0%_80%)] rounded-none bg-black text-white font-TWKLausanne text-base px-6 py-2 hover:bg-[hsl(0deg_0%_12%)]"
+                                >
+                                    {isLead ? 'Find a Dentist' : 'Register with dentist'}
+                                </Button>
+                            )}
+
+                            <Button
+                                type="button"
+                                onPress={savePage}
+                                color="warning"
+                                className="border border-[hsl(0deg_0%_80%)] rounded-none bg-black text-white font-TWKLausanne text-base px-6 py-2 hover:bg-[hsl(0deg_0%_12%)]"
+                            >
+                                Save for myself
+                            </Button>
+                        </div>
+
+                        <div className="mt-8">
+                            <hr className="border-t border-gray-300 mb-8" />
+
+                            <div className="mb-8 flex items-start gap-6">
+                                <div className="flex-shrink-0">
+                                    <PositiveIcon />
+                                </div>
+
+                                <div>
+                                    <div className="mb-6 text-3xl">
+                                        If your test is{' '}
+                                        <span className="text-red-500">
+                                            positive
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        1 out of {riskPosTest} people
+                                        with your risk factors develop
+                                        Oral and/or Throat Cancer over
+                                        the course of their lifetimes.
+                                        We strongly recommend you to
+                                        speak to your healthcare
+                                        provider.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr className="border-t border-gray-300 my-8" />
+
+                            <div className="mb-8 flex items-start gap-6">
+                                <div className="flex-shrink-0">
+                                    <NegativeIcon />
+                                </div>
+
+                                <div>
+                                    <div className="mb-6 text-3xl">
+                                        If your test is{' '}
+                                        <span className="text-green-500">
+                                            negative
+                                        </span>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        1 out of {riskNegTest} people
+                                        with your risk factors develop
+                                        Oral and/or Throat Cancer over
+                                        the course of their lifetimes.
+                                    </div>
+
+                                    <div>
+                                        We will only know your precise
+                                        risk profile after you take the
+                                        test!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr className="border-t border-gray-300 mt-8" />
                         </div>
                     </div>
                 </div>
             )}
+            
+            <RiskAssessmentFaqs 
+                selectedKeys={faqSelectedKeys}
+                setSelectedKeys={setFaqSelectedKeys}
+            />
+            
+            <div className="bg-[#F4F4F5] px-10">
+                <hr className="border-t-3"/>
+
+                <div className="flex flex-col items-start">
+                    <div>
+                        <div className="font-TWKLausanne py-10 text-center text-[2.5rem] font-light">
+                            Legal disclaimer
+                        </div>
+                        <p className="mb-8">
+                            The information in this website is a best effort
+                            as a public health initiative based on available
+                            literature and relevant epidemiological data.
+                            This is not intended to be comprehensive.
+                            Specifically, a determination of a lower
+                            quantitative risk level according to this
+                            website does not preclude the presence of other
+                            unknown risk factors. A recommendation of
+                            salivary molecular testing is intended for
+                            further detection of biomarkers and potential
+                            follow-up. Use of the information and
+                            recommendations in this website are at the
+                            discretion of individuals, and the creators bear
+                            no responsibility for misuse.
+                        </p>
+                    </div>
+
+                    <hr className="border-t-3" />
+
+                    <div className="pb-10">
+                        <div className="font-TWKLausanne py-10 text-center text-[2.5rem] font-light">
+                            References
+                        </div>
+                        <ol className="list-none space-y-4">
+                            <li>
+                                1. Banavar, G., Ogundijo, O., Julian, C.,
+                                Toma, R., Camacho, F., Torres, P.J., Hu, L.,
+                                Chandra, T., Piscitello, A., Kenny, L. and
+                                Vasani, S., 2023. Detecting salivary host
+                                and microbiome RNA signature for aiding
+                                diagnosis of oral and throat cancer.{' '}
+                                <i>Oral Oncology</i>, 145, p.106480.
+                            </li>
+                            <li>
+                                2. National Cancer Institute Surveillance,
+                                Epidemiology and End Results Program; 2021.{' '}
+                                <i>
+                                    Cancer Stat Facts: Oral Cavity and
+                                    Pharynx Cancer
+                                </i>
+                                .
+                            </li>
+                            <li>
+                                3. ACS, 2024.{' '}
+                                <i>
+                                    Key Statistics for Oral Cavity and
+                                    Oropharyngeal Cancers
+                                </i>
+                                .
+                            </li>
+                            <li>
+                                4. CDC, 2022. <i>HPV Fact Sheet</i>.
+                            </li>
+                            <li>
+                                5. La Vecchia, C., Franceschi, S., Bosetti,
+                                C., Levi, F., Talamini, R. and Negri, E.,
+                                1999. Time since stopping smoking and the
+                                risk of oral and pharyngeal cancers.{' '}
+                                <i>
+                                    Journal of the National Cancer Institute
+                                </i>
+                                , 91(8), pp.726a-728.
+                            </li>
+                            <li>
+                                6. Ghasemiesfe, M., Barrow, B., Leonard, S.,
+                                Keyhani, S. and Korenstein, D., 2019.
+                                Association between marijuana use and risk
+                                of cancer: a systematic review and
+                                meta-analysis. <i>JAMA network open</i>,
+                                2(11), pp.e1916318-e1916318.
+                            </li>
+                            <li>
+                                7. US Department of Health and Human
+                                Services. 2004.{' '}
+                                <i>
+                                    The Health Consequences of Smoking: A
+                                    Report of the Surgeon General
+                                </i>
+                                . Atlanta: U.S. Department of Health and
+                                Human Services, Centers for Disease Control
+                                and Prevention, National Center for Chronic
+                                Disease Prevention and Health Promotion,
+                                Office on Smoking and Health.
+                            </li>
+                            <li>
+                                8. Bagnardi, V., Rota, M., Botteri, E.,
+                                Tramacere, I., Islami, F., Fedirko, V.,
+                                Scotti, L., Jenab, M., Turati, F., Pasquali,
+                                E. and Pelucchi, C., 2015. Alcohol
+                                consumption and site-specific cancer risk: a
+                                comprehensive dose–response meta-analysis.{' '}
+                                <i>British journal of cancer</i>, 112(3),
+                                pp.580-593.
+                            </li>
+                            <li>
+                                9. Chaturvedi, A.K., Udaltsova, N., Engels,
+                                E.A., Katzel, J.A., Yanik, E.L., Katki,
+                                H.A., Lingen, M.W. and Silverberg, M.J.,
+                                2020. Oral leukoplakia and risk of
+                                progression to oral cancer: a
+                                population-based cohort study.{' '}
+                                <i>
+                                    JNCI: Journal of the National Cancer
+                                    Institute
+                                </i>
+                                , 112(10), pp.1047-1054.
+                            </li>
+                            <li>
+                                10. Gupta, S. and Kaur Jawanda, M., 2015.
+                                Oral Lichen Planus: An Update on Etiology,
+                                Pathogenesis, Clinical Presentation,
+                                Diagnosis and Management.{' '}
+                                <i>Indian Journal of Dermatology</i>, 60(3):
+                                222–229.
+                            </li>
+                            <li>
+                                11. CDC, 2023. <i>HPV and Cancer</i>.
+                            </li>
+                            <li>
+                                12. Garavello, W., Foschi, R., Talamini, R.,
+                                La Vecchia, C., Rossi, M., Dal Maso, L.,
+                                Tavani, A., Levi, F., Barzan, L.,
+                                Ramazzotti, V. and Franceschi, S., 2008.
+                                Family history and the risk of oral and
+                                pharyngeal cancer.{' '}
+                                <i>International journal of cancer</i>,
+                                122(8), pp.1827-1831.
+                            </li>
+                            <li>
+                                13. D' Souza, G., McNeel, T.S. and Fakhry,
+                                C., 2017. Understanding personal risk of
+                                oropharyngeal cancer: risk-groups for
+                                oncogenic oral HPV infection and
+                                oropharyngeal cancer.{' '}
+                                <i>Annals of Oncology</i>, 28(12),
+                                pp.3065-3069.
+                            </li>
+                            <li>
+                                14. National Institutes of Health, 2018.{' '}
+                                <i>
+                                    Oral cancer incidence (new cases) by
+                                    age, race, and gender
+                                </i>
+                                .
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

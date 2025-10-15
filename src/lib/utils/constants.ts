@@ -7,7 +7,7 @@ export const KLAVIYO = {
   SIGN_UP_FORM_ID: "UdMJRv",
 };
 
-export const NEXT_API_FOLDER = "cd-api";
+export const NEXT_API_FOLDER = "api";
 export const API_DOMAIN_V1 =
   process.env.NEXT_PUBLIC_API_DOMAIN_V1 || "https://api.example.com/v1";
 
@@ -186,6 +186,8 @@ export const ELEGIBILITY_STEPS_PAGE_TITLES_AND_PATHS = {
 export const LOCAL_STORAGE_CD_ELEGIBILITY = "cd-eligibility-form";
 export const USER_GENDER_QUESTION_ID = 1;
 
+export const VDP_URL = process.env.NEXT_PUBLIC_VDP_URL || "https://vdp.viome.com";
+
 export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "familyMembers",
   "apartmentSuitNo",
@@ -193,16 +195,10 @@ export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "tobaccoTypes",
   "tobaccoYears",
   "tobaccoDay",
-  "orderType",
-  "kitId",
-  "dentistId",
+  "ethnicity",
 ];
 
 export const ELIGIBILITY_DEFAULT_VALUES = {
-  orderType: "",
-  kitId: "",
-  dentistId: "",
-  email: "",
   firstName: "",
   lastName: "",
   dob: "",
@@ -210,9 +206,9 @@ export const ELIGIBILITY_DEFAULT_VALUES = {
   streetAddress: "",
   apartmentSuitNo: "",
   city: "",
-  phoneNumberCountryCode: "",
+  phoneNumberCountryCode: "1",
   phoneNumber: "",
-  country: "",
+  country: "United States",
   state: "",
   zipCode: "",
   tobaccoCurrent: "",

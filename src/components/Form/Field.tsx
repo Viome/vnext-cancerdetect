@@ -12,6 +12,7 @@ interface FieldProps {
     validate?: any;
     tooltip?: { position: string; title: string; content: React.ReactNode };
     disabled?: boolean;
+    readOnly?: boolean;
     className?: string;
     autoComplete?: string;
     fieldAttribute?: string;
@@ -27,6 +28,7 @@ export default function Field({
     validate,
     tooltip,
     disabled = false,
+    readOnly = false,
     className = '',
     autoComplete,
     fieldAttribute,
@@ -54,11 +56,13 @@ export default function Field({
                     type={type === 'input' ? 'text' : type}
                     placeholder={placeholder}
                     disabled={disabled}
+                    readOnly={readOnly}
                     autoComplete={autoComplete}
                     {...register(name, validate)}
                     className={classNames(
                         'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
+                        readOnly && 'bg-gray-100 cursor-not-allowed',
                     )}
                 />
                 {hasError && (
