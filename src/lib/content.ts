@@ -48,3 +48,8 @@ export async function getAllPageSlugs(): Promise<string[]> {
 export async function getAllEligibilitySlugs(): Promise<string[]> {
   return availablePages.eligibilityPages || []
 }
+
+export async function isProductSlug(slug: string): Promise<boolean> {
+  const productPages = availablePages.productPages || []
+  return productPages.includes(slug)
+}
