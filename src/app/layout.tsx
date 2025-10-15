@@ -7,6 +7,7 @@ import FooterWrapper from "@/components/FooterWrapper"
 import { createMetadata } from "@/components/Metadata"
 import MetadataHead from "@/components/Metadata"
 import StrapiProviderWrapper from "@/components/StrapiProviderWrapper"
+import { GtmScript, CookieBannerScript, ForethoughtScript } from "@/components/scripts"
 
 export const metadata = createMetadata({
   title: "CancerDetect® Oral Cancer Test Kit & Throat Cancer Test at Home",
@@ -36,6 +37,9 @@ export default function RootLayout({
         <MetadataHead themeMode="light" />
       </head>
       <body className="antialiased">
+        <CookieBannerScript />
+        <GtmScript />
+        <ForethoughtScript />
         <StrapiProviderWrapper>
           <NavbarProvider>
             <NavbarWrapper />

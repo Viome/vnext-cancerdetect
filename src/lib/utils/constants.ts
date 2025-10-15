@@ -187,6 +187,8 @@ export const LOCAL_STORAGE_CD_ELEGIBILITY = "cd-eligibility-form";
 export const USER_GENDER_QUESTION_ID = 1;
 
 export const VDP_URL = process.env.NEXT_PUBLIC_VDP_URL || "https://vdp.viome.com";
+export const GOOGLE_TAG_MANAGER_CONTAINER =
+    process.env.NODE_ENV === 'production' ? 'GTM-WMJPZ4P' : 'GTM-N9SRJ6X';
 
 export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "familyMembers",
