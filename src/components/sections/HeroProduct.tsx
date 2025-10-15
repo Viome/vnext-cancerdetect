@@ -54,7 +54,10 @@ export default function HeroProduct({
   wrapperStyle,
 }: HeroProductProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number>(0);
   const isDragging = useRef<boolean>(false);
@@ -69,6 +72,18 @@ export default function HeroProduct({
     ? `$${parseFloat(product.currentPrice).toFixed(2)}`
     : price || "$0.00";
 
+  // Detect screen size
+  useEffect(() => {
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkIsDesktop();
+    window.addEventListener("resize", checkIsDesktop);
+
+    return () => window.removeEventListener("resize", checkIsDesktop);
+  }, []);
+
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
@@ -81,9 +96,18 @@ export default function HeroProduct({
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        const scrollPosition = carousel.scrollTop;
-        const imageHeight = carousel.clientHeight;
-        const newIndex = Math.round(scrollPosition / imageHeight);
+        let newIndex;
+        
+        if (isDesktop) {
+          const scrollPosition = carousel.scrollTop;
+          const imageHeight = carousel.clientHeight;
+          newIndex = Math.round(scrollPosition / imageHeight);
+        } else {
+          const scrollPosition = carousel.scrollLeft;
+          const imageWidth = carousel.clientWidth;
+          newIndex = Math.round(scrollPosition / imageWidth);
+        }
+        
         const clampedIndex = Math.max(
           0,
           Math.min(displayImages.length - 1, newIndex)
@@ -101,26 +125,36 @@ export default function HeroProduct({
       carousel.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [displayImages.length, selectedImageIndex]);
+  }, [displayImages.length, selectedImageIndex, isDesktop]);
 
   const scrollToImage = (index: number) => {
     setSelectedImageIndex(index);
     if (carouselRef.current) {
-      const imageHeight = carouselRef.current.clientHeight;
-      carouselRef.current.scrollTo({
-        top: imageHeight * index,
-        behavior: "smooth",
-      });
+      if (isDesktop) {
+        const imageHeight = carouselRef.current.clientHeight;
+        carouselRef.current.scrollTo({
+          top: imageHeight * index,
+          behavior: "smooth",
+        });
+      } else {
+        const imageWidth = carouselRef.current.clientWidth;
+        carouselRef.current.scrollTo({
+          left: imageWidth * index,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
     isDragging.current = true;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging.current) return;
+    touchEndX.current = e.touches[0].clientX;
     touchEndY.current = e.touches[0].clientY;
   };
 
@@ -128,22 +162,36 @@ export default function HeroProduct({
     if (!isDragging.current) return;
     isDragging.current = false;
 
-    const swipeDistance = touchStartY.current - touchEndY.current;
     const minSwipeDistance = 50;
 
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
-        scrollToImage(selectedImageIndex + 1);
-      } else if (swipeDistance < 0 && selectedImageIndex > 0) {
-        scrollToImage(selectedImageIndex - 1);
+    if (isDesktop) {
+      const swipeDistance = touchStartY.current - touchEndY.current;
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
+          scrollToImage(selectedImageIndex + 1);
+        } else if (swipeDistance < 0 && selectedImageIndex > 0) {
+          scrollToImage(selectedImageIndex - 1);
+        }
+      }
+    } else {
+      const swipeDistance = touchStartX.current - touchEndX.current;
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
+          scrollToImage(selectedImageIndex + 1);
+        } else if (swipeDistance < 0 && selectedImageIndex > 0) {
+          scrollToImage(selectedImageIndex - 1);
+        }
       }
     }
 
+    touchStartX.current = 0;
+    touchEndX.current = 0;
     touchStartY.current = 0;
     touchEndY.current = 0;
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
+    touchStartX.current = e.clientX;
     touchStartY.current = e.clientY;
     isDragging.current = true;
     e.preventDefault();
@@ -151,6 +199,7 @@ export default function HeroProduct({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current) return;
+    touchEndX.current = e.clientX;
     touchEndY.current = e.clientY;
   };
 
@@ -158,17 +207,30 @@ export default function HeroProduct({
     if (!isDragging.current) return;
     isDragging.current = false;
 
-    const swipeDistance = touchStartY.current - touchEndY.current;
     const minSwipeDistance = 50;
 
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
-        scrollToImage(selectedImageIndex + 1);
-      } else if (swipeDistance < 0 && selectedImageIndex > 0) {
-        scrollToImage(selectedImageIndex - 1);
+    if (isDesktop) {
+      const swipeDistance = touchStartY.current - touchEndY.current;
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
+          scrollToImage(selectedImageIndex + 1);
+        } else if (swipeDistance < 0 && selectedImageIndex > 0) {
+          scrollToImage(selectedImageIndex - 1);
+        }
+      }
+    } else {
+      const swipeDistance = touchStartX.current - touchEndX.current;
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0 && selectedImageIndex < displayImages.length - 1) {
+          scrollToImage(selectedImageIndex + 1);
+        } else if (swipeDistance < 0 && selectedImageIndex > 0) {
+          scrollToImage(selectedImageIndex - 1);
+        }
       }
     }
 
+    touchStartX.current = 0;
+    touchEndX.current = 0;
     touchStartY.current = 0;
     touchEndY.current = 0;
   };
@@ -180,9 +242,9 @@ export default function HeroProduct({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 xl:gap-16 items-start">
       {/* Left Side - Image Carousel */}
-      <div className="flex flex-col-reverse sm:flex-row gap-4">
+      <div className="flex flex-col-reverse sm:flex-row gap-4 lg:col-span-3">
         {/* Thumbnails */}
         <div className="flex sm:flex-col gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible">
           {displayThumbnails.map((thumb, index) => (
@@ -211,11 +273,10 @@ export default function HeroProduct({
         {/* Main Image Carousel */}
         <div
           ref={carouselRef}
-          className="relative w-full aspect-square overflow-y-auto overflow-x-hidden snap-y snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-y"
+          className="relative w-full aspect-square overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto snap-x lg:snap-y snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-x lg:touch-pan-y flex lg:flex-col flex-row lg:block"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
-            touchAction: "pan-y",
           }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
@@ -243,26 +304,30 @@ export default function HeroProduct({
       </div>
 
       {/* Right Side - Product Information */}
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-3 lg:col-span-2">
         {tagline && (
-          <p className="text-sm text-gray-600 border-b border-gray-200 pb-4">
+          <p className="text-sm border-b border-gray-200 pb-4">
             {tagline}
           </p>
         )}
 
         {brand && (
-          <p className="text-base text-gray-700">
-            {brand}
-            <sup className="text-xs">™</sup>
+          <p className="text-base underline">
+            {'Viome Discovery™'}
           </p>
         )}
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-          {title}
-        </h1>
+        <div className="my-1 lg:my-3">
+          <h1 className="typography-headline2 font-semibold">
+            {'CancerDetect Test'}
+          </h1>
+          <p className="typography-headline2">
+            {'for Oral & Throat Cancer'}
+          </p>
+        </div>
 
         <div
-          className="text-base text-gray-700 leading-relaxed"
+          className="text-base leading-relaxed"
           dangerouslySetInnerHTML={{ __html: description }}
         />
 
@@ -271,7 +336,7 @@ export default function HeroProduct({
             {checklist.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
                 <svg
-                  className="w-6 h-6 text-gray-900 flex-shrink-0 mt-0.5"
+                  className="w-6 h-6 flex-shrink-0 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -284,7 +349,7 @@ export default function HeroProduct({
                   />
                 </svg>
                 <span
-                  className="text-gray-700"
+                  className=""
                   dangerouslySetInnerHTML={{ __html: item.text }}
                 />
               </li>
@@ -293,31 +358,31 @@ export default function HeroProduct({
         )}
 
         {disclaimerNote && (
-          <p className="text-sm text-gray-600 italic">{disclaimerNote}</p>
+          <p className="text-sm italic">{disclaimerNote}</p>
         )}
 
         {disclaimer && (
-          <p className="text-base font-semibold text-gray-900">{disclaimer}</p>
+          <p className="text-base font-semibold">{disclaimer}</p>
         )}
 
         {/* Price Section */}
         <div className="pt-4 border-t border-gray-200">
           <div className="flex items-baseline gap-2 mb-1">
             {isLoading ? (
-              <span className="text-4xl font-bold text-gray-400">
+              <span className="text-4xl font-bold">
                 Loading...
               </span>
             ) : (
               <>
-                <span className="text-4xl font-bold text-gray-900">
+                <span className="text-4xl font-bold">
                   {displayPrice}
                 </span>
-                <span className="text-lg text-gray-600">{priceLabel}</span>
+                <span className="text-lg">{priceLabel}</span>
               </>
             )}
           </div>
           {priceSublabel && (
-            <p className="text-sm text-gray-600">{priceSublabel}</p>
+            <p className="text-sm">{priceSublabel}</p>
           )}
         </div>
 
