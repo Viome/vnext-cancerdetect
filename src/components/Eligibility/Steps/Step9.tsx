@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Field from '@/components/Form/Field';
 import BackButton from '@/components/Form/BackButton';
-import CDButton from '@/components/CDButton';
 import { relationshipAnswers } from '@/app/api/data/eligibilityQuestions';
 
 interface Step9Props {
@@ -17,13 +16,12 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
     const { watch, register, formState: { errors } } = useFormContext();
     const [internalStep, setInternalStep] = useState(0); // 0 = select members, 1 = enter ages
 
-    const familyMembers = watch('familyMembers') || [];
+    const familyMembers = watch('familyMembers') || {};
 
     // Get selected family members (those that have been checked)
     const getSelectedMembers = () => {
         return relationshipAnswers.filter((member) => {
-            const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-            return memberData?.selected === true;
+            return familyMembers[member.value]?.selected === true;
         });
     };
 
@@ -34,8 +32,8 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
         } else if (internalStep === 1) {
             // Validate all ages are filled
             const allAgesValid = selectedMembers.every((member) => {
-                const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-                return memberData?.age && parseInt(memberData.age) > 0;
+                const age = familyMembers[member.value]?.age;
+                return age && parseInt(age) > 0;
             });
             
             if (allAgesValid) {
@@ -56,8 +54,8 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
     const canProceed = internalStep === 0
         ? selectedMembers.length > 0
         : selectedMembers.every((member) => {
-            const memberData = familyMembers.find((fm: any) => fm.relationship === member.value);
-            return memberData?.age && parseInt(memberData.age) > 0;
+            const age = familyMembers[member.value]?.age;
+            return age && parseInt(age) > 0;
         });
 
     return (
@@ -86,7 +84,7 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
                                             id={`member-${member.value}`}
                                             type="checkbox"
                                             {...register(`familyMembers.${member.value}.selected`)}
-                                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
+                                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                         />
                                         <label
                                             htmlFor={`member-${member.value}`}
@@ -138,7 +136,7 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
                                         min: { value: 1, message: 'Age must be at least 1' },
                                         max: { value: 120, message: 'Age must be less than 120' },
                                     })}
-                                    className="block w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none"
+                                    className="block w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-blue-500 focus:ring-blue-500"
                                 />
                                 {errors?.familyMembers?.[member.value]?.age && (
                                     <p className="mt-2 text-sm text-red-600">
@@ -153,17 +151,14 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
 
             <div className="sm:max-w-cd-form">
                 <div className="mt-8">
-                    <CDButton
+                    <button
                         type="button"
-                        variant="Standard"
-                        theme="Dark"
-                        width="full"
                         onClick={handleNext}
                         disabled={!canProceed}
-                        className="cursor-pointer"
+                        className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
                     >
                         {internalStep === 0 ? 'Next' : 'Continue'}
-                    </CDButton>
+                    </button>
                 </div>
             </div>
         </section>

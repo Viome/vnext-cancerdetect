@@ -10,7 +10,7 @@ export default function BackButton({ formStep, handleBackStep }: BackButtonProps
         <button
             type="button"
             onClick={handleBackStep}
-            className="mb-6 flex items-center text-black hover:text-gray-700 font-medium"
+            className="mb-6 flex items-center text-blue-600 hover:text-blue-800 font-medium"
         >
             <svg
                 className="w-5 h-5 mr-2"

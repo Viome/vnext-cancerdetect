@@ -19,9 +19,6 @@ export default function Step3() {
                     name="reasonForTesting"
                     type="radioGroup"
                     values={medicalAnswers}
-                    validate={{
-                        required: 'Please select a reason',
-                    }}
                 />
             </div>
         </section>

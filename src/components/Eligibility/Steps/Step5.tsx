@@ -24,9 +24,6 @@ export default function Step5() {
                         { value: 'no', text: 'No' },
                         { value: 'not_sure', text: 'Not Sure' },
                     ]}
-                    validate={{
-                        required: 'Please select an option',
-                    }}
                 />
             </div>
         </section>

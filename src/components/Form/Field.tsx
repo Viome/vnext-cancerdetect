@@ -60,7 +60,7 @@ export default function Field({
                     autoComplete={autoComplete}
                     {...register(name, validate)}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                         readOnly && 'bg-gray-100 cursor-not-allowed',
                     )}
@@ -88,7 +88,7 @@ export default function Field({
                     {...register(name, validate)}
                     rows={4}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 />
@@ -115,7 +115,7 @@ export default function Field({
                                 value={option.value}
                                 disabled={disabled}
                                 {...register(name, validate)}
-                                className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
+                                className="h-4 w-4 border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                             />
                             <label
                                 htmlFor={`${name}-${option.value}`}
@@ -154,7 +154,7 @@ export default function Field({
                                     value={option.value}
                                     disabled={disabled}
                                     {...register(fieldName, validate)}
-                                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none"
+                                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                 />
                                 <label
                                     htmlFor={`${name}-${option.value}`}
@@ -194,7 +194,7 @@ export default function Field({
                     disabled={disabled}
                     {...register(name, validate)}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500 outline-none',
+                        'block w-full rounded-lg border p-3 text-sm focus:border-blue-500 focus:ring-blue-500',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 >
@@ -236,7 +236,7 @@ export default function Field({
                         },
                     })}
                     className={classNames(
-                        'block w-full rounded-lg border p-3 text-sm font-mono focus:border-blue-500 focus:ring-blue-500 outline-none',
+                        'block w-full rounded-lg border p-3 text-sm font-mono focus:border-blue-500 focus:ring-blue-500',
                         hasError ? 'border-red-500 bg-red-50' : 'border-gray-300 bg-white',
                     )}
                 />

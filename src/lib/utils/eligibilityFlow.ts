@@ -202,12 +202,22 @@ export const ageMajorityPerState = (country: string, state: string): number => {
 export const checkAllValuesComplete = ({ values }: { values: EligibilityValues }): boolean => {
     const missingFileds: string[] = [];
     
+    // Helper function to check if an object has any truthy values (for checkbox groups)
+    const hasSelectedValues = (obj: any): boolean => {
+        if (!obj) return false;
+        if (Array.isArray(obj)) return obj.length > 0;
+        if (typeof obj === 'object') {
+            return Object.values(obj).some(val => val && val !== false);
+        }
+        return false;
+    };
+    
     for (const [key] of Object.entries(ELIGIBILITY_DEFAULT_VALUES)) {
         if (key === 'familyMembers') {
             if (
                 values.familyCancerYouOrCloseFamilyMember === 'yes' &&
                 values.familyCancerYourFamily === 'yes' &&
-                values[key].length === 0
+                !hasSelectedValues(values[key])
             ) {
                 missingFileds.push(key);
             }
@@ -241,7 +251,7 @@ export const checkAllValuesComplete = ({ values }: { values: EligibilityValues }
             if (
                 (values.tobaccoPrevious === 'yes' ||
                     values.tobaccoCurrent === 'yes') &&
-                values[key].length === 0
+                !hasSelectedValues(values[key])
             ) {
                 missingFileds.push(key);
             }
@@ -275,17 +285,20 @@ export const checkAllValuesComplete = ({ values }: { values: EligibilityValues }
                     missingFileds.push(key);
                 }
             }
-        } else if (
-            (values[key as keyof EligibilityValues] === '' ||
-                (Array.isArray(values[key as keyof EligibilityValues]) && 
-                 (values[key as keyof EligibilityValues] as string[]).length === 0)) &&
-            !ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED.includes(key)
-        ) {
-            missingFileds.push(key);
+        } else {
+            const value = values[key as keyof EligibilityValues];
+            const isEmpty = value === '' || 
+                           (Array.isArray(value) && value.length === 0) ||
+                           (typeof value === 'object' && value !== null && !hasSelectedValues(value));
+            
+            if (isEmpty && !ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED.includes(key)) {
+                missingFileds.push(key);
+            }
         }
     }
     
     if (missingFileds.length !== 0) {
+        console.log('Missing required fields:', missingFileds);
         return false;
     }
     return true;

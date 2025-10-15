@@ -29,7 +29,6 @@ export default function Step7() {
                     className="w-20"
                     autoComplete="off"
                     validate={{
-                        required: 'Age is required',
                         pattern: {
                             value: /^(0|[1-9]\d*)(\.\d+)?$/,
                             message: 'Invalid age',

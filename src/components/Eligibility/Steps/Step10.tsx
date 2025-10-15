@@ -22,9 +22,6 @@ export default function Step10() {
                         { value: 'no', text: 'No' },
                         { value: 'not_sure', text: 'Not Sure' },
                     ]}
-                    validate={{
-                        required: 'Please select an option',
-                    }}
                     tooltip={{
                         position: 'bottom',
                         title: 'What is HPV (human papillomavirus)?',

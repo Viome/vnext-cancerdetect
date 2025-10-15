@@ -21,7 +21,6 @@ export default function StepConfirmDetails() {
         lastName,
         dob,
         gender,
-        email,
         streetAddress,
         apartmentSuitNo,
         city,
@@ -122,10 +121,6 @@ export default function StepConfirmDetails() {
                     <h2 className="text-lg font-semibold mb-4">Contact Information</h2>
                     <div className="space-y-2 text-sm">
                         <div className="flex">
-                            <span className="font-medium w-32">Email:</span>
-                            <span className="text-gray-700">{email}</span>
-                        </div>
-                        <div className="flex">
                             <span className="font-medium w-32">Phone:</span>
                             <span className="text-gray-700">{phoneCode} {phoneNumber}</span>
                         </div>
@@ -162,9 +157,11 @@ export default function StepConfirmDetails() {
                                 <div className="flex flex-col">
                                     <span className="font-medium">Types of tobacco:</span>
                                     <span className="text-gray-700 mt-1">
-                                        {selectedTobaccoTypes?.split(',').map((type: string) => 
-                                            getAnswerText(tobaccoTypes, type.trim())
-                                        ).join(', ') || 'Not specified'}
+                                        {selectedTobaccoTypes && typeof selectedTobaccoTypes === 'string'
+                                            ? selectedTobaccoTypes.split(',').map((type: string) => 
+                                                getAnswerText(tobaccoTypes, type.trim())
+                                            ).join(', ')
+                                            : 'Not specified'}
                                     </span>
                                 </div>
                                 <div className="flex">
@@ -251,7 +248,6 @@ export default function StepConfirmDetails() {
                 <div className="p-4 bg-blue-50 border-l-4 border-blue-600 rounded">
                     <p className="text-sm text-blue-800">
                         <strong>Note:</strong> You can edit your information by clicking "Edit Information" below.
-                        Your email address cannot be changed.
                     </p>
                 </div>
             </div>

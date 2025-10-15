@@ -102,19 +102,19 @@ export const relationshipAnswers = [
     },
     {
         text: 'maternal half-brother',
-        value: 'HBRO',
+        value: 'MHBRO',
     },
     {
         text: 'maternal half-sister',
-        value: 'HSIS',
+        value: 'MHSIS',
     },
     {
         text: 'paternal half-brother',
-        value: 'HBRO',
+        value: 'PHBRO',
     },
     {
         text: 'paternal half-sister',
-        value: 'HSIS',
+        value: 'PHSIS',
     },
     {
         text: 'mother',

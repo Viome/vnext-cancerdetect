@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import CDButton from '@/components/CDButton';
 
 interface FailPageProps {
     message?: string;
@@ -19,14 +18,14 @@ const FailPage = ({ message }: FailPageProps) => {
                     <h1 className="text-2xl font-bold mb-4">Oops something went wrong!</h1>
                     {message && <p className="text-gray-600">{message}</p>}
                     <div className="mt-10">
-                        <CDButton
-                            variant="Standard"
-                            theme="Dark"
-                            href="/"
-                            className="cursor-pointer"
-                        >
-                            Back to home
-                        </CDButton>
+                        <Link href="/">
+                            <button
+                                type="button"
+                                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                            >
+                                Back to home
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div>

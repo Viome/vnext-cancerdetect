@@ -186,6 +186,8 @@ export const ELEGIBILITY_STEPS_PAGE_TITLES_AND_PATHS = {
 export const LOCAL_STORAGE_CD_ELEGIBILITY = "cd-eligibility-form";
 export const USER_GENDER_QUESTION_ID = 1;
 
+export const VDP_URL = process.env.NEXT_PUBLIC_VDP_URL || "https://vdp.viome.com";
+
 export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "familyMembers",
   "apartmentSuitNo",
@@ -193,18 +195,10 @@ export const ELIGIBILITY_DEFAULT_VALUES_NOT_REQUIRED = [
   "tobaccoTypes",
   "tobaccoYears",
   "tobaccoDay",
-  "orderType",
-  "kitId",
-  "dentistId",
   "ethnicity",
-  "email",
 ];
 
 export const ELIGIBILITY_DEFAULT_VALUES = {
-  orderType: "",
-  kitId: "",
-  dentistId: "",
-  email: "",
   firstName: "",
   lastName: "",
   dob: "",

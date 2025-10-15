@@ -16,7 +16,6 @@ export default function Step2Years() {
                     name="tobaccoYears"
                     type="input"
                     validate={{
-                        required: 'This field is required',
                         pattern: {
                             value: /^(0|[1-9]\d*)(\.\d+)?$/,
                             message: 'Invalid number',

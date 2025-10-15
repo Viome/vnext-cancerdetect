@@ -22,9 +22,6 @@ export default function Step6() {
                         { value: 'no', text: 'No' },
                         { value: 'not_sure', text: 'Not Sure' },
                     ]}
-                    validate={{
-                        required: 'Please select an option',
-                    }}
                 />
             </div>
         </section>
