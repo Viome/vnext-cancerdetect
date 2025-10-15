@@ -1,0 +1,22 @@
+{
+  "name": "CancerDetect - Oral & Throat Cancer Detection",
+  "short_name": "CancerDetect",
+  "description": "At-home test to detect biomarkers associated with early-stage oral and throat cancer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+
