@@ -3,6 +3,7 @@ import "./globals.css"
 import "../styles/fonts.css"
 import { NavbarProvider } from "@/contexts/NavbarContext"
 import NavbarWrapper from "@/components/Navbar/NavbarWrapper"
+import SiteBannerWrapper from "@/components/SiteBannerWrapper"
 import FooterWrapper from "@/components/FooterWrapper"
 import { createMetadata } from "@/components/Metadata"
 import MetadataHead from "@/components/Metadata"
@@ -42,6 +43,7 @@ export default function RootLayout({
         <ForethoughtScript />
         <StrapiProviderWrapper>
           <NavbarProvider>
+            <SiteBannerWrapper />
             <NavbarWrapper />
             {children}
             <FooterWrapper />

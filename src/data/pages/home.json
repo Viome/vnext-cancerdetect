@@ -11,8 +11,15 @@
   },
   "layout": {
     "className": "bg-white",
+    "banner": {
+      "show": true,
+      "text": "For a limited time, get $300 off with code DETECT",
+      "backgroundColor": "bg-[#2C7A7B]",
+      "textColor": "text-white",
+      "isSticky": true
+    },
     "navbar": {
-      "sticky": true
+      "sticky": false
     }
   },
   "sections": [
@@ -53,7 +60,7 @@
       "shopPayText": "Pay in 4 interest-free payments with <strong>Shop Pay</strong>. As low as $149.75.*",
       "wrapperStyle": {
         "background": "bg-white",
-        "padding": "px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20",
+        "padding": "py-12 sm:py-16 lg:py-20",
         "useContainerWidth": true,
         "spacing": "mb-8"
       }
@@ -67,7 +74,7 @@
       "wrapperStyle": {
         "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/learn_more_bg_35ba4674bd.webp",
         "spacing": "mb-8",
-        "useContainerWidth": false,
+        "useContainerWidth": true,
         "container": true
       }
     },
@@ -219,7 +226,7 @@
           "title": "Instructions to guide your testing experience.",
           "description": "Download instructions",
           "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_13_Graphic_e18f0d6228.webp",
-          "downloadLink": "#"
+          "downloadLink": "https://strapi.azure.viome.com/viome-strapi/uploads/Booklet_CD_ecee060c1e.pdf"
         },
         {
           "title": "Everything you need to collect your saliva sample at home",
@@ -240,6 +247,29 @@
           "title": "Consultation with a healthcare provider to help you better understand",
           "description": "",
           "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_16_Graphic_3_472ecde52a.webp"
+        }
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-guiding-next-steps",
+      "type": "guiding_next_steps",
+      "title": "Guiding you through next steps",
+      "steps": [
+        {
+          "title": "IF NOT DETECTED",
+          "description": "If no molecular features are detected, we recommend talking to your healthcare provider about best practices for your health and when you should plan to screen with CancerDetect<sup>®</sup> - Oral & Throat again.",
+          "icon": "minus"
+        },
+        {
+          "title": "IF DETECTED",
+          "description": "If molecular features are detected, a healthcare provider will contact you by phone as soon as analysis is completed to discuss your results and next steps; if they cannot reach you within 14 days, a hard copy of your result will be sent to your home address via certified mail.",
+          "icon": "plus"
         }
       ],
       "wrapperStyle": {
@@ -297,6 +327,18 @@
         "No changes to your diet or medication is necessary",
         "Your test is delivered right to your home",
         "Minimum preparation required"
+      ],
+      "buttons": [
+        {
+          "text": "Steps To Test Collection Video",
+          "link": "https://www.viome.com/stepstotest/cancerdetect",
+          "showArrow": true
+        },
+        {
+          "text": "Download instructions",
+          "link": "https://strapi.azure.viome.com/viome-strapi/uploads/Booklet_CD_ecee060c1e.pdf",
+          "showArrow": true
+        }
       ],
       "wrapperStyle": {
         "useContainerWidth": true,
@@ -367,19 +409,19 @@
     {
       "sectionId": "home-faq",
       "type": "faq_section",
-      "title": "Frequently Asked Questions",
+      "title": "FAQs",
       "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_27_CD_4_4_8fc9cbd423.webp",
       "theme": "dark",
       "faqs": [
         {
           "id": "faq-1",
-          "question": "What kind of cancer does this test detect?",
-          "answer": "<p>CancerDetect<sup>®</sup> Oral & Throat detects the molecular features associated with oral cavity cancer (Oral Squamous Cell Carcinoma or OSCC) and/or throat cancer (oropharyngeal squamous cell carcinoma or OPSCC).</p>"
+          "question": "How does the CancerDetect® Oral & Throat test work?",
+          "answer": "<p>CancerDetect<sup>®</sup> Oral & Throat utilizes the expression level of human genes and microbial species and functions in the saliva sample to detect molecular features associated with oral and throat cancers. CancerDetect<sup>®</sup> Oral & Throat provides an output that classifies a person as being likely to have oral cancer and/or throat cancer or not. Your results inform of any detected signatures of oral and/or throat cancer. If a signature for oral and/or throat cancer is detected, you will receive a call from a healthcare provider who will guide you to the next steps.</p><p class='mt-4'>The test is not intended for definitive diagnosis and should be interpreted in conjunction with other laboratory and clinical data available to the clinician and relevant guidelines on the decision for confirmatory diagnosis, such as a biopsy.</p>"
         },
         {
           "id": "faq-2",
-          "question": "How accurate are these results?",
-          "answer": "<ul class='space-y-4'><li><strong>Sensitivity: 90% for both oral & throat cancer</strong><ul class='mt-2 ml-6 space-y-1'><li class='list-disc'>Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed.</li></ul></li><li><strong>Specificity: 95% for both oral & throat cancer</strong><ul class='mt-2 ml-6 space-y-1'><li class='list-disc'>Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms.</li></ul></li></ul>"
+          "question": "Who should take this test?",
+          "answer": "<p>Anyone who answers yes to <em>any</em> of the following individual questions below should test</p><ul class='mt-4 space-y-2 list-[circle] list-inside'><li>Are you 50 years of age or older?</li></ul><p class='mt-4 font-semibold'>OR</p><ul class='mt-4 space-y-2 list-[circle] list-inside'><li>Are you 18 years of age* or older AND:</li><ul class='mt-2 ml-8 space-y-2 list-[circle] list-inside'><li>Do you currently consume any tobacco products? Example: cigarettes, vaping, chewing tobacco.</li><li>OR, did you consume tobacco products in the past? Example: cigarettes, vaping, chewing tobacco.</li></ul></ul><p class='mt-4 text-sm'>*Age of majority varies by state. You need to at or over the age of majority in your state to purchase CDOT</p>"
         },
         {
           "id": "faq-3",
@@ -388,10 +430,33 @@
         },
         {
           "id": "faq-4",
-          "question": "If the test is not detected, could I have another type of cancer?",
-          "answer": "<p>CancerDetect does not detect molecular features associated with other types of cancer other than oral & throat cancers. Please discuss with your doctor about your symptoms and concerns.</p>"
+          "question": "Do I need to be referred by a doctor to take this test?",
+          "answer": "<p>No. However, a healthcare provider will review your test request based on clinical appropriateness and make a final decision on whether you should be taking the test. This process normally takes up to 2 business days and we will email you once the provider makes the final decision to process your order accordingly.</p>"
+        },
+        {
+          "id": "faq-5",
+          "question": "How do I share my results with my doctor?",
+          "answer": "<p>The result will not be shared directly with your doctor. Your analysis will be reviewed by a healthcare provider licensed in your state, and delivered digitally in a printable form (PDF) through your account on our secure platform, which you can share with your doctor.</p><p class='mt-4'>If molecular features are detected, you will receive a call from the same healthcare provider who reviews your analysis. You could also receive the hard copy via certified mail if the provider could not reach you for consultation.</p>"
         }
       ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-important-safety-information",
+      "type": "important_safety_information",
+      "title": "Important Safety Information",
+      "content": [
+        "CancerDetect - Oral & Throat is a lab-developed test (LDT) performed in our Clinical Laboratory located in Bothell, Washington. The Laboratory is designed to meet all federal and state regulatory, quality and CLIA criteria. The test is intended for use as a diagnostic aid in the detection of molecular features associated with OSCC and/or OPSCC. The test is 90% OSCC sensitive, 90% OPSCC sensitive and has a specificity of 95%.¹",
+        "The CancerDetect - Oral & Throat test is recommended for use in adults with an elevated risk for oral & throat cancer such as those aged 50 or older or individuals who have a history of smoking, chewing tobacco, vaping, or using other forms of tobacco, heavy alcohol drinkers, or individuals with a high risk of HPV. The CancerDetect - Oral & Throat test does not detect all cancers and should be used in addition to routine cancer tests recommended by a healthcare provider. CancerDetect- Oral & Throat is intended to detect molecular features associated with cancer of the oral cavity or throat.",
+        "Results should be interpreted in the context of medical history, clinical signs and symptoms. A test result of \"NOT DETECTED\" does not rule out cancer, and best practices may recommend testing again after a period of time. A test result of \"DETECTED\" requires confirmatory diagnostic evaluation by medically established procedures (e.g., imaging or biopsy) to confirm cancer. False-positive (a cancer signal detected when cancer is not present) and false-negative (a cancer signal not detected when cancer is present) test results do occur, as described in our scientific information."
+      ],
+      "linkText": "our scientific information",
+      "linkHref": "/our-science",
       "wrapperStyle": {
         "useContainerWidth": true,
         "padding": "py-16 sm:py-20",

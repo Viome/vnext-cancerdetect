@@ -6,6 +6,7 @@ import Link from "next/link"
 import navbarConfig from "@/data/navbar-config.json"
 
 import { cn as classNames } from "@/lib/utils"
+import { useNavbar } from "@/contexts/NavbarContext"
 
 import NavTopLinksLeft from "./NavTopLinksLeft"
 import NavTopLinksMobile from "./NavTopLinksMobile"
@@ -16,6 +17,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isSticky = true }: NavbarProps) => {
+  const { setIsMobileMenuOpen } = useNavbar()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
@@ -27,6 +29,10 @@ const Navbar = ({ isSticky = true }: NavbarProps) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
+  useEffect(() => {
+    setIsMobileMenuOpen(isMenuOpen)
+  }, [isMenuOpen, setIsMobileMenuOpen])
   const handleDropdownEnter = (dropdownKey: string) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
@@ -74,34 +80,8 @@ const Navbar = ({ isSticky = true }: NavbarProps) => {
       }}
     >
       <nav className="flex items-center h-full w-full max-w-[1440px] m-auto">
-        <Link href={navbarConfig.branding.logo.href}>
-        <Image
-          width={160}
-          height={22}
-          src={navbarConfig.branding.logo.url}
-          alt="Viome logo"
-          className="cursor-pointer"
-         
-          priority={true}
-          quality={85}
-          sizes="160px"
-        />
-        </Link>
-        <div
-          className={classNames(
-            "hidden min-[1200px]:flex",
-            "flex-grow flex-shrink-0 basis-auto items-center justify-between h-full"
-          )}
-        >
-          <NavTopLinksLeft
-            onDropdownEnter={handleDropdownEnter}
-            onDropdownLeave={handleDropdownLeave}
-            activeDropdown={activeDropdown}
-            onContentReady={handleContentReady}
-          />
-          <NavTopLinksRight />
-        </div>
-        <div className="flex min-[1200px]:hidden ml-auto">
+        {/* Mobile hamburger - left side */}
+        <div className="flex min-[1200px]:hidden mr-4">
           <button
             onClick={toggleMenu}
             className="flex flex-col justify-center items-center w-8 h-8 cursor-pointer"
@@ -123,6 +103,47 @@ const Navbar = ({ isSticky = true }: NavbarProps) => {
               }`}
             />
           </button>
+        </div>
+
+        {/* Logo */}
+        <Link href={navbarConfig.branding.logo.href}>
+        <Image
+          width={160}
+          height={22}
+          src={navbarConfig.branding.logo.url}
+          alt="Viome logo"
+          className="cursor-pointer"
+         
+          priority={true}
+          quality={85}
+          sizes="160px"
+        />
+        </Link>
+
+        {/* Desktop navigation */}
+        <div
+          className={classNames(
+            "hidden min-[1200px]:flex",
+            "flex-grow flex-shrink-0 basis-auto items-center justify-between h-full"
+          )}
+        >
+          <NavTopLinksLeft
+            onDropdownEnter={handleDropdownEnter}
+            onDropdownLeave={handleDropdownLeave}
+            activeDropdown={activeDropdown}
+            onContentReady={handleContentReady}
+          />
+          <NavTopLinksRight />
+        </div>
+
+        {/* Mobile right links */}
+        <div className="flex min-[1200px]:hidden ml-auto items-center gap-4">
+          <Link href="https://buy.viome.com/cart" className="text-sm font-medium">
+            Cart
+          </Link>
+          <Link href="/eligibility/register" className="text-sm font-medium">
+            Order Now
+          </Link>
         </div>
 
         <div

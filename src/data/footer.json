@@ -105,63 +105,7 @@
             "content": [
               {
                 "nodeType": "text",
-                "value": "The information Viome provides is for educational and informational use only. The information is not intended to be used by the customer for any diagnostic purpose and is not a substitute for professional medical advice. You should always seek the advice of your physician or other healthcare providers with any questions you may have regarding diagnosis, cure, treatment, mitigation, or prevention of any disease or other medical condition or impairment or the status of your health.",
-                "marks": [],
-                "data": {}
-              }
-            ]
-          },
-          {
-            "nodeType": "paragraph",
-            "data": {},
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "\n",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "* ",
-                "marks": [
-                  {
-                    "type": "superscript"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Viome Precision Supplements are available through separate subscription after test results are released. Not included with Full Body Intelligence, Health Intelligence, or Gut Intelligence Test purchases.",
-                "marks": [],
-                "data": {}
-              }
-            ]
-          },
-          {
-            "nodeType": "paragraph",
-            "data": {},
-            "content": [
-              {
-                "nodeType": "text",
-                "value": "\n",
-                "marks": [],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "§ ",
-                "marks": [
-                  {
-                    "type": "superscript"
-                  }
-                ],
-                "data": {}
-              },
-              {
-                "nodeType": "text",
-                "value": "Sunrise Cleanse & Restore Toothgel powered by Viome’s precision AI was formulated based on Livfresh patented technology which demonstrated in studies to perform up to 250% better when used twice daily.",
+                "value": "The information Viome provides is for educational and informational use only. The information is not intended to be used by the customer for any diagnostic purpose and is not a substitute for professional medical advice. You should always seek the advice of your physician or other healthcare providers with any questions you may have regarding diagnosis, cure, treatment, mitigation, or prevention of any disease or other medical condition or impairment or the status of your health. For state regulatory reasons our tests are temporarily not available in NY.",
                 "marks": [],
                 "data": {}
               }

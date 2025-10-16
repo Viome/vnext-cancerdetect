@@ -35,6 +35,8 @@ const ScienceApproach = dynamic(() => import("@/components/sections/ScienceAppro
 const PublicationsPartners = dynamic(() => import("@/components/sections/PublicationsPartners"))
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"))
 const TermsContent = dynamic(() => import("@/components/sections/TermsContent"))
+const ImportantSafetyInformation = dynamic(() => import("@/components/sections/ImportantSafetyInformation"))
+const GuidingNextSteps = dynamic(() => import("@/components/sections/GuidingNextSteps"))
 
 
 // Component registry mapping
@@ -71,6 +73,8 @@ export const registry: ComponentRegistry = {
   PublicationsPartners: PublicationsPartners,
   ContactSection: ContactSection,
   TermsContent: TermsContent,
+  ImportantSafetyInformation: ImportantSafetyInformation,
+  GuidingNextSteps: GuidingNextSteps,
   // Lowercase versions for backward compatibility
   hero: Hero,
   features: Features,
@@ -103,6 +107,8 @@ export const registry: ComponentRegistry = {
   publications_partners: PublicationsPartners,
   contact_section: ContactSection,
   terms_content: TermsContent,
+  important_safety_information: ImportantSafetyInformation,
+  guiding_next_steps: GuidingNextSteps,
   // Add more components as needed
 }
 

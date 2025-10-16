@@ -9,18 +9,12 @@ export default function RiskAssessmentPageContent() {
     const dentistQuery = useDentist();
     const dentist = dentistQuery.data;
     const practiceId = usePracticeId();
-    
-    console.log('dentistQuery:', dentistQuery);
-    console.log('dentist data:', dentist);
-    console.log('practiceId:', practiceId);
-    
+
     const message = dentist?.id
         ? `The primary objective of Dr. ${dentist.last_name}'s practice is to maintain your quality of life and to ensure your safety.`
         : practiceId
         ? 'The primary objective of our dental practice is to maintain your quality of life and to ensure your safety.'
         : 'As your dental healthcare provider, our primary objectives are to maintain your quality of life and to ensure your safety.';
-    
-    console.log('message:', message);
 
     return (
         <NextUIProviderWrapper>

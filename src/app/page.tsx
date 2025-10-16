@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { getPageBySlug } from "@/lib/content"
 import { renderSection } from "@/lib/registry"
 import NavbarConfigClient from "@/components/Navbar/NavbarConfigClient"
+import SiteBannerConfigClient from "@/components/SiteBannerConfigClient"
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("home")
@@ -35,9 +36,19 @@ export default async function Home() {
 
     const navbarConfig = page.layout?.navbar || {}
     const isNavbarSticky = navbarConfig.sticky !== false
+    const bannerConfig = page.layout?.banner
 
     return (
       <div className={page.layout?.className || "min-h-screen"}>
+        {bannerConfig && (
+          <SiteBannerConfigClient
+            show={bannerConfig.show ?? false}
+            text={bannerConfig.text}
+            backgroundColor={bannerConfig.backgroundColor}
+            textColor={bannerConfig.textColor}
+            isSticky={bannerConfig.isSticky}
+          />
+        )}
         <NavbarConfigClient 
           showNavbar={navbarConfig.show !== false} 
           isSticky={isNavbarSticky} 

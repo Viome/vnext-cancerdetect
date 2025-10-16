@@ -69,8 +69,8 @@ export default function HeroProduct({
   const displayThumbnails = thumbnails || displayImages;
 
   const displayPrice = product?.currentPrice
-    ? `$${parseFloat(product.currentPrice).toFixed(2)}`
-    : price || "$0.00";
+    ? `$${product.currentPrice}`
+    : price || "$ NA";
 
   // Detect screen size
   useEffect(() => {
@@ -358,7 +358,7 @@ export default function HeroProduct({
         )}
 
         {disclaimerNote && (
-          <p className="text-sm italic">{disclaimerNote}</p>
+          <p className="text-sm">{disclaimerNote}</p>
         )}
 
         {disclaimer && (
@@ -369,9 +369,10 @@ export default function HeroProduct({
         <div className="pt-4 border-t border-gray-200">
           <div className="flex items-baseline gap-2 mb-1">
             {isLoading ? (
-              <span className="text-4xl font-bold">
-                Loading...
-              </span>
+              <>
+                <span className="h-10 w-32 bg-gray-200 rounded animate-pulse block" />
+                <span className="h-6 w-16 bg-gray-100 rounded animate-pulse block" />
+              </>
             ) : (
               <>
                 <span className="text-4xl font-bold">

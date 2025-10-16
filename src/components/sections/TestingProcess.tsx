@@ -8,16 +8,24 @@ interface TestingProcessStep {
   description: string;
 }
 
+interface TestingProcessButton {
+  text: string;
+  link: string;
+  showArrow?: boolean;
+}
+
 interface TestingProcessProps {
   mainTitle: string;
   steps: TestingProcessStep[];
   note: string[];
+  buttons?: TestingProcessButton[];
 }
 
 export default function TestingProcess({
   mainTitle,
   steps,
   note,
+  buttons = [],
 }: TestingProcessProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -104,6 +112,34 @@ export default function TestingProcess({
             </li>
           ))}
         </ul>
+        {buttons.length > 0 && (
+          <div className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-gray-300">
+            {buttons.map((button, index) => (
+              <a
+                key={index}
+                href={button.link}
+                className="inline-flex items-center gap-2 text-base font-twk-lausanne hover:opacity-75 transition-opacity"
+              >
+                <span>{button.text}</span>
+                {button.showArrow && (
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                )}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* 1440px and above: Grid Layout with all items visible */}
@@ -135,6 +171,34 @@ export default function TestingProcess({
             </li>
           ))}
         </ul>
+        {buttons.length > 0 && (
+          <div className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-gray-300">
+            {buttons.map((button, index) => (
+              <a
+                key={index}
+                href={button.link}
+                className="inline-flex items-center gap-2 text-base font-twk-lausanne hover:opacity-75 transition-opacity"
+              >
+                <span>{button.text}</span>
+                {button.showArrow && (
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                )}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

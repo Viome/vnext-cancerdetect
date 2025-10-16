@@ -123,13 +123,6 @@
           "showArrow": false,
           "type": "link",
           "href": "https://support.viome.com/"
-        },
-        {
-          "id": "cart-mobile",
-          "label": "Cart",
-          "showArrow": false,
-          "type": "link",
-          "href": "https://buy.viome.com/cart"
         }
       ]
     }

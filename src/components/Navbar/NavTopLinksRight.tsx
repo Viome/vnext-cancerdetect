@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, memo } from "react"
 import Link from "next/link"
 import navbarConfig from "@/data/navbar-config.json"
+import CDButton from "@/components/CDButton"
 
 // Memoized dropdown item component
 const DropdownItem = memo(({ item, onMouseEnter, onMouseLeave }: {
@@ -80,13 +81,14 @@ const NavTopLinksRight = memo(() => {
     // Handle button items
     if (item.type === 'button') {
       return (
-        <li key={index} className="relative h-full">
-          <Link
+        <li key={index} className="relative h-full flex items-center">
+          <CDButton
             href={item.href}
-            className="flex items-center justify-center px-6 py-2 bg-black text-white cursor-pointer hover:bg-gray-800 transition-colors rounded-sm font-medium text-sm"
+            variant="Standard"
+            theme="Dark"
           >
             {item.label}
-          </Link>
+          </CDButton>
         </li>
       )
     }

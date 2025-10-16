@@ -15,6 +15,13 @@ export interface Page {
     backgroundColor?: string
     maxWidth?: string
     padding?: string
+    banner?: {
+      show?: boolean
+      text: string
+      backgroundColor?: string
+      textColor?: string
+      isSticky?: boolean
+    }
     navbar?: {
       show?: boolean
       sticky?: boolean
