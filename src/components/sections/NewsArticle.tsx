@@ -27,7 +27,7 @@ export default function NewsArticle({
           </p>
         )}
         
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-twk-lausanne font-medium text-white leading-tight">
+        <h2 className="typography-display2 font-light text-white">
           {title}
         </h2>
         
@@ -44,7 +44,7 @@ export default function NewsArticle({
       </div>
 
       {/* Right Column - Image */}
-      <div className="relative w-full aspect-[16/9] lg:aspect-[4/3] overflow-hidden rounded-lg">
+      <div className="relative w-full aspect-[16/9] lg:aspect-[4/3] overflow-hidden">
         <CDImage
           src={image}
           alt={title}

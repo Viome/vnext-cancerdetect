@@ -60,7 +60,32 @@
       "shopPayText": "Pay in 4 interest-free payments with <strong>Shop Pay</strong>. As low as $149.75.*",
       "wrapperStyle": {
         "background": "bg-white",
-        "padding": "py-12 sm:py-16 lg:py-20",
+        "padding": "py-12",
+        "useContainerWidth": true,
+        "spacing": "mb-8"
+      }
+    },
+    {
+      "sectionId": "home-featured-publications",
+      "type": "featured_publications",
+      "title": "AS FEATURED IN",
+      "publications": [
+        {
+          "name": "Nature",
+          "logo": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_default_5_0b101c15bb.webp"
+        },
+        {
+          "name": "New Scientist",
+          "logo": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_default_4_863696ba20.webp"
+        },
+        {
+          "name": "Men's Health",
+          "logo": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Men_s_Health_1_baad5d5751.webp"
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "pb-4",
         "useContainerWidth": true,
         "spacing": "mb-8"
       }
@@ -355,9 +380,9 @@
       "mobileImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Frame_181_071bf4a154.webp",
       "wrapperStyle": {
         "useContainerWidth": false,
-        "padding": "py-16 sm:py-20",
+        "padding": "",
         "background": "bg-white",
-        "spacing": "mb-8",
+        "spacing": "",
         "container": "!max-w-full"
       }
     },
