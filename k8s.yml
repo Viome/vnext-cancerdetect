@@ -37,6 +37,11 @@ spec:
       containers:
         - name: vnext-cancer-detect
           image: CONTAINER_IMAGE
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: NEXT_PUBLIC_API_DOMAIN_V1
+              value: "${NEXT_PUBLIC_API_DOMAIN_V1}"
           resources:
             requests:
               cpu: ${REQUEST_CPU}
