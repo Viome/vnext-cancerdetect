@@ -327,37 +327,58 @@ export default function EligibilityWrapper() {
             const tokenValidation = async (token: string) => {
                 setVerifyingTokenLoading(true);
                 
-                const response = await fetch('/api/token-validation', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ token }),
-                });
+                try {
+                    const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN_V1;
+                    const url = `${apiDomain}/user/verifyToken?token=${token}`;
 
-                const res = await response.json();
-                const { validToken } = res;
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+                            'Content-Type': 'application/json',
+                        },
+                    });
 
-                if (!validToken) {
+                    const data = await response.json();
+                    const { payload } = data;
+                    const { body, statusCodeValue } = payload || {};
+                    const { error, email } = body || {};
+
+                    if (!response || statusCodeValue !== 200) {
+                        setError(true);
+                        setErrorMessage('Error, Our team is working on a fix');
+                        setVerifyingTokenLoading(false);
+                        setFormStep(PERSONAL_INFO_STEP);
+                        return false;
+                    }
+
+                    if (error && error !== 'cd-0028') {
+                        setError(true);
+                        setErrorMessage('Error token not valid');
+                        setVerifyingTokenLoading(false);
+                        setFormStep(PERSONAL_INFO_STEP);
+                        return false;
+                    }
+
+                    // Only set these values if there's no persisted data
+                    if (!persistedData) {
+                        setValue('country', 'US');
+                        setValue('phoneNumberCountryCode', 'US');
+                    }
+
+                    setFormStep(PERSONAL_INFO_STEP);
+
+                    sessionStorage.setItem('token', token);
+                    setTokenVerified(true);
+                    setVerifyingTokenLoading(false);
+                    return true;
+                } catch (err) {
                     setError(true);
-                    setErrorMessage(res.message);
+                    setErrorMessage('There was a problem. Please try again later.');
                     setVerifyingTokenLoading(false);
                     setFormStep(PERSONAL_INFO_STEP);
                     return false;
                 }
-
-                // Only set these values if there's no persisted data
-                if (!persistedData) {
-                    setValue('country', 'US');
-                    setValue('phoneNumberCountryCode', 'US');
-                }
-
-                setFormStep(PERSONAL_INFO_STEP);
-
-                sessionStorage.setItem('token', token);
-                setTokenVerified(true);
-                setVerifyingTokenLoading(false);
-                return true;
             };
 
             try {
