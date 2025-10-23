@@ -72,15 +72,6 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/api/email-validation",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store, no-cache, must-revalidate",
-          },
-        ],
-      },
-      {
         source: "/api/submit-eligibility",
         headers: [
           {

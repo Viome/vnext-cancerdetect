@@ -45,7 +45,7 @@ export default function WorkWithUs({ wrapperStyle }: WorkWithUsProps) {
     <SectionWrapper wrapperStyle={wrapperStyle}>
       <div className="max-w-5xl mx-auto">
         {/* Title */}
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 sm:mb-12">
+        <h2 className="typography-headline1 mb-8 sm:mb-12">
           Work With Us
         </h2>
 
@@ -62,7 +62,7 @@ export default function WorkWithUs({ wrapperStyle }: WorkWithUsProps) {
                 className="w-full flex items-center justify-between py-6 sm:py-8 text-left group"
                 aria-expanded={openIndex === index}
               >
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-normal text-gray-900 pr-4">
+                <h3 className="typography-headline3 font-semibold pr-4">
                   {section.title}
                 </h3>
                 <svg

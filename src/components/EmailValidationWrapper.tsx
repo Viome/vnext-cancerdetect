@@ -12,7 +12,6 @@ import {
     ELEGIBILITY_STEPS,
     ELIGIBILITTY_GA_EVENTS,
     LOGIN_PAGE_URL,
-    NEXT_API_FOLDER,
     SUPPORT_PAGE_URL,
 } from '@/lib/utils/constants';
 import { getUserData, handleGAPageView } from '@/lib/utils/eligibility';
@@ -99,69 +98,79 @@ export default function EmailValidationWrapper() {
             setLoading(true);
 
             try {
-                await fetch(
-                    `/${NEXT_API_FOLDER}/email-validation?order_type=regular`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Cache-Control': 'no-cache',
-                        },
-                        body: JSON.stringify({
-                            ...values,
-                        }),
+                const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN_V1;
+                const orderType = 'regular';
+                const url = `${apiDomain}/user/generateToken/${values.email}?order_type=${orderType}`;
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Referrer-Policy': 'strict-origin-when-cross-origin',
+                        'Cache-Control': 'no-cache',
                     },
-                )
-                    .then((response) => response.json())
-                    .then(async (res) => {
-                        if (res.error) {
-                            setLoading(false);
-                            setError(true);
-                            setErrorMessage(res.message);
+                });
 
-                            if (!res.success && res.retry) {
-                                console.error(res.message);
-                                setError(true);
-                                setErrorMessage(
-                                    'Please check your email and try again. Redirecting to login page...',
-                                );
-                                setSubmitted(false);
-                                setTimeout(() => {
-                                    setError(false);
-                                    resetField('email');
-                                }, 4000);
-                            }
-                        } else {
-                            setError(false);
-                            setLoading(false);
-                            setSubmitted(true);
+                const data = await response.json();
+                const { payload } = data;
+                const {
+                    existing_user: existingUser,
+                    error: apiError,
+                    message,
+                } = payload || {};
 
-                            if (res.existingUser && res.success) {
-                                setResultsMessage(EXISTING_USER_CONTENT);
+                if (!response || response.status !== 200) {
+                    setLoading(false);
+                    setError(true);
+                    setErrorMessage('Error, Our team is working on a fix');
+                    return;
+                }
 
-                                const userData = await handleUserData();
-                                if (userData) {
-                                    setTimeout(
-                                        () =>
-                                            router.push(
-                                                '/eligibility?redirected=true&order_type=regular',
-                                            ),
-                                        4000,
-                                    );
-                                } else {
-                                    setTimeout(
-                                        () =>
-                                            router.push(
-                                                LOGIN_PAGE_URL_REDIRECTION,
-                                            ),
-                                        4000,
-                                    );
-                                }
-                            } else {
-                                setResultsMessage(NON_EXISTING_USER_CONTENT);
-                            }
-                        }
-                    });
+                if (existingUser) {
+                    setError(false);
+                    setLoading(false);
+                    setSubmitted(true);
+                    setResultsMessage(EXISTING_USER_CONTENT);
+
+                    const userData = await handleUserData();
+                    if (userData) {
+                        setTimeout(
+                            () =>
+                                router.push(
+                                    '/eligibility?redirected=true&order_type=regular',
+                                ),
+                            4000,
+                        );
+                    } else {
+                        setTimeout(
+                            () =>
+                                router.push(
+                                    LOGIN_PAGE_URL_REDIRECTION,
+                                ),
+                            4000,
+                        );
+                    }
+                    return;
+                }
+
+                if (apiError) {
+                    setLoading(false);
+                    setError(true);
+                    setErrorMessage(
+                        'Please check your email and try again. Redirecting to login page...',
+                    );
+                    setSubmitted(false);
+                    setTimeout(() => {
+                        setError(false);
+                        resetField('email');
+                    }, 4000);
+                    return;
+                }
+
+                setError(false);
+                setLoading(false);
+                setSubmitted(true);
+                setResultsMessage(NON_EXISTING_USER_CONTENT);
             } catch (err) {
                 setError(true);
                 setErrorMessage('There was a problem. Please try again later.');
