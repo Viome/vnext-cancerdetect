@@ -205,6 +205,7 @@ export const ELIGIBILITY_DEFAULT_VALUES = {
   lastName: "",
   dob: "",
   gender: "",
+  email: "",
   streetAddress: "",
   apartmentSuitNo: "",
   city: "",
@@ -225,5 +226,5 @@ export const ELIGIBILITY_DEFAULT_VALUES = {
   familyCancerYou: "",
   familyCancerYouAge: "",
   familyCancerYourFamily: "",
-  familyMembers: [],
+  familyMembers: {},
 };

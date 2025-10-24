@@ -50,8 +50,18 @@ export default function PhoneNumberInput({
                     {...register('phoneNumber', {
                         required: 'Phone number is required',
                         pattern: {
-                            value: /^[0-9]{10,15}$/,
-                            message: 'Please enter a valid phone number',
+                            value: /^[2-9][0-9]*$/,
+                            message: 'Invalid phone Number',
+                        },
+                        maxLength: {
+                            value: 10,
+                            message:
+                                'Invalid phone number format. Please enter only 10 digits.',
+                        },
+                        minLength: {
+                            value: 10,
+                            message:
+                                'Invalid phone number format. Please enter 10 digits',
                         },
                     })}
                     className={classNames(

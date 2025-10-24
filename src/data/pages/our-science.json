@@ -203,6 +203,51 @@
       }
     },
     {
+      "sectionId": "our-science-faq",
+      "type": "faq_section",
+      "title": "FAQs",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_27_CD_4_4_8fc9cbd423.webp",
+      "theme": "dark",
+      "faqs": [
+        {
+          "id": "faq-1",
+          "question": "What kind of cancer does this test detect?",
+          "answer": "<p>CancerDetect<sup>®</sup> Oral & Throat detects the molecular features associated with oral cavity cancer (Oral Squamous Cell Carcinoma or OSCC) and/or throat cancer (oropharyngeal squamous cell carcinoma or OPSCC).</p>"
+        },
+        {
+          "id": "faq-2",
+          "question": "How accurate are these results?",
+          "answer": "<ul class='space-y-4 list-disc list-inside'><li><strong>Sensitivity: 90% for both oral & throat cancer</strong><br/>Sensitivity refers to a test's ability to designate an individual with a disease as positive. A highly sensitive test means that there are few false-negative results, and thus fewer cases of the disease are missed.</li><li><strong>Specificity: 95% for both oral & throat cancer</strong><br/>Specificity refers to a test's ability to designate an individual who does not have a disease as negative. A highly specific test means that there are few false-positive results, and thus few false alarms.</li></ul>"
+        },
+        {
+          "id": "faq-3",
+          "question": "What should I expect if I take the test and my result is detected?",
+          "answer": "<p>A healthcare provider licensed in your state will review your result, and provide a consultation over the phone to discuss the test result, provide educational information, and talk about your next steps. However, no medical advice, treatment, or prescriptions will be provided.</p>"
+        },
+        {
+          "id": "faq-4",
+          "question": "If the test is not detected, could I have another type of cancer?",
+          "answer": "<p>CancerDetect does not detect molecular features associated with other types of cancer other than oral & throat cancers. Please discuss with your doctor about your symptoms and concerns.</p>"
+        },
+        {
+          "id": "faq-5",
+          "question": "What do these results mean to my health?",
+          "answer": "<ul class='space-y-4 list-disc list-inside'><li><strong>What does a \"DETECTED\" result mean?</strong><br/>A result of \"DETECTED\" is not a diagnosis of cancer. The results of the CancerDetect test must be confirmed by diagnostic evaluation suggested by qualified health care professionals in accordance with standard medical practice. These results should be interpreted in the context of the individual's clinical risk factors. Diagnostic decisions are the responsibility of the treating physician.</li><li><strong>What does a \"NOT DETECTED\" result mean?</strong><br/>A result of \"NOT DETECTED\" does not eliminate the possibility that a cancer is present or will occur in the future. Individuals who receive a \"NOT DETECTED\" result should continue with all recommended cancer screening options at intervals appropriate for the individual. The use of the CancerDetect test should not replace, supersede, or otherwise alter the use or frequency of standard of care cancer screening or detection modalities.</li><li><strong>Do false-positive and false-negative results occur?</strong><br/>False-positive (a cancer signal detected when cancer is not present) and false-negative (a cancer signal not detected when cancer is present) test results do occur.</li></ul>"
+        },
+        {
+          "id": "faq-6",
+          "question": "What do I need to complete this test?",
+          "answer": "<ul class='space-y-4 list-disc list-inside'><li><strong>What are the requirements to complete this test?</strong><br/>You will need to submit a saliva sample of good quality, create a Viome account, register your test kit and complete the questionnaires in your online account.</li><li><strong>What happens if I don't register my test kit?</strong><br/>We will not be able to process your sample if you do not register your test kit.</li><li><strong>What happens if I don't complete all required questionnaires?</strong><br/>We will not be able to finalize your test result if you do not complete all required questionnaires.</li></ul>"
+        }
+      ],
+      "wrapperStyle": {
+        "useContainerWidth": true,
+        "padding": "py-16 sm:py-20",
+        "background": "bg-white",
+        "spacing": "mb-0"
+      }
+    },
+    {
       "sectionId": "our-science-contact",
       "type": "contact_section",
       "wrapperStyle": {

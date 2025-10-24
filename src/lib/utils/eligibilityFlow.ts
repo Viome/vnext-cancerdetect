@@ -214,10 +214,17 @@ export const checkAllValuesComplete = ({ values }: { values: EligibilityValues }
     
     for (const [key] of Object.entries(ELIGIBILITY_DEFAULT_VALUES)) {
         if (key === 'familyMembers') {
+            // Check if family members are selected (stored as object with selected flags)
+            const hasSelectedFamilyMembers = values.familyMembers && 
+                typeof values.familyMembers === 'object' &&
+                Object.values(values.familyMembers).some((member: any) => 
+                    member && member.selected === true
+                );
+            
             if (
                 values.familyCancerYouOrCloseFamilyMember === 'yes' &&
                 values.familyCancerYourFamily === 'yes' &&
-                !hasSelectedValues(values[key])
+                !hasSelectedFamilyMembers
             ) {
                 missingFileds.push(key);
             }

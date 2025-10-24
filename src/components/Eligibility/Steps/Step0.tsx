@@ -36,8 +36,22 @@ export default function Step0() {
             </div>
 
             <div className="sm:max-w-cd-form">
-                <Field name="firstName" label="First Name" type="text" />
-                <Field name="lastName" label="Last Name" type="text" />
+                <Field 
+                    name="firstName" 
+                    label="First Name" 
+                    type="text" 
+                    validate={{
+                        required: 'First name is required',
+                    }}
+                />
+                <Field 
+                    name="lastName" 
+                    label="Last Name" 
+                    type="text" 
+                    validate={{
+                        required: 'Last name is required',
+                    }}
+                />
                 <div className="mb-4">
                     <DobDatePicker />
                 </div>
@@ -50,6 +64,9 @@ export default function Step0() {
                         { value: 'male', text: 'Male' },
                         { value: 'other', text: 'Other' },
                     ]}
+                    validate={{
+                        required: 'Biological sex is required',
+                    }}
                 />
             </div>
         </>

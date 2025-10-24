@@ -21,6 +21,7 @@ import {
     handleGAPageView,
     handleStepPageTitle,
 } from '@/lib/utils/eligibilityFlow';
+import { submitEligibilityClient } from '@/lib/utils/eligibilityClient';
 import { scrollToTopDiv } from '@/lib/utils/helpers';
 import Spinner from './Spinner';
 import Step0 from './Eligibility/Steps/Step0';
@@ -95,17 +96,12 @@ export default function EligibilityWrapper() {
         setLoading(true);
         
         try {
-            const response = await fetch('/api/submit-eligibility', {
-                method: 'POST',
-                body: JSON.stringify({
-                    ...watch(),
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            const res = await response.json();
+            const formData = watch();
+            const orderType = searchParams.get('order_type') || 'regular';
+            const res = await submitEligibilityClient({
+                ...formData,
+                orderType,
+            } as any);
 
             if (res.error) {
                 setUserIsElegible(false);
@@ -364,6 +360,11 @@ export default function EligibilityWrapper() {
                     if (!persistedData) {
                         setValue('country', 'US');
                         setValue('phoneNumberCountryCode', 'US');
+                    }
+
+                    // Set the email from token validation response
+                    if (email) {
+                        setValue('email', email);
                     }
 
                     setFormStep(PERSONAL_INFO_STEP);

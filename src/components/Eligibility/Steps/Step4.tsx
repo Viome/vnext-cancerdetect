@@ -5,7 +5,8 @@ import Tooltip from '@/components/Form/Tooltip';
 import { ethnicityAnswers } from '@/app/api/data/eligibilityQuestions';
 
 export default function Step4() {
-    const { register } = useFormContext();
+    const { register, watch, formState: { errors } } = useFormContext();
+    const ethnicityValue = watch('ethnicity');
 
     return (
         <section>
@@ -19,6 +20,27 @@ export default function Step4() {
             </div>
 
             <div className="sm:max-w-cd-form">
+                {/* Hidden field for validation */}
+                <input
+                    type="hidden"
+                    {...register('ethnicityValidation', {
+                        validate: () => {
+                            if (!ethnicityValue || typeof ethnicityValue !== 'object') {
+                                return 'Please select at least one ethnicity';
+                            }
+                            
+                            const hasSelection = Object.values(ethnicityValue).some(value => 
+                                value === true || (typeof value === 'string' && value.trim() !== '')
+                            );
+                            
+                            if (!hasSelection) {
+                                return 'Please select at least one ethnicity';
+                            }
+                            return true;
+                        }
+                    })}
+                />
+                
                 <div className="mb-4">
                     <div className="space-y-3">
                         {ethnicityAnswers.map((option) => (
@@ -49,6 +71,12 @@ export default function Step4() {
                         ))}
                     </div>
                 </div>
+                
+                {errors.ethnicityValidation && (
+                    <p className="mt-2 text-sm text-red-600">
+                        {errors.ethnicityValidation.message as string}
+                    </p>
+                )}
             </div>
         </section>
     );
