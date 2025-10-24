@@ -342,7 +342,7 @@ export default function EligibilityWrapper() {
 
                     if (!response || statusCodeValue !== 200) {
                         setError(true);
-                        setErrorMessage('Error, Our team is working on a fix');
+                        setErrorMessage('Please try again');
                         setVerifyingTokenLoading(false);
                         setFormStep(PERSONAL_INFO_STEP);
                         return false;
@@ -508,7 +508,7 @@ export default function EligibilityWrapper() {
                                             formStep !== CONFIRMATION_DETAILS_STEP && (
                                                 <button
                                                     type="button"
-                                                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400"
                                                     onClick={() => completeFormStep()}
                                                     disabled={!isValid}
                                                 >
@@ -520,7 +520,7 @@ export default function EligibilityWrapper() {
                                             <>
                                                 <button
                                                     type="button"
-                                                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400"
                                                     disabled={
                                                         loading ||
                                                         !checkAllValuesComplete({
@@ -533,7 +533,7 @@ export default function EligibilityWrapper() {
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50"
+                                                    className="bg-white text-black border-2 border-black px-6 py-3 rounded-lg"
                                                     onClick={() => setFormStep(PERSONAL_INFO_STEP)}
                                                 >
                                                     Edit Information

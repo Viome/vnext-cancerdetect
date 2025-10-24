@@ -75,63 +75,36 @@ export default function EligibilityResults({
                     </div>
 
                     <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                        Unfortunately, You Are Not Eligible
+                        Sorry, you are not eligible
                     </h1>
 
                     <div className="mb-8 text-left bg-gray-50 p-6 rounded-lg">
                         <p className="text-gray-700 mb-4">
-                            Based on the information you provided, you do not meet the eligibility
-                            criteria for CancerDetect at this time.
+                            Based on the information you provided, you are not eligible to purchase the <strong>CancerDetect® Oral & Throat test</strong>. <a href="https://support.viome.com/en_us/cdot-about-BkVlgc59c" target="_blank" rel="noreferrer" className="underline">Learn more</a> about who can purchase the test.
                         </p>
-                        <p className="text-gray-700 mb-4">
-                            This may be due to one or more of the following reasons:
-                        </p>
-                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
-                            <li>Age requirements not met for your state</li>
-                            <li>Residency in a non-eligible state</li>
-                            <li>Other eligibility criteria</li>
-                        </ul>
                     </div>
 
                     <div className="space-y-4">
-                        <a
-                            href={SUPPORT_PAGE_URL.notEligiblePage}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium"
-                        >
-                            Learn More About CancerDetect
-                        </a>
-                        
                         <button
                             type="button"
                             onClick={handleGoHome}
-                            className="block w-full bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 font-medium"
+                            className="block w-full bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 font-medium"
                         >
-                            Return to Home
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={handleStartOver}
-                            className="block w-full text-gray-600 hover:text-gray-800 underline"
-                        >
-                            Start Over
+                            Back to home
                         </button>
                     </div>
 
-                    <div className="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                        <p className="text-sm text-yellow-800">
-                            If you believe this is an error, please{' '}
+                    <div className="mt-8">
+                        <p className="text-sm text-gray-600">
                             <a
-                                href="https://support.viome.com"
+                                href="https://support.viome.com/en_us/cdot-about-BkVlgc59c"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="underline font-medium"
+                                className="underline"
                             >
-                                contact our support team
-                            </a>
-                            .
+                                Contact Viome Customer Support
+                            </a>{' '}
+                            for more help.
                         </p>
                     </div>
                 </div>
@@ -162,52 +135,23 @@ export default function EligibilityResults({
                 </div>
 
                 <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                    Congratulations! You Are Eligible
+                    You are eligible
                 </h1>
 
                 <div className="mb-8 text-left bg-green-50 p-6 rounded-lg">
-                    {isDentistOrder ? (
-                        <>
-                            <p className="text-gray-700 mb-4">
-                                Your eligibility has been confirmed! Your dentist will be notified
-                                and your kit will be ready for use.
-                            </p>
-                            <p className="text-gray-700">
-                                You will receive further instructions via email on how to proceed
-                                with your test.
-                            </p>
-                        </>
-                    ) : (
-                        <>
-                            <p className="text-gray-700 mb-4">
-                                You meet all the eligibility criteria for CancerDetect! You can now
-                                proceed to complete your order.
-                            </p>
-                            <p className="text-gray-700">
-                                Click the button below to continue to checkout and complete your
-                                purchase.
-                            </p>
-                        </>
-                    )}
+                    <p className="text-gray-700 mb-4">
+                        You are eligible to order the <strong>CancerDetect® Oral & Throat test!</strong> Your order is subject to approval by a healthcare provider from Viome's partner, Everly Health.
+                    </p>
                 </div>
 
                 <div className="space-y-4">
                     <button
                         type="button"
                         onClick={handleProceed}
-                        className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium text-lg"
+                        className="block w-full bg-black text-white px-6 py-3 rounded-lg font-medium text-lg"
                     >
-                        {isDentistOrder ? 'Complete Registration' : 'Proceed to Checkout'}
+                        {isDentistOrder ? 'Complete Registration' : 'Order the test now'}
                     </button>
-
-                    <div className="mt-8 p-4 bg-blue-50 border-l-4 border-blue-600 rounded">
-                        <p className="text-sm text-blue-800">
-                            <strong>What's Next?</strong>
-                            {isDentistOrder
-                                ? ' Your dentist will receive your information and guide you through the next steps.'
-                                : ' Complete your purchase and we will ship your CancerDetect kit to the address you provided.'}
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ const FailPage = ({ message }: FailPageProps) => {
                         <Link href="/">
                             <button
                                 type="button"
-                                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                                className="bg-black text-white px-6 py-3 rounded-lg"
                             >
                                 Back to home
                             </button>
