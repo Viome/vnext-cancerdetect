@@ -34,9 +34,18 @@ export default function SectionWrapper({
   const spacingClass = wrapperStyle?.spacing || "";
   const backgroundImage = wrapperStyle?.backgroundImage;
 
-  const combinedClasses = [backgroundClass, spacingClass, className]
+  const combinedClasses = [spacingClass, className]
     .filter(Boolean)
     .join(" ");
+
+  // Handle inline background color if provided
+  const inlineStyle = backgroundClass && backgroundClass.startsWith('#') 
+    ? { backgroundColor: backgroundClass }
+    : {};
+
+  const finalBackgroundClass = backgroundClass && !backgroundClass.startsWith('#') 
+    ? backgroundClass 
+    : "";
 
   const getBackgroundImages = (): BackgroundImages | null => {
     if (!backgroundImage) return null;
@@ -59,7 +68,7 @@ export default function SectionWrapper({
   const bgImages = getBackgroundImages();
 
   return (
-    <section className={`relative ${combinedClasses}`}>
+    <section className={`relative ${finalBackgroundClass} ${combinedClasses}`} style={inlineStyle}>
       {bgImages && (
         <>
           {bgImages.mobile && (

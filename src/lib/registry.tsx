@@ -38,6 +38,7 @@ const TermsContent = dynamic(() => import("@/components/sections/TermsContent"))
 const ImportantSafetyInformation = dynamic(() => import("@/components/sections/ImportantSafetyInformation"))
 const GuidingNextSteps = dynamic(() => import("@/components/sections/GuidingNextSteps"))
 const FeaturedPublications = dynamic(() => import("@/components/sections/FeaturedPublications"))
+const ViomeStudyInitiatives = dynamic(() => import("@/components/sections/ViomeStudyInitiatives"))
 
 
 // Component registry mapping
@@ -77,6 +78,7 @@ export const registry: ComponentRegistry = {
   ImportantSafetyInformation: ImportantSafetyInformation,
   GuidingNextSteps: GuidingNextSteps,
   FeaturedPublications: FeaturedPublications,
+  ViomeStudyInitiatives: ViomeStudyInitiatives,
   // Lowercase versions for backward compatibility
   hero: Hero,
   features: Features,
@@ -112,6 +114,7 @@ export const registry: ComponentRegistry = {
   important_safety_information: ImportantSafetyInformation,
   guiding_next_steps: GuidingNextSteps,
   featured_publications: FeaturedPublications,
+  viome_study_initiatives: ViomeStudyInitiatives,
   // Add more components as needed
 }
 

@@ -41,6 +41,29 @@
       }
     },
     {
+      "sectionId": "our-science-approach",
+      "type": "science_approach",
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "viome-study-initiatives",
+      "type": "viome_study_initiatives",
+      "heading": "VIOME STUDY INITIATIVES",
+      "title": "Cancer Research",
+      "description": "In addition to head and neck cancers, Viome has an extensive ongoing clinical study pipeline in gastrointestinal cancers including colorectal cancer, pancreatic, ovarian, cervical, and biliary cancers. We currently have cancer research trials that use saliva, blood, stool, and tumor biopsies to understand the onset and progression of cancer. By identifying the biomarkers that lead to the development of cancers, Viome can optimize early detection and identify the right therapeutic targets.",
+      "wrapperStyle": {
+        "background": "#f4f4f5",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
       "sectionId": "our-science-cancer-diagnostics",
       "type": "approach_to_diagnostics",
       "title": "Our Approach to Cancer Diagnostics",
@@ -116,16 +139,6 @@
           ]
         }
       ],
-      "wrapperStyle": {
-        "background": "bg-white",
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-0",
-        "useContainerWidth": true
-      }
-    },
-    {
-      "sectionId": "our-science-approach",
-      "type": "science_approach",
       "wrapperStyle": {
         "background": "bg-white",
         "padding": "py-16 sm:py-20 lg:py-24",
