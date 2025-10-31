@@ -12,6 +12,7 @@ import {
 import BlogArticles from "@/components/blog/BlogArticles";
 import BlogHero from "@/components/blog/BlogHero";
 import BlogHead from "@/components/blog/BlogHead";
+import { DEFAULT_OG_IMAGE } from "@/lib/utils/constants";
 
 // import Footer from "@/components/footer/footer";
 
@@ -35,12 +36,14 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/resources",
       siteName: "Cancer Detect",
       type: "website",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: "Resources | Oral & Throat Cancer Information",
       description:
         "Explore comprehensive resources about oral health and throat cancer. Learn about prevention, early detection, and maintaining optimal oral health through expert articles and research-backed insights.",
+      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }

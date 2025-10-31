@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: "Blog Post Not Found | Viome",
       description: "The blog post you're looking for doesn't exist.",
       alternates: {
-        canonical: `https://viome.com/blog/${slug}`,
+        canonical: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
       },
       openGraph: {
         images: [DEFAULT_OG_IMAGE],
-        url: `https://viome.com/blog/${slug}`,
+        url: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
       },
       twitter: {
         card: "summary_large_image",
@@ -55,20 +55,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       }
     : DEFAULT_OG_IMAGE
 
+  // Get dates for article metadata
+  const publishedDate = blog.displayDate || blog.publishedAt || blog.createdAt
+  const publishedTime = publishedDate ? new Date(publishedDate).toISOString() : undefined
+  const modifiedTime = blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined
+
   return {
-    metadataBase: new URL('https://viome.com'),
+    metadataBase: new URL('https://cancerdetect.stage.azure.viome.com/'),
     title: `${blog.title} | Viome Blog`,
     description: metaDescription || `Read ${blog.title} on the Viome blog.`,
     alternates: {
-      canonical: `https://viome.com/blog/${slug}`,
+      canonical: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
     },
     openGraph: {
       title: blog.title,
       description: metaDescription || `Read ${blog.title} on the Viome blog.`,
       images: [ogImage],
       type: "article",
-      url: `https://viome.com/blog/${slug}`,
-      siteName: "Viome",
+      url: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
+      siteName: "Cancerdetect",
+      ...(publishedTime && { publishedTime }),
+      ...(modifiedTime && { modifiedTime }),
     },
     twitter: {
       card: "summary_large_image",
