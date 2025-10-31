@@ -22,6 +22,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@nextui-org/react": "^2.6.11",
+    "@sentry/nextjs": "^10.22.0",
     "@shopify/storefront-api-client": "^1.0.9",
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@types/react-lazy-load-image-component": "^1.6.4",

@@ -204,7 +204,7 @@ export default function Footer({ data, compactFooter = false }: FooterProps) {
               <div className="mt-8">
                 <div className="mt-6">
                   <EmbedSignUpForm
-                    formId={KLAVIYO.EMBED_FOOTER_SIGNUP_FORM_ID}
+                    formId={KLAVIYO.EMBED_CD_SIGNUP_FORM_ID}
                   />
                 </div>
               </div>

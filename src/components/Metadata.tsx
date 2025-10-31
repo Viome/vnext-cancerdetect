@@ -1,6 +1,4 @@
 
-import type { Metadata } from "next"
-
 interface MetadataConfig {
   title?: string
   description?: string
@@ -19,7 +17,7 @@ export function createMetadata({
   sitemapUrl = "https://www.viome.com/sitemap.xml",
   manifestUrl = "/site.webmanifest",
   maskIconColor = "#6d4ab0"
-}: MetadataConfig = {}): Metadata {
+}: MetadataConfig = {}) {
   return {
     title,
     description,

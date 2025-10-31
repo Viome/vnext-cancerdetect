@@ -1,6 +1,7 @@
-import type { NextConfig } from "next"
+/** @type {import('next').NextConfig} */
+const { withSentryConfig } = require("@sentry/nextjs");
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   // Enable standalone output for Docker
   output: "standalone",
 
@@ -42,6 +43,14 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ["lucide-react", "swiper"],
+  },
+  
+  // Sentry configuration
+  sentry: {
+    // tunnelRoute: '/monitoring-tunnel', // Route used by the SDK to tunnel events to Sentry, bypassing Ad-Blockers
+    autoInstrumentMiddleware: false, // Disable the automatic instrumentation of Next.js middleware
+    disableServerWebpackPlugin: true, // Disable server-side source map upload
+    disableClientWebpackPlugin: true, // Disable client-side source map upload
   },
   
   // Enable compression
@@ -123,4 +132,17 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+export default withSentryConfig(
+  nextConfig,
+  {
+    // Sentry webpack plugin options
+    silent: true, // Suppress source map uploading logs during build
+    org: process.env.SENTRY_ORG || 'your-org-slug',
+    project: process.env.SENTRY_PROJECT || 'vnext-cancerdetect',
+    widenClientFileUpload: true,
+    transpileClientSDK: true,
+    tunnelRoute: '/monitoring-tunnel',
+    hideSourceMaps: true,
+    disableLogger: true,
+  }
+)

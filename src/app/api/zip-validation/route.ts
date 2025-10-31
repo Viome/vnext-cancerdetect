@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import * as Sentry from '@sentry/nextjs';
+import * as Sentry from '@sentry/nextjs';
 
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
@@ -44,7 +44,20 @@ export async function POST(request: NextRequest) {
         }
 
         if (!response) {
-            // Sentry.captureMessage(`Error on zip validation: ${JSON.stringify(data)}`);
+            console.warn('[API /api/zip-validation] Error response:', data);
+            const eventId = Sentry.captureMessage(`Error on zip validation: ${JSON.stringify(data)}`, {
+                level: 'warning',
+                tags: {
+                    api_route: '/api/zip-validation',
+                },
+                extra: {
+                    response: data,
+                    country,
+                    state,
+                    zipCode,
+                },
+            });
+            console.log('[API /api/zip-validation] Sentry event ID:', eventId);
             return NextResponse.json(
                 {
                     error: true,
@@ -62,7 +75,14 @@ export async function POST(request: NextRequest) {
             { status: 200 }
         );
     } catch (err) {
-        // Sentry.captureException(err);
+        console.error('[API /api/zip-validation] Exception caught:', err);
+        const eventId = Sentry.captureException(err, {
+            tags: {
+                api_route: '/api/zip-validation',
+                http_method: 'POST',
+            },
+        });
+        console.log('[API /api/zip-validation] Sentry event ID:', eventId);
         return NextResponse.json(
             { error: true, message: 'Internal server error' },
             { status: 400 }

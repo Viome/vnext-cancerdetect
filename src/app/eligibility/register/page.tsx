@@ -1,4 +1,10 @@
 import EmailValidationWrapper from '@/components/EmailValidationWrapper';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'CD Eligibility',
+    description: 'Complete your eligibility screening',
+};
 
 export default function RegisterPage() {
     return (

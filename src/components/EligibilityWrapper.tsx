@@ -538,9 +538,6 @@ export default function EligibilityWrapper() {
                                                 >
                                                     Edit Information
                                                 </button>
-                                                <span className="mt-8 text-sm text-gray-600">
-                                                    You can edit all the information before submitting.
-                                                </span>
                                             </>
                                         )}
 

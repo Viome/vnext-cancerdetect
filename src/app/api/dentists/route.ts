@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import * as Sentry from '@sentry/nextjs';
+import * as Sentry from '@sentry/nextjs';
 import { API_DOMAIN_V1 } from '@/lib/utils/constants';
 
 export async function POST(request: NextRequest) {
@@ -29,7 +29,17 @@ export async function POST(request: NextRequest) {
         const { dentists } = payload || {};
 
         if (!response || error) {
-            // Sentry.captureMessage('DENTIST: Error, Our team is working on a fix');
+            console.warn('[API /api/dentists] Error response received:', data);
+            const eventId = Sentry.captureMessage('DENTIST: Error, Our team is working on a fix', {
+                level: 'warning',
+                tags: {
+                    api_route: '/api/dentists',
+                },
+                extra: {
+                    response: data,
+                },
+            });
+            console.log('[API /api/dentists] Sentry event ID:', eventId);
             return NextResponse.json(
                 {
                     error: true,
@@ -49,7 +59,14 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Sentry.captureMessage('DENTIST: Error getting dentists');
+        console.error('[API /api/dentists] Error getting dentists');
+        const eventId = Sentry.captureMessage('DENTIST: Error getting dentists', {
+            level: 'error',
+            tags: {
+                api_route: '/api/dentists',
+            },
+        });
+        console.log('[API /api/dentists] Sentry event ID:', eventId);
         return NextResponse.json(
             {
                 error: true,
@@ -58,7 +75,14 @@ export async function POST(request: NextRequest) {
             { status: 403 }
         );
     } catch (err) {
-        // Sentry.captureException(err);
+        console.error('[API /api/dentists] Exception caught:', err);
+        const eventId = Sentry.captureException(err, {
+            tags: {
+                api_route: '/api/dentists',
+                http_method: 'POST',
+            },
+        });
+        console.log('[API /api/dentists] Sentry event ID:', eventId);
         return NextResponse.json(
             { error: true, message: 'Internal server error' },
             { status: 400 }

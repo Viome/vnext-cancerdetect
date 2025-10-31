@@ -15,6 +15,14 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   }
 
+  const ogImageUrl = "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_2_FBI_Product_Image_7_f2b92373e7.webp"
+  const ogImage = {
+    url: ogImageUrl,
+    width: 1200,
+    height: 630,
+    alt: page.seo?.title || "Home | Cancer Detection App",
+  }
+
   return {
     title: page.seo?.title || "Home | Cancer Detection App",
     description: page.seo?.description || "Advanced cancer detection application",
@@ -22,7 +30,18 @@ export async function generateMetadata(): Promise<Metadata> {
       title: page.seo.openGraph.title || page.seo?.title || "Home | Cancer Detection App",
       description: page.seo.openGraph.description || page.seo?.description || "Advanced cancer detection application",
       url: page.seo.openGraph.url,
-    } : undefined,
+      images: [ogImage],
+    } : {
+      title: page.seo?.title || "Home | Cancer Detection App",
+      description: page.seo?.description || "Advanced cancer detection application",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.seo?.title || "Home | Cancer Detection App",
+      description: page.seo?.description || "Advanced cancer detection application",
+      images: [ogImageUrl],
+    },
   }
 }
 

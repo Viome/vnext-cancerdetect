@@ -1,10 +1,18 @@
 // Exact migration from utils/constants.js
 export const KLAVIYO = {
+  // Public API Key (found in Klaviyo Dashboard > Settings > API Keys)
+  API_KEY: process.env.NEXT_PUBLIC_KLAVIYO_API_KEY,
+  
+  // Form IDs from Klaviyo Dashboard > Forms > Embedded Forms
   EMBED_FOOTER_SIGNUP_FORM_ID: "UsRwXb",
+  EMBED_CD_SIGNUP_FORM_ID: 'YtzBmY',
   EMBED_BLOG_SIGNUP_FORM_ID: "WfuKn6",
   PROVIDER_FORM_ID: "WnWq9f",
   EMPLOYER_FORM_ID: "XitDQc",
   SIGN_UP_FORM_ID: "UdMJRv",
+  
+  COMPANY_ID: process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID,
+  EXIT_INTENT_SIGNUP: 'EXIT_INTENT_SIGNUP',
 };
 
 export const NEXT_API_FOLDER = "api";

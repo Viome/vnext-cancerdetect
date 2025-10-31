@@ -8,6 +8,7 @@
 "use client"
 
 import { type ReactNode } from "react"
+import * as Sentry from '@sentry/nextjs'
 import { StrapiProvider } from "@/lib/strapi"
 
 interface StrapiProviderWrapperProps {
@@ -38,10 +39,30 @@ export default function StrapiProviderWrapper({
           })
         }
 
-        // You can add error tracking here (e.g., Sentry)
-        // if (process.env.NODE_ENV === "production") {
-        //   Sentry.captureException(error)
-        // }
+        // Capture errors in Sentry (both development and production)
+        console.error('[StrapiProvider] Error caught:', {
+          message: error.message,
+          code: error.code,
+          statusCode: error.statusCode,
+          details: error.details,
+        });
+        
+        const eventId = Sentry.captureException(error, {
+          tags: {
+            component: 'StrapiProvider',
+            error_type: 'strapi_provider_error',
+          },
+          extra: {
+            message: error.message,
+            code: error.code,
+            statusCode: error.statusCode,
+            details: error.details,
+          },
+        });
+        
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[StrapiProvider] Sentry event ID:', eventId);
+        }
       }}
     >
       {children}
