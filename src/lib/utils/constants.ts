@@ -236,3 +236,30 @@ export const ELIGIBILITY_DEFAULT_VALUES = {
   familyCancerYourFamily: "",
   familyMembers: {},
 };
+
+export interface SocialMediaConfig {
+  defaultImage: string;
+  siteName: string;
+  siteUrl: string;
+  twitterHandle: string;
+  facebookAppId?: string;
+  linkedinCompanyId?: string;
+}
+
+export const DEFAULT_SOCIAL_CONFIG: SocialMediaConfig = {
+  defaultImage: "https://assets.viome.com/viome-strapi/uploads/1024x1024bb_16f1932f97.png",
+  siteName: "Viome",
+  siteUrl: "https://viome.com",
+  twitterHandle: "@MyViome",
+  facebookAppId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
+  linkedinCompanyId: process.env.NEXT_PUBLIC_LINKEDIN_COMPANY_ID,
+};
+
+// Default og:image configuration for all pages
+export const DEFAULT_OG_IMAGE = {
+  url: DEFAULT_SOCIAL_CONFIG.defaultImage,
+  width: 1200,
+  height: 630,
+  alt: "Viome - At-home Microbiome Health Tests",
+  type: "image/png" as const,
+};

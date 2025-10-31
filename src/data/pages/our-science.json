@@ -6,7 +6,8 @@
     "openGraph": {
       "title": "Our Science | Viome",
       "description": "Learn about the science behind CancerDetect and our innovative approach to cancer detection.",
-      "url": "https://cancerdetect.viome.com/our-science"
+      "url": "https://cancerdetect.viome.com/our-science",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp"
     }
   },
   "layout": {

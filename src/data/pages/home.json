@@ -6,7 +6,7 @@
     "openGraph": {
       "title": "CancerDetect® Oral Cancer Test Kit & Throat Cancer Test at Home | Viome",
       "description": "Advanced cancer detection application using cutting-edge technology",
-      "image": "/hero-image.png"
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_2_FBI_Product_Image_7_f2b92373e7.webp"
     }
   },
   "layout": {

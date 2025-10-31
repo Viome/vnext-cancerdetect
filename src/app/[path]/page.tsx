@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
 import { getPageBySlug, getAllPageSlugs } from "@/lib/content"
 import { renderSection } from "@/lib/registry"
+import { DEFAULT_OG_IMAGE } from "@/lib/utils/constants"
 
 interface PageProps {
   params: Promise<{ path: string }>
@@ -38,6 +39,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
+  // Get OG image from page JSON, fallback to default if not present
+  const ogImageUrl = page.seo?.openGraph?.image || DEFAULT_OG_IMAGE.url
+  const ogImage = {
+    url: ogImageUrl,
+    width: 1200,
+    height: 630,
+    alt: page.seo?.title || DEFAULT_OG_IMAGE.alt,
+  }
+
   return {
     title: page.seo?.title || page.slug,
     description: page.seo?.description || "",
@@ -45,7 +55,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: page.seo.openGraph.title || page.seo?.title || page.slug,
       description: page.seo.openGraph.description || page.seo?.description || "",
       url: page.seo.openGraph.url,
-    } : undefined,
+      images: [ogImage],
+    } : {
+      title: page.seo?.title || page.slug,
+      description: page.seo?.description || "",
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.seo?.title || page.slug,
+      description: page.seo?.description || "",
+      images: [ogImageUrl],
+    },
   }
 }
 

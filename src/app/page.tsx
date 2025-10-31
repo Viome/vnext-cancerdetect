@@ -4,6 +4,7 @@ import { getPageBySlug } from "@/lib/content"
 import { renderSection } from "@/lib/registry"
 import NavbarConfigClient from "@/components/Navbar/NavbarConfigClient"
 import SiteBannerConfigClient from "@/components/SiteBannerConfigClient"
+import { DEFAULT_OG_IMAGE } from "@/lib/utils/constants"
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPageBySlug("home")
@@ -15,12 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
     }
   }
 
-  const ogImageUrl = "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_2_FBI_Product_Image_7_f2b92373e7.webp"
+  // Get OG image from page JSON, fallback to default if not present
+  const ogImageUrl = page.seo?.openGraph?.image || DEFAULT_OG_IMAGE.url
   const ogImage = {
     url: ogImageUrl,
     width: 1200,
     height: 630,
-    alt: page.seo?.title || "Home | Cancer Detection App",
+    alt: page.seo?.title || DEFAULT_OG_IMAGE.alt,
   }
 
   return {

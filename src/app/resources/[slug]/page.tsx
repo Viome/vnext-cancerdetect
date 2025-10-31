@@ -12,71 +12,72 @@ import BlogBottom from "@/components/blog/BlogBottom";
 import BlogBreadcrumb from "@/components/blog/BlogBreadcrumb";
 import ProgressBar from "@/components/blog/ProgressBar";
 import BlogHeader from "@/components/blog/BlogHeader";
+import { DEFAULT_OG_IMAGE } from "@/lib/utils/constants";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-//   const { slug } = await params
-//   const item = await getBlogBySlug(slug)
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const item = await getBlogBySlug(slug)
 
-//   if (!item) {
-//     return {
-//       title: "Blog Post Not Found | Viome",
-//       description: "The blog post you're looking for doesn't exist.",
-//       alternates: {
-//         canonical: `https://viome.com/blog/${slug}`,
-//       },
-//       openGraph: {
-//         images: [DEFAULT_OG_IMAGE],
-//         url: `https://viome.com/blog/${slug}`,
-//       },
-//       twitter: {
-//         card: "summary_large_image",
-//         images: [DEFAULT_OG_IMAGE.url],
-//       },
-//     }
-//   }
+  if (!item) {
+    return {
+      title: "Blog Post Not Found | Viome",
+      description: "The blog post you're looking for doesn't exist.",
+      alternates: {
+        canonical: `https://viome.com/blog/${slug}`,
+      },
+      openGraph: {
+        images: [DEFAULT_OG_IMAGE],
+        url: `https://viome.com/blog/${slug}`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        images: [DEFAULT_OG_IMAGE.url],
+      },
+    }
+  }
 
-//   const blog: any = (item as any).attributes ?? item
-//   const metaDescription = stripHtml(blog?.metaDescription || "").result
-//   const featuredImage = blog.featuredImage?.data?.attributes || blog.featuredImage
-//   const featuredImageSrc = featuredImage?.formats?.large?.url || featuredImage?.url
-//   const cms = process.env.NEXT_PUBLIC_CMS_URL || "https://cms.viome.com"
+  const blog: any = (item as any).attributes ?? item
+  const metaDescription = stripHtml(blog?.metaDescription || "").result
+  const featuredImage = blog.featuredImage?.data?.attributes || blog.featuredImage
+  const featuredImageSrc = featuredImage?.formats?.large?.url || featuredImage?.url
+  const cms = process.env.NEXT_PUBLIC_CMS_URL || "https://cms.viome.com"
 
-//   const ogImage = featuredImageSrc
-//     ? {
-//         url: featuredImageSrc.startsWith("http") ? featuredImageSrc : `${cms}${featuredImageSrc}`,
-//         width: 1200,
-//         height: 630,
-//         alt: blog.title,
-//       }
-//     : DEFAULT_OG_IMAGE
+  const ogImage = featuredImageSrc
+    ? {
+        url: featuredImageSrc.startsWith("http") ? featuredImageSrc : `${cms}${featuredImageSrc}`,
+        width: 1200,
+        height: 630,
+        alt: blog.title,
+      }
+    : DEFAULT_OG_IMAGE
 
-//   return {
-//     metadataBase: new URL('https://viome.com'),
-//     title: `${blog.title} | Viome Blog`,
-//     description: metaDescription || `Read ${blog.title} on the Viome blog.`,
-//     alternates: {
-//       canonical: `https://viome.com/blog/${slug}`,
-//     },
-//     openGraph: {
-//       title: blog.title,
-//       description: metaDescription || `Read ${blog.title} on the Viome blog.`,
-//       images: [ogImage],
-//       type: "article",
-//       url: `https://viome.com/blog/${slug}`,
-//       siteName: "Viome",
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: blog.title,
-//       description: metaDescription || `Read ${blog.title} on the Viome blog.`,
-//       images: [ogImage.url],
-//     },
-//   }
-// }
+  return {
+    metadataBase: new URL('https://viome.com'),
+    title: `${blog.title} | Viome Blog`,
+    description: metaDescription || `Read ${blog.title} on the Viome blog.`,
+    alternates: {
+      canonical: `https://viome.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: blog.title,
+      description: metaDescription || `Read ${blog.title} on the Viome blog.`,
+      images: [ogImage],
+      type: "article",
+      url: `https://viome.com/blog/${slug}`,
+      siteName: "Viome",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: metaDescription || `Read ${blog.title} on the Viome blog.`,
+      images: [ogImage.url],
+    },
+  }
+}
 
 export default async function BlogDetailPage({ params }: PageProps) {
   const { slug } = await params;

@@ -2,10 +2,22 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import EligibilityWrapper from '@/components/EligibilityWrapper';
 import Spinner from '@/components/Spinner';
+import { DEFAULT_OG_IMAGE } from '@/lib/utils/constants';
 
 export const metadata: Metadata = {
     title: 'CD Eligibility',
     description: 'Complete your eligibility screening',
+    openGraph: {
+        title: 'CD Eligibility',
+        description: 'Complete your eligibility screening',
+        images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'CD Eligibility',
+        description: 'Complete your eligibility screening',
+        images: [DEFAULT_OG_IMAGE.url],
+    },
 };
 
 export default function EligibilityPage() {

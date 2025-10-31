@@ -1,4 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
+import type { Metadata } from 'next';
+import { DEFAULT_OG_IMAGE } from '@/lib/utils/constants';
+
+export const metadata: Metadata = {
+    title: 'Secondary Care - CancerDetect',
+    description: 'Secondary care follow-up information for CancerDetect test results.',
+    openGraph: {
+        title: 'Secondary Care - CancerDetect',
+        description: 'Secondary care follow-up information for CancerDetect test results.',
+        images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Secondary Care - CancerDetect',
+        description: 'Secondary care follow-up information for CancerDetect test results.',
+        images: [DEFAULT_OG_IMAGE.url],
+    },
+};
+
 export default function SecondaryCare() {
     return (
         <div className="m-auto max-w-[46rem] pl-4 pr-4 pt-32">
