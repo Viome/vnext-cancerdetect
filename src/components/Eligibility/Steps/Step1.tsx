@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import Field from '@/components/Form/Field';
 import PhoneNumberInput from '@/components/Form/PhoneNumberInput';
+import Modal from '@/components/Modal';
 import { SUPPORT_PAGE_URL } from '@/lib/utils/constants';
 import { ageMajorityPerState } from '@/lib/utils/eligibilityFlow';
 import { calculateAge } from '@/lib/utils/helpers';
@@ -133,17 +134,47 @@ export default function Step1() {
                 />
 
                 <div className="mb-4">
-                    <a
-                        href={SUPPORT_PAGE_URL.contactInformation}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center text-sm text-gray-700 hover:text-blue-600"
-                    >
-                        Why can't I select my state or province?
-                        <span className="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-800 text-white text-xs">
-                            ?
-                        </span>
-                    </a>
+                    <Modal
+                        clickText={
+                            <div className="flex items-center text-sm text-gray-700 hover:text-blue-600 cursor-pointer">
+                                Why can't I select my state or province?
+                                <span className="ml-2 inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-800 text-white text-xs">
+                                    ?
+                                </span>
+                            </div>
+                        }
+                        modalContent={
+                            <div>
+                                <h2 className="text-lg font-semibold mb-2">Why can't I select my state or province?</h2>
+                                <p>
+                                    Currently, Viome is unable to offer
+                                    services in your area. We&apos;re
+                                    diligently working to arrange our
+                                    licensing requirements necessary to
+                                    process samples.
+                                </p>
+
+                                <p className="mt-2">
+                                    Please{' '}
+                                    <a
+                                        target="_blank"
+                                        title="Login"
+                                        href={SUPPORT_PAGE_URL.contactInformation}
+                                        className="underline"
+                                        rel="noreferrer"
+                                    >
+                                        contact support
+                                    </a>{' '}
+                                    for additional assistance.
+                                </p>
+                            </div>
+                        }
+                        size="md"
+                        variant="centered"
+                        theme="light"
+                        showHeader={false}
+                        showFooter={false}
+                    />
                 </div>
 
                 <Field
