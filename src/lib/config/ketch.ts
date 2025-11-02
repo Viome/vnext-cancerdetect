@@ -23,7 +23,7 @@ export const KETCH_CONFIG = {
 
   // Script loading configuration
   script: {
-    strategy: 'beforeInteractive' as const,
+    strategy: 'afterInteractive' as const,
     defer: true,
     async: true,
   },

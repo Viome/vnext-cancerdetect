@@ -104,6 +104,8 @@ export default function MetadataHead({
       <link rel="dns-prefetch" href="//connect.facebook.net" />
       <link rel="dns-prefetch" href="//platform.twitter.com" />
       <link rel="dns-prefetch" href="//platform.linkedin.com" />
+      <link rel="dns-prefetch" href="//global.ketchcdn.com" />
+      <link rel="preconnect" href="https://global.ketchcdn.com" crossOrigin="" />
 
       <Script
         src="https://cdn.userway.org/widget.js"
