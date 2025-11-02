@@ -380,7 +380,7 @@ export default function Footer({ data, compactFooter = false }: FooterProps) {
               >
                 <div className={classNames("h-8 w-8")}>
                   <Image
-                    src="https://strapi.azure.viome.com/viome-strapi/uploads/userway_icon_8d84185d11.svg"
+                    src="https://assets.viome.com/viome-strapi/uploads/userway_icon_8d84185d11.svg"
                     alt="userWay accessibility icon"
                     loading="lazy"
                     width={32}

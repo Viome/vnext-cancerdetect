@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: "Blog Post Not Found | Viome",
       description: "The blog post you're looking for doesn't exist.",
       alternates: {
-        canonical: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
+        canonical: `https://cancerdetect.viome.com/resources/${slug}`,
       },
       openGraph: {
         images: [DEFAULT_OG_IMAGE],
-        url: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
+        url: `https://cancerdetect.viome.com/resources/${slug}`,
       },
       twitter: {
         card: "summary_large_image",
@@ -60,22 +60,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const publishedTime = publishedDate ? new Date(publishedDate).toISOString() : undefined
   const modifiedTime = blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined
 
+  // Extract authors for Open Graph metadata
+  const authorsData = blog.authors?.data || blog.authors || []
+  const authors = authorsData
+    .map((author: any) => {
+      // Handle different author data structures
+      const authorName = author?.attributes?.name || author?.name || author
+      return typeof authorName === 'string' ? authorName : null
+    })
+    .filter((name: string | null): name is string => name !== null)
+
   return {
-    metadataBase: new URL('https://cancerdetect.stage.azure.viome.com/'),
+    metadataBase: new URL('https://cancerdetect.viome.com/'),
     title: `${blog.title} | Viome Blog`,
     description: metaDescription || `Read ${blog.title} on the Viome blog.`,
     alternates: {
-      canonical: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
+      canonical: `https://cancerdetect.viome.com/resources/${slug}`,
     },
     openGraph: {
       title: blog.title,
       description: metaDescription || `Read ${blog.title} on the Viome blog.`,
       images: [ogImage],
       type: "article",
-      url: `https://cancerdetect.stage.azure.viome.com/resources/${slug}`,
+      url: `https://cancerdetect.viome.com/resources/${slug}`,
       siteName: "Cancerdetect",
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
+      ...(authors.length > 0 && { authors }),
     },
     twitter: {
       card: "summary_large_image",

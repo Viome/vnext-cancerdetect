@@ -14,8 +14,8 @@ export const metadata = createMetadata({
   title: "CancerDetect® Oral Cancer Test Kit & Throat Cancer Test at Home",
   description: "Viome's CancerDetect Oral & Throat is the first early detection throat and oral cancer test kit made accessible in the convenience of one's home.",
   themeMode: "light",
-  siteUrl: "https://www.viome.com",
-  sitemapUrl: "https://www.viome.com/sitemap.xml",
+  siteUrl: "https://cancerdetect.viome.com",
+  sitemapUrl: "https://cancerdetect.viome.com/sitemap.xml",
   manifestUrl: "/site.webmanifest",
   maskIconColor: "#6d4ab0"
 })
