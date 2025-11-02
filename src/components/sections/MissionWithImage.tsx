@@ -26,7 +26,7 @@ export default function MissionWithImage({
         {/* Left Column - Content */}
         <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-20 order-1 lg:order-1">
           <div className="max-w-xl">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-medium italic leading-tight text-white mb-8 lg:mb-10">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl !font-tiempos font-medium italic leading-tight text-white mb-8 lg:mb-10">
               {title}
             </h2>
             

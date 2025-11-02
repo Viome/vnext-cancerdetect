@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
     return (
-        <div className="flex min-h-[80vh] items-center justify-center bg-[#F5F5F5]">
+        <div className="flex min-h-[80vh] items-center justify-center bg-[#F5F5F5] py-8 px-4 md:px-0">
             <div className="w-full max-w-2xl">
                 <EmailValidationWrapper />
             </div>

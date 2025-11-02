@@ -17,7 +17,7 @@
     {
       "sectionId": "our-science-mission",
       "type": "mission_statement",
-      "text": "Our mission is to digitize, decode, and decipher human biology for the prevention, early diagnosis, and treatment of <em>chronic diseases and cancer.</em>",
+      "text": "Our mission is to digitize, decode, and decipher human biology for the prevention, early diagnosis, and treatment of <span class='!font-tiempos italic'>chronic diseases and cancer.</span>",
       "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_6_54_93a5d8420d.webp",
       "imageAlt": "Hand holding medical sample",
       "wrapperStyle": {
@@ -44,51 +44,6 @@
     {
       "sectionId": "our-science-approach",
       "type": "science_approach",
-      "wrapperStyle": {
-        "background": "bg-white",
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-0",
-        "useContainerWidth": true
-      }
-    },
-    {
-      "sectionId": "viome-study-initiatives",
-      "type": "viome_study_initiatives",
-      "heading": "VIOME STUDY INITIATIVES",
-      "title": "Cancer Research",
-      "description": "In addition to head and neck cancers, Viome has an extensive ongoing clinical study pipeline in gastrointestinal cancers including colorectal cancer, pancreatic, ovarian, cervical, and biliary cancers. We currently have cancer research trials that use saliva, blood, stool, and tumor biopsies to understand the onset and progression of cancer. By identifying the biomarkers that lead to the development of cancers, Viome can optimize early detection and identify the right therapeutic targets.",
-      "wrapperStyle": {
-        "background": "#f4f4f5",
-        "padding": "py-16 sm:py-20 lg:py-24",
-        "spacing": "mb-0",
-        "useContainerWidth": true
-      }
-    },
-    {
-      "sectionId": "our-science-cancer-diagnostics",
-      "type": "approach_to_diagnostics",
-      "title": "Our Approach to Cancer Diagnostics",
-      "description": "Viome is committed to identifying the molecular determinants of cancer by systematically evaluating the host and/or microbial activities involved in disease onset and progression.",
-      "steps": [
-        {
-          "stepNumber": 1,
-          "content": "Carefully define the disease and non-disease cohorts based on all available clinical meta-data.",
-          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp",
-          "imageAlt": "Cancer cells under microscope"
-        },
-        {
-          "stepNumber": 2,
-          "content": "Analyze RNA samples from disease and non-disease cohorts using Viome's proprietary metatranscriptomic sequencing technology.",
-          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science_ab4ea103ff.webp",
-          "imageAlt": "RNA sequencing analysis"
-        },
-        {
-          "stepNumber": 3,
-          "content": "Apply machine learning algorithms to identify molecular signatures that distinguish disease from non-disease states.",
-          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_4728ede90d1f38e6f71eb19e541d908b_ac0d64b47e.webp",
-          "imageAlt": "Machine learning analysis visualization"
-        }
-      ],
       "wrapperStyle": {
         "background": "bg-white",
         "padding": "py-16 sm:py-20 lg:py-24",
@@ -148,6 +103,38 @@
       }
     },
     {
+      "sectionId": "our-science-cancer-diagnostics",
+      "type": "approach_to_diagnostics",
+      "title": "Our Approach to Cancer Diagnostics",
+      "description": "Viome is committed to identifying the molecular determinants of cancer by systematically evaluating the host and/or microbial activities involved in disease onset and progression.",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "content": "Carefully define the disease and non-disease cohorts based on all available clinical meta-data.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp",
+          "imageAlt": "Cancer cells under microscope"
+        },
+        {
+          "stepNumber": 2,
+          "content": "Analyze RNA samples from disease and non-disease cohorts using Viome's proprietary metatranscriptomic sequencing technology.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science_ab4ea103ff.webp",
+          "imageAlt": "RNA sequencing analysis"
+        },
+        {
+          "stepNumber": 3,
+          "content": "Apply machine learning algorithms to identify molecular signatures that distinguish disease from non-disease states.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_4728ede90d1f38e6f71eb19e541d908b_ac0d64b47e.webp",
+          "imageAlt": "Machine learning analysis visualization"
+        }
+      ],
+      "wrapperStyle": {
+        "background": "bg-white",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
+      }
+    },
+    {
       "sectionId": "our-science-product",
       "type": "product_showcase",
       "topImage": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_CD_4_1_7ad9814a27.webp",
@@ -181,26 +168,13 @@
       }
     },
     {
-      "sectionId": "our-science-mission-image",
-      "type": "mission_with_image",
-      "title": "Our Mission",
-      "description": "We founded Viome Life Sciences with one goal in mind: to tackle the epidemic of chronic diseases, cancer, and aging and empower people with the information they need to live a disease-free life.",
-      "buttonText": "Learn more about our work at Viome Life Science",
-      "buttonHref": "https://www.viome.com",
-      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Image_dbf2c6af9d.webp",
-      "imageAlt": "Person looking into the distance",
+      "sectionId": "viome-study-initiatives",
+      "type": "viome_study_initiatives",
+      "heading": "VIOME STUDY INITIATIVES",
+      "title": "Cancer Research",
+      "description": "In addition to head and neck cancers, Viome has an extensive ongoing clinical study pipeline in gastrointestinal cancers including colorectal cancer, pancreatic, ovarian, cervical, and biliary cancers. We currently have cancer research trials that use saliva, blood, stool, and tumor biopsies to understand the onset and progression of cancer. By identifying the biomarkers that lead to the development of cancers, Viome can optimize early detection and identify the right therapeutic targets.",
       "wrapperStyle": {
-        "background": "bg-black",
-        "padding": "py-0",
-        "spacing": "mb-0",
-        "useContainerWidth": false
-      }
-    },
-    {
-      "sectionId": "our-science-work-with-us",
-      "type": "work_with_us",
-      "wrapperStyle": {
-        "background": "bg-gray-50",
+        "background": "#f4f4f5",
         "padding": "py-16 sm:py-20 lg:py-24",
         "spacing": "mb-0",
         "useContainerWidth": true
@@ -214,6 +188,22 @@
         "padding": "py-16 sm:py-20 lg:py-24",
         "spacing": "mb-0",
         "useContainerWidth": true
+      }
+    },
+    {
+      "sectionId": "our-science-mission-image",
+      "type": "mission_with_image",
+      "title": "Our Mission",
+      "description": "We founded Viome Life Sciences with one goal in mind: to tackle the epidemic of chronic diseases, cancer, and aging and empower people with the information they need to live a disease-free life.",
+      "buttonText": "Learn more about our work at Viome Life Science",
+      "buttonHref": "https://www.viomelifesciences.com",
+      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Image_dbf2c6af9d.webp",
+      "imageAlt": "Person looking into the distance",
+      "wrapperStyle": {
+        "background": "bg-black",
+        "padding": "py-0",
+        "spacing": "mb-0",
+        "useContainerWidth": false
       }
     },
     {
@@ -259,6 +249,16 @@
         "padding": "py-16 sm:py-20",
         "background": "bg-white",
         "spacing": "mb-0"
+      }
+    },
+    {
+      "sectionId": "our-science-work-with-us",
+      "type": "work_with_us",
+      "wrapperStyle": {
+        "background": "bg-gray-50",
+        "padding": "py-16 sm:py-20 lg:py-24",
+        "spacing": "mb-0",
+        "useContainerWidth": true
       }
     },
     {

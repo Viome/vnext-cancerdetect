@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function SecondaryCare() {
     return (
-        <div className="m-auto max-w-[46rem] pl-4 pr-4 pt-32">
+        <div className="m-auto max-w-[46rem] pl-4 pr-4 py-20">
             <div className="flex flex-col items-start gap-4">
                 <div className="mb-4">
                     <h1 className="text-[1.8rem] leading-[2.5rem]">
@@ -28,7 +28,7 @@ export default function SecondaryCare() {
                     </h1>
                 </div>
                 <div className="mb-1">
-                    <h2 className="text-[1.4rem] leading-5">
+                    <h2 className="text-[1.4rem]">
                         Secondary care follow-up information if test is
                         DETECTED
                     </h2>

@@ -48,7 +48,7 @@ export default function PublicationsPartners({ wrapperStyle }: PublicationsPartn
             </p>
             
             <Link
-              href="https://www.nature.com/articles/s41525-021-00257-y"
+              href="https://www.viomelifesciences.com/publications"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-base sm:text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors group"

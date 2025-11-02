@@ -15,17 +15,20 @@ export default function MissionStatement({
   imageAlt = 'Mission statement image'
 }: MissionStatementProps) {
   return (
-    <div id={sectionId} className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-      {/* Left Column - Text */}
-      <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-24 order-2 lg:order-1">
-        <p 
+    <div
+      id={sectionId}
+      className="grid grid-cols-1 lg:grid-cols-2 gap-0"
+    >
+      {/* Text on top for mobile, left for tablet/desktop (order-1 everywhere except lg+) */}
+      <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-24 order-1 lg:order-1">
+        <p
           className="typography-headline2"
           dangerouslySetInnerHTML={{ __html: text }}
         />
       </div>
 
-      {/* Right Column - Image */}
-      <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:min-h-[600px] order-1 lg:order-2">
+      {/* Image second on mobile, right on tablet/desktop */}
+      <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:min-h-[600px] order-2 lg:order-2">
         <CDImage
           src={image}
           alt={imageAlt}
@@ -39,4 +42,3 @@ export default function MissionStatement({
     </div>
   )
 }
-

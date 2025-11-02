@@ -24,6 +24,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "assets.viome.com",
+      },
+      {
+        protocol: "https",
         hostname: "cms.viome.com",
       },
       {

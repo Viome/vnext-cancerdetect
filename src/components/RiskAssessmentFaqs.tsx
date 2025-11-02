@@ -644,7 +644,7 @@ export default function RiskAssessmentFaqs({
     ];
 
     return (
-        <div className="bg-[#F4F4F5] px-10 py-20">
+        <div className="bg-[#F4F4F5] px-0 md:px-10 py-20">
             <h4 className="font-TWKLausanne py-10 text-center text-[2.5rem] font-light">
                 Frequently Asked Questions
             </h4>

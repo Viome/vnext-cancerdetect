@@ -3,6 +3,7 @@
 import { useState } from "react"
 import SectionWrapper from "@/components/SectionWrapper"
 import Modal from "@/components/Modal"
+import CDImage from "@/components/CDImage"
 
 interface ScienceApproachProps {
   wrapperStyle?: {
@@ -140,6 +141,16 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
         <div className="bg-gradient-to-br from-teal-800 to-teal-700 text-white p-12 lg:p-16">
           <div className="space-y-12">
             {/* Top Content */}
+            <div className="w-full flex justify-center mb-10">
+            {activeTab === 3 && 
+              <img
+                src="https://strapi.azure.viome.com/viome-strapi/uploads/imgi_9_Group_1623_1_414853b898.webp"
+                alt="Science Approach Illustration"
+                className="max-w-full h-auto"
+                style={{ maxHeight: 220 }}
+              />
+            }
+            </div>
             {tabs[activeTab].content.leftDescription || tabs[activeTab].content.rightDescription ? (
               <div className={`grid grid-cols-1 ${tabs[activeTab].content.leftDescription || activeTab === 2 || activeTab === 3 ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} ${activeTab === 2 || activeTab === 3 ? 'gap-6' : 'gap-12'}`}>
                 {tabs[activeTab].content.leftDescription ? (
@@ -249,6 +260,15 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
                   <h3 className="text-3xl font-bold mb-4">
                     {tab.content.mainTitle}
                   </h3>
+                  {index === 3 && (
+                    <div className="m-6">
+                      <img
+                        src="https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_default_7_d572218fb9.webp"
+                        alt="Metatranscriptomic technology"
+                        className="h-[50vh] m-auto"
+                      />
+                    </div>
+                  )}
                   <p className="text-base leading-relaxed mb-6">
                     {tab.content.leftDescription}
                   </p>
