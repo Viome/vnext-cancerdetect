@@ -24,6 +24,9 @@ export default function Step8() {
                         { value: 'no', text: 'No' },
                         { value: 'not_sure', text: 'Not Sure' },
                     ]}
+                    validate={{
+                        required: 'Please select an option',
+                    }}
                 />
             </div>
         </section>

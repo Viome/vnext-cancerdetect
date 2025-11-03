@@ -155,7 +155,7 @@ export default function Step9({ handleBackStep, formStep, completeFormStep }: St
                         type="button"
                         onClick={handleNext}
                         disabled={!canProceed}
-                        className="w-full bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        className="w-full bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
                     >
                         {internalStep === 0 ? 'Next' : 'Continue'}
                     </button>

@@ -1,4 +1,5 @@
 import Heading from "@/components/Heading";
+import ReferenceLinkedHTML from "@/components/ReferenceLinkedHTML";
 
 interface StatisticProps {
   percentage: string;
@@ -48,9 +49,11 @@ export default function StatisticsSection({
 
             <div className="border-b-[1px] border-white/30 "></div>
 
-            <p className="text-base md:text-lg font-twk-lausanne leading-relaxed mt-6">
-              {stat.description}
-            </p>
+            <ReferenceLinkedHTML 
+              html={stat.description} 
+              className="text-base md:text-lg font-twk-lausanne leading-relaxed mt-6"
+              tag="p"
+            />
           </div>
         ))}
       </div>

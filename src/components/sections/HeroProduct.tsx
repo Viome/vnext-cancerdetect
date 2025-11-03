@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import CDButton from "@/components/CDButton";
 import { useCancerDetectProduct } from "@/lib/hooks/useCancerDetectProduct";
+import ReferenceLinkedHTML from "@/components/ReferenceLinkedHTML";
 
 interface ChecklistItem {
   text: string;
@@ -326,9 +327,9 @@ export default function HeroProduct({
           </p>
         </div>
 
-        <div
+        <ReferenceLinkedHTML 
+          html={description} 
           className="text-base leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: description }}
         />
 
         {checklist && checklist.length > 0 && (
@@ -348,9 +349,8 @@ export default function HeroProduct({
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span
-                  className=""
-                  dangerouslySetInnerHTML={{ __html: item.text }}
+                <ReferenceLinkedHTML 
+                  html={item.text} 
                 />
               </li>
             ))}

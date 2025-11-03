@@ -508,7 +508,7 @@ export default function EligibilityWrapper() {
                                             formStep !== CONFIRMATION_DETAILS_STEP && (
                                                 <button
                                                     type="button"
-                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 cursor-pointer"
                                                     onClick={() => completeFormStep()}
                                                     disabled={!isValid}
                                                 >
@@ -520,7 +520,7 @@ export default function EligibilityWrapper() {
                                             <>
                                                 <button
                                                     type="button"
-                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 cursor-pointer"
                                                     disabled={
                                                         loading ||
                                                         !checkAllValuesComplete({
@@ -533,7 +533,7 @@ export default function EligibilityWrapper() {
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    className="bg-white text-black border-2 border-black px-6 py-3 rounded-lg"
+                                                    className="bg-white text-black border-2 border-black px-6 py-3 rounded-lg cursor-pointer"
                                                     onClick={() => setFormStep(PERSONAL_INFO_STEP)}
                                                 >
                                                     Edit Information

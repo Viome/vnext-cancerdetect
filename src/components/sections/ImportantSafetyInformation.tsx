@@ -1,6 +1,7 @@
 import React from 'react'
 import Heading from '@/components/Heading'
 import Link from 'next/link'
+import ReferenceLinkedHTML from '@/components/ReferenceLinkedHTML'
 
 export interface ImportantSafetyInformationProps {
   sectionId?: string
@@ -19,21 +20,21 @@ export default function ImportantSafetyInformation({
 }: ImportantSafetyInformationProps) {
   const renderContentWithLink = (text: string) => {
     if (!linkText || !linkHref) {
-      return <span>{text}</span>
+      return <ReferenceLinkedHTML html={text} />
     }
     
     const parts = text.split(linkText)
     
     if (parts.length === 1) {
-      return <span>{text}</span>
+      return <ReferenceLinkedHTML html={text} />
     }
     return (
       <>
-        <span>{parts[0]}</span>
+        <ReferenceLinkedHTML html={parts[0]} />
         <Link href={linkHref} className="underline hover:text-gray-700">
           {linkText}
         </Link>
-        <span>{parts[1]}</span>
+        <ReferenceLinkedHTML html={parts[1]} />
       </>
     )
   }

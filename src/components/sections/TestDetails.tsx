@@ -1,4 +1,5 @@
 import Heading from "@/components/Heading";
+import ReferenceLinkedHTML from "@/components/ReferenceLinkedHTML";
 
 interface TestDetailsProps {
   leftSection: {
@@ -62,9 +63,11 @@ export default function TestDetails({
             )}
 
             {item.note && (
-              <p className="text-sm md:text-base font-twk-lausanne mt-4">
-                {item.note}
-              </p>
+              <ReferenceLinkedHTML 
+                html={item.note} 
+                className="text-sm md:text-base font-twk-lausanne mt-4"
+                tag="p"
+              />
             )}
           </div>
         ))}

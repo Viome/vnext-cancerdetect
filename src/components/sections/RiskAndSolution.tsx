@@ -1,4 +1,5 @@
 import Heading from "@/components/Heading";
+import ReferenceLinkedHTML from "@/components/ReferenceLinkedHTML";
 
 interface ColumnContent {
   title: string;
@@ -33,7 +34,7 @@ export default function RiskAndSolution({
               className="flex items-start gap-3 typography-paragraph2"
             >
               <span className="flex-shrink-0 w-1.5 h-1.5 bg-black rounded-full mt-2.5"></span>
-              <span dangerouslySetInnerHTML={{ __html: point }} />
+              <ReferenceLinkedHTML html={point} />
             </li>
           ))}
         </ul>
@@ -54,7 +55,7 @@ export default function RiskAndSolution({
               className="flex items-start gap-3 typography-paragraph2"
             >
               <span className="flex-shrink-0 w-1.5 h-1.5 bg-black rounded-full mt-2.5"></span>
-              <span dangerouslySetInnerHTML={{ __html: point }} />
+              <ReferenceLinkedHTML html={point} />
             </li>
           ))}
         </ul>

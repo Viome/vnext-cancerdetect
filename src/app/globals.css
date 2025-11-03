@@ -674,6 +674,7 @@ body {
 
 html {
   /* Allow overscroll for swipe-to-back functionality */
+  scroll-behavior: smooth;
 }
 
 /* Set default font family for all text elements */

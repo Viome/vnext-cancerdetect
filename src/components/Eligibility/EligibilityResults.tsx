@@ -88,7 +88,7 @@ export default function EligibilityResults({
                         <button
                             type="button"
                             onClick={handleGoHome}
-                            className="block w-full bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 font-medium"
+                            className="block w-full bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 font-medium cursor-pointer"
                         >
                             Back to home
                         </button>
@@ -148,7 +148,7 @@ export default function EligibilityResults({
                     <button
                         type="button"
                         onClick={handleProceed}
-                        className="block w-full bg-black text-white px-6 py-3 rounded-lg font-medium text-lg"
+                        className="block w-full bg-black text-white px-6 py-3 rounded-lg font-medium text-lg cursor-pointer"
                     >
                         {isDentistOrder ? 'Complete Registration' : 'Order the test now'}
                     </button>
