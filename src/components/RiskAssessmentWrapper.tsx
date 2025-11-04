@@ -625,12 +625,14 @@ export default function RiskAssessmentWrapper({
                             onChange: any;
                             value: any;
                         }) => {
+                            const fieldId = `field-${question.name}`;
                             let componentToRender;
                             switch (question.component) {
                                 case 'Input':
                                     componentToRender = (
                                         <div>
                                             <Input
+                                                id={fieldId}
                                                 size="sm"
                                                 onValueChange={onChange}
                                                 color="default"
@@ -649,12 +651,14 @@ export default function RiskAssessmentWrapper({
                                     componentToRender = (
                                         <div>
                                             <RadioGroup
+                                                id={fieldId}
                                                 orientation="horizontal"
                                                 onChange={onChange}
                                                 value={value}
                                                 color="default"
                                                 classNames={{
-                                                    wrapper: "[&_*]:focus:outline-none [&_*]:focus-visible:outline-none",
+                                                    wrapper: "[&_*]:focus:outline-none [&_*]:focus-visible:outline-none gap-0",
+                                                    base: "gap-0",
                                                 }}
                                             >
                                                 {(question.answers ?? []).map(
@@ -684,15 +688,17 @@ export default function RiskAssessmentWrapper({
                                     componentToRender = (
                                         <div>
                                             <Select
+                                                id={fieldId}
                                                 placeholder="-- Select an option --"
                                                 onChange={onChange}
                                                 selectedKeys={
                                                     value ? [value] : []
                                                 }
                                                 classNames={{
-                                                    trigger: "border border-black rounded-none bg-white hover:bg-[rgb(252,252,252)] focus:outline-none focus-within:outline-none",
+                                                    trigger: "border border-black rounded-none bg-white hover:bg-[rgb(252,252,252)] focus:outline-none focus-within:outline-none relative",
                                                     popoverContent: "bg-white shadow-xl border border-gray-200",
                                                     listbox: "bg-white",
+                                                    selectorIcon: "!absolute !right-3",
                                                 }}
                                             >
                                                 {(question.answers ?? []).map(
@@ -730,7 +736,10 @@ export default function RiskAssessmentWrapper({
                         return (
                             <div key={question.name}>
                                 <div className="mb-10">
-                                    <label className="mb-2 flex flex-col items-start gap-1 md:flex-row md:gap-2">
+                                    <label 
+                                        className="mb-2 flex flex-col items-start gap-1 md:flex-row md:gap-2"
+                                        htmlFor={`field-${question.name}`}
+                                    >
                                         <div>
                                             <strong className="font-TWKLausanne text-[1.2rem] font-light leading-6 break-words">
                                                 {question.label}
