@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Explore comprehensive resources about oral health and throat cancer. Learn about prevention, early detection, and maintaining optimal oral health through expert articles and research-backed insights.",
       url: "/resources",
-      siteName: "Cancer Detect",
+      siteName: "cancerdetect.viome.com",
       type: "website",
       images: [DEFAULT_OG_IMAGE],
     },

@@ -248,7 +248,7 @@ export interface SocialMediaConfig {
 
 export const DEFAULT_SOCIAL_CONFIG: SocialMediaConfig = {
   defaultImage: "https://assets.viome.com/viome-strapi/uploads/1024x1024bb_16f1932f97.png",
-  siteName: "Viome",
+  siteName: "cancerdetect.viome.com",
   siteUrl: "https://cancerdetect.viome.com",
   twitterHandle: "@MyViome",
   facebookAppId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,

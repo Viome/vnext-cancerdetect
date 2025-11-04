@@ -33,7 +33,7 @@ export function createMetadata({
       title,
       description,
       url: siteUrl,
-      siteName: "Cancer Detection App",
+      siteName: "cancerdetect.viome.com",
     },
     twitter: {
       card: "summary_large_image",

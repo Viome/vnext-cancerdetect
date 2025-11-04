@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [ogImage],
       type: "article",
       url: `https://cancerdetect.viome.com/resources/${slug}`,
-      siteName: "Cancerdetect",
+      siteName: "cancerdetect.viome.com",
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       ...(authors.length > 0 && { authors }),
