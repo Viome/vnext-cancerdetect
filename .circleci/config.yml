@@ -119,6 +119,14 @@ commands:
         - run:
             name: Build app image
             command: |
+                # Set Dockerfile based on environment
+                if [ "<< parameters.environment >>" = "ST" ]; then
+                  rm .env.production
+                  cp .env.development .env.production
+                else
+                  rm .env.development
+                fi
+                
                 docker build --rm=false \
                   -t ${IMAGE_TAG} \
                   -f ./Dockerfile .
