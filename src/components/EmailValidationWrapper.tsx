@@ -209,7 +209,7 @@ export default function EmailValidationWrapper() {
                     <button
                         type="button"
                         className={classNames(
-                            'w-full rounded-lg bg-black px-6 py-3.5 text-base font-normal text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400',
+                            'cursor-pointer w-full rounded-lg bg-black px-6 py-3.5 text-base font-normal text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400',
                         )}
                         disabled={loading}
                         onClick={() => handleClickAcknowledgement()}
@@ -252,7 +252,7 @@ export default function EmailValidationWrapper() {
                                     <button
                                         type="submit"
                                         className={classNames(
-                                            'w-full rounded-lg bg-black px-6 py-3.5 text-base font-normal text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400',
+                                            'cursor-pointer w-full rounded-lg bg-black px-6 py-3.5 text-base font-normal text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400',
                                         )}
                                         disabled={loading}
                                     >

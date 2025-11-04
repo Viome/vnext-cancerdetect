@@ -89,6 +89,10 @@ export default function HeroProduct({
     const carousel = carouselRef.current;
     if (!carousel) return;
 
+    // Only listen to scroll events on mobile (horizontal scroll)
+    // Desktop uses drag-only navigation, no scroll
+    if (isDesktop) return;
+
     let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout;
 
@@ -97,17 +101,9 @@ export default function HeroProduct({
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        let newIndex;
-        
-        if (isDesktop) {
-          const scrollPosition = carousel.scrollTop;
-          const imageHeight = carousel.clientHeight;
-          newIndex = Math.round(scrollPosition / imageHeight);
-        } else {
-          const scrollPosition = carousel.scrollLeft;
-          const imageWidth = carousel.clientWidth;
-          newIndex = Math.round(scrollPosition / imageWidth);
-        }
+        const scrollPosition = carousel.scrollLeft;
+        const imageWidth = carousel.clientWidth;
+        const newIndex = Math.round(scrollPosition / imageWidth);
         
         const clampedIndex = Math.max(
           0,
@@ -131,13 +127,9 @@ export default function HeroProduct({
   const scrollToImage = (index: number) => {
     setSelectedImageIndex(index);
     if (carouselRef.current) {
-      if (isDesktop) {
-        const imageHeight = carouselRef.current.clientHeight;
-        carouselRef.current.scrollTo({
-          top: imageHeight * index,
-          behavior: "smooth",
-        });
-      } else {
+      // On desktop, we don't use scroll - images are positioned via transform
+      // On mobile, use horizontal scroll
+      if (!isDesktop) {
         const imageWidth = carouselRef.current.clientWidth;
         carouselRef.current.scrollTo({
           left: imageWidth * index,
@@ -274,7 +266,7 @@ export default function HeroProduct({
         {/* Main Image Carousel */}
         <div
           ref={carouselRef}
-          className="relative w-full aspect-square overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto snap-x lg:snap-y snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-x lg:touch-pan-y flex lg:flex-col flex-row lg:block"
+          className="relative w-full aspect-square overflow-x-auto lg:overflow-hidden snap-x snap-mandatory scrollbar-hide cursor-grab active:cursor-grabbing touch-pan-x flex lg:flex-col flex-row lg:block"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -287,20 +279,30 @@ export default function HeroProduct({
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
         >
-          {displayImages.map((image, index) => (
-            <div
-              key={index}
-              className="relative w-full h-full flex-shrink-0 snap-start snap-always bg-gradient-to-br from-teal-700 to-teal-600"
-            >
-              <Image
-                src={image}
-                alt={`${title} - View ${index + 1}`}
-                fill
-                className="object-contain"
-                priority={index === 0}
-              />
-            </div>
-          ))}
+          <div
+            className="flex lg:flex-col flex-row w-full h-full select-none"
+            style={{
+              ...(isDesktop && {
+                transform: `translateY(-${selectedImageIndex * 100}%)`,
+                transition: isDragging.current ? 'none' : 'transform 0.3s ease',
+              }),
+            }}
+          >
+            {displayImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative w-full h-full flex-shrink-0 snap-start snap-always bg-gradient-to-br from-teal-700 to-teal-600"
+              >
+                <Image
+                  src={image}
+                  alt={`${title} - View ${index + 1}`}
+                  fill
+                  className="object-contain"
+                  priority={index === 0}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

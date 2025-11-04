@@ -508,9 +508,10 @@ export default function EligibilityWrapper() {
                                             formStep !== CONFIRMATION_DETAILS_STEP && (
                                                 <button
                                                     type="button"
-                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 cursor-pointer"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
                                                     onClick={() => completeFormStep()}
                                                     disabled={!isValid}
+                                                    style={{ cursor: !isValid ? 'not-allowed' : 'pointer' }}
                                                 >
                                                     Next
                                                 </button>
@@ -520,7 +521,7 @@ export default function EligibilityWrapper() {
                                             <>
                                                 <button
                                                     type="button"
-                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 cursor-pointer"
+                                                    className="bg-black text-white px-6 py-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
                                                     disabled={
                                                         loading ||
                                                         !checkAllValuesComplete({
@@ -528,6 +529,7 @@ export default function EligibilityWrapper() {
                                                         })
                                                     }
                                                     onClick={() => handleFormSubmit()}
+                                                    style={{ cursor: (loading || !checkAllValuesComplete({ values: watch() as any })) ? 'not-allowed' : 'pointer' }}
                                                 >
                                                     My Information is Correct
                                                 </button>
