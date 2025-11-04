@@ -20,7 +20,7 @@ export default function SignalInNoise({
         <div id={sectionId} className="flex flex-col">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-16">
                 <div>
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-medium leading-tight text-white">
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-light leading-tight text-white">
                         {title}
                     </h2>
                 </div>

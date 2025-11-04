@@ -43,7 +43,7 @@ export default function ProductShowcase({
           {/* Left Column - Title */}
           <div>
             <h2 
-              className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-medium leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-light leading-tight"
               dangerouslySetInnerHTML={{ __html: title }}
             />
           </div>

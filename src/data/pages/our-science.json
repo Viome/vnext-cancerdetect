@@ -111,19 +111,19 @@
         {
           "stepNumber": 1,
           "content": "Carefully define the disease and non-disease cohorts based on all available clinical meta-data.",
-          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_4728ede90d1f38e6f71eb19e541d908b_ac0d64b47e.webp",
           "imageAlt": "Cancer cells under microscope"
         },
         {
           "stepNumber": 2,
-          "content": "Analyze RNA samples from disease and non-disease cohorts using Viome's proprietary metatranscriptomic sequencing technology.",
+          "content": "Systematically analyze those cohorts to identify a molecular signature, typically consisting of both human and microbial molecular features, that distinguishes the disease cohort from the non-disease cohort.",
           "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science_ab4ea103ff.webp",
           "imageAlt": "RNA sequencing analysis"
         },
         {
           "stepNumber": 3,
-          "content": "Apply machine learning algorithms to identify molecular signatures that distinguish disease from non-disease states.",
-          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_4728ede90d1f38e6f71eb19e541d908b_ac0d64b47e.webp",
+          "content": "Validate the discovered molecular signature using an unseen independent cohort that includes clinically adjudicated meta-data.",
+          "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_science2_2035dae923.webp",
           "imageAlt": "Machine learning analysis visualization"
         }
       ],
@@ -210,7 +210,6 @@
       "sectionId": "our-science-faq",
       "type": "faq_section",
       "title": "FAQs",
-      "image": "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_27_CD_4_4_8fc9cbd423.webp",
       "theme": "dark",
       "faqs": [
         {

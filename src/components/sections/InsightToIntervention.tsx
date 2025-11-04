@@ -30,7 +30,7 @@ export default function InsightToIntervention({
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-12 lg:mb-16">
           <div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-twk-lausanne font-medium leading-tight">
+            <h2 className="typography-display2 font-light leading-tight">
               {mainTitle}
             </h2>
           </div>
@@ -47,7 +47,7 @@ export default function InsightToIntervention({
           {columns.map((column, index) => (
             <div key={index} className="flex flex-col">
               <div className="mb-6">
-                <h3 className="text-sm sm:text-base font-twk-lausanne font-bold tracking-wider mb-4">
+                <h3 className="text-sm sm:text-base font-twk-lausanne font-light tracking-wider mb-4">
                   {column.title}
                 </h3>
                 <div className="w-full h-[3px] bg-[#00a86b]" />

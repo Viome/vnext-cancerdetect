@@ -57,7 +57,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({
           </div>
         </div>
       )}
-      <div className="max-w-4xl mx-auto pt-[2rem] md:pt-[2.5rem] lg:pt-[5rem]">
+      <div className="max-w-5xl mx-auto pt-[2rem] md:pt-[2.5rem] lg:pt-[5rem]">
         {title && (
           <h2 className={`typography-headline1 mb-8 ${textColor}`}>{title}</h2>
         )}

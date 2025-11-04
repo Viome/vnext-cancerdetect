@@ -16,15 +16,15 @@ interface PublicationsPartnersProps {
 export default function PublicationsPartners({ wrapperStyle }: PublicationsPartnersProps) {
   const partnerLogos = [
     {
-      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_f30d4e6298.webp",
+      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_219a73467d.webp",
       alt: "Queensland University of Technology"
     },
     {
-      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_637cede4ec.webp",
+      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_f30d4e6298.webp",
       alt: "Griffith University"
     },
     {
-      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_219a73467d.webp",
+      url: "https://strapi.azure.viome.com/viome-strapi/uploads/imgi_1_Black_637cede4ec.webp",
       alt: "New York Medical College"
     }
   ]
@@ -34,7 +34,7 @@ export default function PublicationsPartners({ wrapperStyle }: PublicationsPartn
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
         {/* Publications Section */}
         <div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-8">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-8">
             Publications
           </h2>
           
@@ -44,7 +44,7 @@ export default function PublicationsPartners({ wrapperStyle }: PublicationsPartn
             </h3>
             
             <p className="text-base sm:text-lg text-gray-700">
-              NRJ Genomic Medicine
+              NPJ Genomic Medicine
             </p>
             
             <Link
@@ -73,7 +73,7 @@ export default function PublicationsPartners({ wrapperStyle }: PublicationsPartn
 
         {/* Partners Section */}
         <div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-8">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-8">
             Partners
           </h2>
           
@@ -82,7 +82,7 @@ export default function PublicationsPartners({ wrapperStyle }: PublicationsPartn
           </p>
           
           {/* Partner Logos */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 items-center">
+          <div className="grid grid-cols-3 gap-8 items-center">
             {partnerLogos.map((logo, index) => (
               <div 
                 key={index}

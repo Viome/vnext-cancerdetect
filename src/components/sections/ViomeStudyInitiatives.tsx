@@ -18,12 +18,12 @@ export default function ViomeStudyInitiatives({
       {/* Mobile Layout */}
       <div className="block lg:hidden space-y-6">
         {/* Heading */}
-        <p className="text-[14px] leading-[20px] font-twk-lausanne font-semibold uppercase text-[#00A651] tracking-wide">
+        <p className="text-[14px] leading-[20px] font-twk-lausanne font-semibold uppercase text-brand-green-3 tracking-wide">
           {heading}
         </p>
         
         {/* Title */}
-        <h2 className="text-[32px] leading-[40px] font-twk-lausanne font-bold text-black">
+        <h2 className="text-[32px] leading-[40px] font-twk-lausanne font-light text-black">
           {title}
         </h2>
 
@@ -37,11 +37,11 @@ export default function ViomeStudyInitiatives({
       <div className="hidden lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24">
         {/* Left Column - Heading and Title */}
         <div className="space-y-4">
-          <p className="text-[14px] leading-[20px] font-twk-lausanne font-semibold uppercase text-[#00A651] tracking-wide">
+          <p className="text-[14px] leading-[20px] font-twk-lausanne font-semibold uppercase text-brand-green-3 tracking-wide">
             {heading}
           </p>
           
-          <h2 className="text-[48px] leading-[56px] font-twk-lausanne font-bold text-black">
+          <h2 className="text-[48px] leading-[56px] font-twk-lausanne font-light text-black">
             {title}
           </h2>
         </div>

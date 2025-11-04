@@ -19,12 +19,12 @@ export default function ContactSection({ wrapperStyle }: ContactSectionProps) {
       email: "bd@viome.com"
     },
     {
-      label: "For partnering inquiries regarding Viome consumer tests:",
-      email: "businesspartners@viome.com"
-    },
-    {
       label: "For press related inquiries:",
       email: "press@viome.com"
+    },
+    {
+      label: "For partnering inquiries regarding Viome consumer tests:",
+      email: "businesspartners@viome.com"
     },
     {
       label: "For events and speaking inquiries:",
@@ -35,7 +35,7 @@ export default function ContactSection({ wrapperStyle }: ContactSectionProps) {
   return (
     <SectionWrapper wrapperStyle={wrapperStyle}>
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-5xl sm:text-6xl lg:text-7xl font-normal text-gray-900 mb-16 sm:mb-20 lg:mb-24">
+        <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 mb-16 sm:mb-20 lg:mb-24">
           Contact
         </h2>
         

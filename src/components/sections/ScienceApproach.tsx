@@ -28,11 +28,11 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
         comparisonItems: [
           {
             label: "DNA",
-            items: ["Rarely changes", "Similar sequence in every organ & cell"]
+            items: ["Rarely changes", "Similar sequence in every organ & cell", "Explains 5-10% of chronic diseases"]
           },
           {
             label: "RNA",
-            items: ["Dynamic, constantly changing", "Vastly different expression in the body"]
+            items: ["Dynamic, constantly changing", "Vastly different expression in the body", "Explains 80% of chronic diseases"]
           }
         ]
       }
@@ -95,7 +95,7 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
     <SectionWrapper wrapperStyle={wrapperStyle}>
       {/* Header */}
       <div className="mb-12 sm:mb-16">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6">
           Our Science & Unique Approach to Human Health
         </h2>
         <p className="text-lg sm:text-xl text-gray-700 max-w-4xl">
@@ -155,7 +155,7 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
               <div className={`grid grid-cols-1 ${tabs[activeTab].content.leftDescription || activeTab === 2 || activeTab === 3 ? 'lg:grid-cols-2' : 'lg:grid-cols-1'} ${activeTab === 2 || activeTab === 3 ? 'gap-6' : 'gap-12'}`}>
                 {tabs[activeTab].content.leftDescription ? (
                   <div>
-                    <h3 className="text-4xl font-bold mb-6">
+                    <h3 className="text-4xl font-light mb-6">
                       {tabs[activeTab].content.mainTitle}
                     </h3>
                     <p className="text-lg leading-relaxed">
@@ -164,7 +164,7 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
                   </div>
                 ) : (activeTab === 2 || activeTab === 3) ? (
                   <div>
-                    <h3 className="text-4xl font-bold mb-6">
+                    <h3 className="text-4xl font-light mb-6">
                       {tabs[activeTab].content.mainTitle}
                     </h3>
                   </div>
@@ -172,7 +172,7 @@ export default function ScienceApproach({ wrapperStyle }: ScienceApproachProps) 
                 {tabs[activeTab].content.rightDescription && (
                   <div>
                     {!tabs[activeTab].content.leftDescription && activeTab !== 2 && activeTab !== 3 && (
-                      <h3 className="text-4xl font-bold mb-6">
+                      <h3 className="text-4xl font-light mb-6">
                         {tabs[activeTab].content.mainTitle}
                       </h3>
                     )}

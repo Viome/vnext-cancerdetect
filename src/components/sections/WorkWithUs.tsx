@@ -21,13 +21,13 @@ export default function WorkWithUs({ wrapperStyle }: WorkWithUsProps) {
       title: "Our Grants Program",
       content: "The mission of the VLS Grants Program is to enable clinicians and scientists worldwide to translate research into commercial products with clinical utility: devising new therapies and developing more accurate diagnostics and companion diagnostics.",
       ctaText: "Learn more",
-      ctaHref: "https://www.viome.com/grants",
+      ctaHref: "https://www.viomelifesciences.com/grants",
     },
     {
       title: "Viome Publication Dataset Access Program",
       content: "Viome is committed to supporting scientific research by enabling access to data we have included in our publications. We provide access to full summary statistics through a Data Transfer Agreement that protects the privacy of our participant's data.",
       ctaText: "Request Access",
-      ctaHref: "https://www.viome.com/dataset-access",
+      ctaHref: "https://www.viomelifesciences.com/dataset-access",
     },
     {
       title: "Join Our Team",
@@ -59,7 +59,7 @@ export default function WorkWithUs({ wrapperStyle }: WorkWithUsProps) {
               {/* Header Button */}
               <button
                 onClick={() => toggleSection(index)}
-                className="w-full flex items-center justify-between py-6 sm:py-8 text-left group"
+                className="w-full flex items-center justify-between py-6 text-left group"
                 aria-expanded={openIndex === index}
               >
                 <h3 className="typography-headline3 font-semibold pr-4">

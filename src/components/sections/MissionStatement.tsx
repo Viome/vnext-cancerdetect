@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import CDImage from '@/components/CDImage'
 
@@ -17,18 +19,33 @@ export default function MissionStatement({
   return (
     <div
       id={sectionId}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-0"
+      className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0"
+      style={{
+        width:
+          typeof window !== "undefined"
+            ? window.innerWidth < 768
+              ? "calc(100% - 0rem)"
+              : window.innerWidth < 1024
+              ? "calc(100% - 2.5rem)"
+              : "calc(100% - 5rem)"
+            : "100%",
+        ...(typeof window !== "undefined" && window.innerWidth >= 768
+          ? { marginLeft: "auto" }
+          : {}),
+      }}
     >
-      {/* Text on top for mobile, left for tablet/desktop (order-1 everywhere except lg+) */}
-      <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-24 order-1 lg:order-1">
-        <p
-          className="typography-headline2"
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
+      {/* Left Column - Content */}
+      <div className="flex flex-col justify-center order-1 md:order-1 md:pr-[4rem] max-sm:pt-10 max-sm:px-4">
+        <div className="max-w-xl">
+          <p
+            className="typography-headline2"
+            dangerouslySetInnerHTML={{ __html: text }}
+          />
+        </div>
       </div>
 
-      {/* Image second on mobile, right on tablet/desktop */}
-      <div className="relative w-full aspect-[4/5] lg:aspect-auto lg:min-h-[600px] order-2 lg:order-2">
+      {/* Right Column - Image */}
+      <div className="relative w-full aspect-[4/5] md:aspect-auto md:min-h-[600px] order-2 md:order-2">
         <CDImage
           src={image}
           alt={imageAlt}

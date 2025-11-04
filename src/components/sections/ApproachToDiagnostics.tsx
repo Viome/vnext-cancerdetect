@@ -32,7 +32,7 @@ export default function ApproachToDiagnostics({
     <SectionWrapper wrapperStyle={wrapperStyle}>
       {/* Header Section */}
       <div className="max-w-4xl mb-16 sm:mb-20 lg:mb-24">
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-900 mb-6">
           {title}
         </h2>
         <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
@@ -55,22 +55,20 @@ export default function ApproachToDiagnostics({
                 </span>
                 <div className="w-full max-w-xl h-px bg-gray-300 mt-6" />
               </div>
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-normal text-gray-900 leading-relaxed">
+              <p className="typography-headline2 font-light text-gray-900 leading-none">
                 {step.content}
               </p>
             </div>
 
             {/* Image */}
             <div className="order-1 lg:order-2">
-              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
-                <Image
-                  src={step.image}
-                  alt={step.imageAlt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                />
-              </div>
+              <Image
+                src={step.image}
+                alt={step.imageAlt}
+                width={600}
+                height={600}
+                className="w-full h-auto object-contain"
+              />
             </div>
           </div>
         ))}
