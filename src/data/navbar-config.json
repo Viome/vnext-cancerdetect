@@ -2,7 +2,7 @@
   "branding": {
     "logo": {
       "url": "https://strapi.azure.viome.com/viome-strapi/uploads/viome_dark_logo_0de470c98b.svg",
-      "href": "https://www.viome.com/",
+      "href": "/",
       "alt": "Viome logo",
       "width": 160,
       "height": 22
