@@ -214,20 +214,12 @@ jobs:
       - checkout
       - when:
           condition:
-            equal: [staging, << parameters.env >>]
+            equal: [ST, << parameters.env >>]
           steps:
             - run:
                 name: Copy staging configuration
                 command: |
                     cp .env.development .env.production
-      - unless:
-          condition:
-            equal: [production, << parameters.env >>]
-          steps:
-            - run:
-                name: Copy production configuration
-                command: |
-                    cp .env.production .env.production
       - attach_workspace:
           at: ~/repo_vnext_cd
       - run:
