@@ -205,7 +205,7 @@ jobs:
   preFileConfiguration:
     docker:
       - image: cimg/python:3.8.4
-    working_directory: ~/repo
+    working_directory: ~/repo_vnext_cd
     parameters:
       env:
         type: string
