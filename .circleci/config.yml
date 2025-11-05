@@ -19,7 +19,7 @@ commands:
       requestMemory:
         type: string
       limitsCpu:
-        type: integer
+        type: string
       limitsMemory:
         type: string
       minReplicas:
