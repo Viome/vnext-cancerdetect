@@ -172,9 +172,9 @@ jobs:
           kubectl_version: "v1.31.1"
           istio_version: "1.24.0"
           environment: 'ST'
-          requestCpu: 1
+          requestCpu: '1'
           requestMemory: 1Gi
-          limitsCpu: 2
+          limitsCpu: '2'
           limitsMemory: 2Gi
           minReplicas: 1
           maxReplicas: 3
@@ -193,9 +193,9 @@ jobs:
           kubectl_version: "v1.31.1"
           istio_version: "1.24.0"
           environment: 'PD'
-          requestCpu: 1
+          requestCpu: '1'
           requestMemory: 1Gi
-          limitsCpu: 2
+          limitsCpu: '2'
           limitsMemory: 2Gi
           minReplicas: 2
           maxReplicas: 20
