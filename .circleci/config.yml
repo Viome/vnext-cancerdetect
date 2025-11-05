@@ -32,7 +32,7 @@ commands:
         type: integer
     steps:
       - attach_workspace:
-          at: ~/repo_lsj
+          at: ~/repo_vnext_cd
       - run:
           name: Restore Docker Container Image Tag
           command: |
@@ -172,9 +172,9 @@ jobs:
           kubectl_version: "v1.31.1"
           istio_version: "1.24.0"
           environment: 'ST'
-          requestCpu: 250m
-          requestMemory: 512Mi
-          limitsCpu: 1
+          requestCpu: 1
+          requestMemory: 1Gi
+          limitsCpu: 2
           limitsMemory: 2Gi
           minReplicas: 1
           maxReplicas: 3
@@ -193,9 +193,9 @@ jobs:
           kubectl_version: "v1.31.1"
           istio_version: "1.24.0"
           environment: 'PD'
-          requestCpu: 250m
-          requestMemory: 512Mi
-          limitsCpu: 1
+          requestCpu: 1
+          requestMemory: 1Gi
+          limitsCpu: 2
           limitsMemory: 2Gi
           minReplicas: 2
           maxReplicas: 20
@@ -219,7 +219,6 @@ jobs:
             - run:
                 name: Copy staging configuration
                 command: |
-                    cp .env.development .env
                     cp .env.development .env.production
       - unless:
           condition:
@@ -228,14 +227,14 @@ jobs:
             - run:
                 name: Copy production configuration
                 command: |
-                    cp .env.production .env
+                    cp .env.production .env.production
       - attach_workspace:
-          at: ~/repo
+          at: ~/repo_vnext_cd
       - run:
           name: Add NPM TOKEN
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
       - persist_to_workspace:
-          root: ~/repo
+          root: ~/repo_vnext_cd
           paths:
             - ./*
 
