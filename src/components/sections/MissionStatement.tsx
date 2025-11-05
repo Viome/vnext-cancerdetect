@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import CDImage from '@/components/CDImage'
 
 export interface MissionStatementProps {
@@ -16,23 +16,39 @@ export default function MissionStatement({
   image,
   imageAlt = 'Mission statement image'
 }: MissionStatementProps) {
+  // Start with server-safe defaults to avoid hydration mismatch
+  const [styles, setStyles] = useState<React.CSSProperties>({
+    width: "100%",
+  })
+
+  useEffect(() => {
+    // Update styles after mount to match client-side window size
+    const updateStyles = () => {
+      if (window.innerWidth < 768) {
+        setStyles({ width: "calc(100% - 0rem)" })
+      } else if (window.innerWidth < 1024) {
+        setStyles({ 
+          width: "calc(100% - 2.5rem)",
+          marginLeft: "auto"
+        })
+      } else {
+        setStyles({ 
+          width: "calc(100% - 5rem)",
+          marginLeft: "auto"
+        })
+      }
+    }
+
+    updateStyles()
+    window.addEventListener('resize', updateStyles)
+    return () => window.removeEventListener('resize', updateStyles)
+  }, [])
+
   return (
     <div
       id={sectionId}
       className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0"
-      style={{
-        width:
-          typeof window !== "undefined"
-            ? window.innerWidth < 768
-              ? "calc(100% - 0rem)"
-              : window.innerWidth < 1024
-              ? "calc(100% - 2.5rem)"
-              : "calc(100% - 5rem)"
-            : "100%",
-        ...(typeof window !== "undefined" && window.innerWidth >= 768
-          ? { marginLeft: "auto" }
-          : {}),
-      }}
+      style={styles}
     >
       {/* Left Column - Content */}
       <div className="flex flex-col justify-center order-1 md:order-1 md:pr-[4rem] max-sm:pt-10 max-sm:px-4">

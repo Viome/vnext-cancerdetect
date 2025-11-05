@@ -104,7 +104,7 @@ export default function TestingProcess({
           </div>
         ))}
       </div>
-      <div className=" block lg:hidden">
+      <div className="block min-[1440px]:hidden">
         <ul className="list-disc list-outside pl-6">
           {note.map((step, index) => (
             <li key={index} className="typography-paragraph2">

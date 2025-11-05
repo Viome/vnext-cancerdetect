@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import CDImage from '@/components/CDImage'
 import Link from 'next/link'
 
@@ -21,17 +23,38 @@ export default function MissionWithImage({
   image,
   imageAlt = 'Mission image'
 }: MissionWithImageProps) {
+  // Start with server-safe defaults to avoid hydration mismatch
+  const [styles, setStyles] = useState<React.CSSProperties>({
+    width: "calc(100% - 2.5rem)",
+    margin: "auto",
+  })
+
+  useEffect(() => {
+    // Update styles after mount to match client-side window size
+    const updateStyles = () => {
+      if (window.innerWidth >= 768) {
+        setStyles({ 
+          width: "calc(100% - 5rem)",
+          margin: "auto"
+        })
+      } else {
+        setStyles({ 
+          width: "calc(100% - 2.5rem)",
+          margin: "auto"
+        })
+      }
+    }
+
+    updateStyles()
+    window.addEventListener('resize', updateStyles)
+    return () => window.removeEventListener('resize', updateStyles)
+  }, [])
+
   return (
     <div
       id={sectionId}
       className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0 py-10 md:py-16 lg:py-32"
-      style={{
-        width: "calc(100% - 2.5rem)",
-        margin: "auto",
-        ...(typeof window !== "undefined" && window.innerWidth >= 768
-          ? { width: "calc(100% - 5rem)" }
-          : {}),
-      }}
+      style={styles}
     >
       {/* Left Column - Content */}
       <div className="flex flex-col justify-center order-1 md:order-1 md:pr-[4rem]">

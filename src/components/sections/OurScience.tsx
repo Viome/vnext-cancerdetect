@@ -79,7 +79,7 @@ export default function OurScience({
       </div>
 
       {/* Desktop Layout - Image on top, then 2-column grid */}
-      <div className="hidden lg:block lg:space-y-18 lg:h-[755px] ">
+      <div className="hidden lg:block lg:space-y-18">
         {/* Laboratory Image - Full width */}
         <div className="relative w-full lg:h-[185px]">
           <CDImage
