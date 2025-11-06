@@ -95,7 +95,7 @@
       "type": "announcement_banner",
       "title": "Oral and Throat Cancer Detection Test built on <br class='hidden sm:block'>Viome platform, designated Breakthrough Device for accelerated Review by FDA",
       "buttonText": "Learn More",
-      "buttonHref": "/our-science",
+      "buttonHref": "https://www.viome.com/blog/viome-oral-and-throat-cancer-detection-test-designated-breakthrough-device",
       "wrapperStyle": {
         "backgroundImage": "https://strapi.azure.viome.com/viome-strapi/uploads/learn_more_bg_35ba4674bd.webp",
         "spacing": "mb-8",

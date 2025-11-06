@@ -85,7 +85,7 @@ export const submitEligibilityClient = async (formData: EligibilityFormData) => 
         kitId,
         dentistId,
     } = formData;
-    console.log('jeyyy', formData)
+    console.log(formData)
 
     // Build ethnicity results
     const ethnicityResults = {
